@@ -6,8 +6,6 @@ stages:
 pages:
   stage: deploy
   script:
-    - "dotnet build ./base_vb/base_vb.sln"
-    - "dotnet ./base_vb/bin/Debug/netcoreapp3.1/vbb.dll g"
     - mv docs public
   artifacts:
     paths:
