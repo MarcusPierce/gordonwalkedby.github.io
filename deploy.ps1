@@ -1,7 +1,6 @@
 Set-Location $PSScriptRoot
-Set-Location "./base_vb/"
-dotnet run g
-Set-Location $PSScriptRoot    
+dotnet run --project "./base_vb/base_vb.vbproj" g
+Set-Location $PSScriptRoot
 $xml = Get-Item -Path "./docs/atom.xml"
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
     git add -A 
