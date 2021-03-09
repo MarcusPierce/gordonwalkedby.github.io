@@ -70,7 +70,11 @@ s - Open local test server.
                     Throw New Exception("You must set a title of the post.")
                 End If
             Case "g"
-                GenearteBlog(Path.Combine(workingFolder.FullName, "docs"), True)
+                Dim p = Path.Combine(workingFolder.FullName, "docs")
+                If Directory.Exists(p) Then
+                    Directory.Delete(p, True)
+                End If
+                GenearteBlog(p, True)
             Case "s"
                 Dim port As Integer = 4100
                 If args.Length > 1 Then
