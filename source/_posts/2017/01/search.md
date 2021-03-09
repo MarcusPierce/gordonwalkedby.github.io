@@ -9,7 +9,7 @@ date: 2017-01-06
 <br>
 <button onclick="GoSearch('bing')">必应搜索（国内推荐）</button>
 <br>
-<button onclick="GoSearch('gitlab')">GitLab 搜索文章源码</button>
+<button onclick="GoSearch('github')">GitHub 搜索文章源码</button>
 <br>
 <button onclick="GoSearch('google')">谷歌搜索</button>
 <br>

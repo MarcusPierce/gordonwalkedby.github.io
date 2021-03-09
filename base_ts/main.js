@@ -152,8 +152,8 @@ function GoSearch(engine) {
     str = encodeURI(str);
     let url = "";
     switch (engine) {
-        case "gitlab":
-            url = "https://gitlab.com/search?search=" + str + "&project_id=24729447";
+        case "github":
+            url = "https://github.com/gordonwalkedby/gordonwalkedby.github.io/search?q=" + str;
             break;
         case "google":
             url = "https://www.google.com/search?newwindow=1&safe=strict&q=" + str + "+site%3Awalkedby.com";
