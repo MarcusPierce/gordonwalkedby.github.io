@@ -887,6 +887,8 @@ function SetElementResizable(ele, minX, minY) {
     })();
     
 (function () { let  tt = 'error';
+tt = "2021年 03月";vb6b.AddFolder(tt, true);
+vb6b.AddContent("简单介绍目前可用的免费静态站部署平台（Pages 服务）", tt,function (){OpenPost("pages");});
 tt = "2021年 02月";vb6b.AddFolder(tt, true);
 vb6b.AddContent("【不再更新】服毒自杀的我", tt,function (){OpenPost("fdzsdw");});
 vb6b.AddContent("从微软官方直接下载win10镜像的办法（不依赖媒体创建工具）", tt,function (){OpenPost("win10iso");});

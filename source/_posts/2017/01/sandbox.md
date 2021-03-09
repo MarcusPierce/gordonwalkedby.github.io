@@ -27,7 +27,7 @@ document.getElementById("webrtcsupports").innerText = s
 
 我是**粗体abc**，我是*斜体xyz*，对吗？
 
-- [cloudflare 测试页面](https://walkedby.com/cftest)   
+- [cloudflare 测试页面](https://test1.gordonwalkedby.workers.dev)   
 - [查看本站sitemap.xml](/sitemaps.xml)   
 
 H1-H6:  
@@ -39,6 +39,22 @@ H1-H6:
 ##### 标题5，嗷
 ###### 标题6  
 
+Markdown表格，不受支持：   
+
+| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |
+
+
+下面是 `<table>` ，里面有几个 EMOJI:  
+
+<table>
+<tr><td>姓名</td><td>身高</td></tr>
+<tr><td>小捞</td><td>35131CM</td></tr>
+<tr><td>分阶段😊卡拉囧里个囧❤懒得</td><td>35.131CM</td></tr>
+<tr><td>接👀发阿迪</td><td>315✈CM</td></tr>
+</table>
 
 大代码框：
 

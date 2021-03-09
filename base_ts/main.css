@@ -193,3 +193,15 @@ body {
 #inside a {
     color: #c545ff;
 }
+
+.winformcodearea table,
+#inside table {
+    border: 1px solid black;
+}
+
+.winformcodearea td,
+#inside td {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    padding: 3px;
+}

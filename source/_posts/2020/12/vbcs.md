@@ -11,12 +11,12 @@ tags: [.NET]
 <table>
     <tbody>
         <tr>
-            <td>
+            <th>
                 VB.NET
-            </td>
-            <td>
+            </th>
+            <th>
                 C#
-            </td>
+            </th>
             <tr>
                 <td>
                     Private Module Module1
