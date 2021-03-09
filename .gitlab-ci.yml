@@ -6,10 +6,10 @@ stages:
 pages:
   stage: deploy
   script:
-    - mv docs public2
+    - mv docs public
   artifacts:
     paths:
-      - public2
+      - public
   only:
     - master
     
