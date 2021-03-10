@@ -3,6 +3,7 @@
 你真正应该访问的是 https://walkedby.com/  
 
 下面这些是镜像站：   
+- https://wcom2.pages.dev/
 - https://walkedby.gitee.io/
 - https://gordonwalkedby.github.io/
 - https://gordonwalkedby.gitlab.io/
