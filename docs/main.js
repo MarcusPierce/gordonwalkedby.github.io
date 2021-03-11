@@ -888,6 +888,7 @@ function SetElementResizable(ele, minX, minY) {
     
 (function () { let  tt = 'error';
 tt = "2021年 03月";vb6b.AddFolder(tt, true);
+vb6b.AddContent("如果你看见半条翠，请不要帮助他", tt,function (){OpenPost("helpless1");});
 vb6b.AddContent("简单介绍目前可用的免费静态站部署平台（Pages 服务）", tt,function (){OpenPost("pages");});
 tt = "2021年 02月";vb6b.AddFolder(tt, true);
 vb6b.AddContent("【不再更新】服毒自杀的我", tt,function (){OpenPost("fdzsdw");});
