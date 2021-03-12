@@ -195,6 +195,9 @@
         vb6b.AddContent("YouTube", tt, function () {
             OpenURL("https://www.youtube.com/channel/UCpnf5wTnI9br8IxJbRV5Tew", true)
         })
+        vb6b.AddContent("微信公众号", tt, function () {
+            OpenURL("https://mp.weixin.qq.com/s/Nefso4vXOAt0cFc4fEStTQ", true)
+        })
         tt = "我的好朋友们"
         vb6b.AddFolder(tt, true)
         vb6b.AddContent("技术宅的结界", tt, function () { OpenURL("https://www.0xaa55.com/", true) })
