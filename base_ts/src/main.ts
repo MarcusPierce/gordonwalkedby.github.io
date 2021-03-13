@@ -163,8 +163,11 @@
             alert(str)
             return
         })
-        vb6b.AddContent("我的软件作品列表", tt, function () {
+        vb6b.AddContent("我的 软件作品 列表", tt, function () {
             OpenPost("mysoftwares")
+        })
+        vb6b.AddContent("我的 碎碎念 列表", tt, function () {
+            OpenPost("ssn0")
         })
         tt = "联系我"
         vb6b.AddFolder(tt, false)

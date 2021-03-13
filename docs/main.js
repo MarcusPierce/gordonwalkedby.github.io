@@ -839,8 +839,11 @@ function SetElementResizable(ele, minX, minY) {
             alert(str);
             return;
         });
-        vb6b.AddContent("我的软件作品列表", tt, function () {
+        vb6b.AddContent("我的 软件作品 列表", tt, function () {
             OpenPost("mysoftwares");
+        });
+        vb6b.AddContent("我的 碎碎念 列表", tt, function () {
+            OpenPost("ssn0");
         });
         tt = "联系我";
         vb6b.AddFolder(tt, false);
@@ -891,6 +894,7 @@ function SetElementResizable(ele, minX, minY) {
     
 (function () { let  tt = 'error';
 tt = "2021年 03月";vb6b.AddFolder(tt, true);
+vb6b.AddContent("我遇到的电话推销岗位（碎碎念4）", tt,function (){OpenPost("ssn4");});
 vb6b.AddContent("如果你看见半条翠，请不要帮助他", tt,function (){OpenPost("helpless1");});
 vb6b.AddContent("简单介绍目前可用的免费静态站部署平台（Pages 服务）", tt,function (){OpenPost("pages");});
 tt = "2021年 02月";vb6b.AddFolder(tt, true);
@@ -972,6 +976,7 @@ vb6b.AddContent("Movie Studio 14 Platinum 不 Platinum 的区别在哪里", tt,f
 tt = "2017年 06月";vb6b.AddFolder(tt, true);
 vb6b.AddContent("给 Vegas \\ Movie Studio 新版安裝 Frameserver 插件的办法", tt,function (){OpenPost("vegasplugins");});
 tt = "2017年 01月";vb6b.AddFolder(tt, true);
+vb6b.AddContent("碎碎念 列表", tt,function (){OpenPost("ssn0");});
 vb6b.AddContent("订阅 RSS", tt,function (){OpenPost("rsss");});
 vb6b.AddContent("我的软件作品列表", tt,function (){OpenPost("mysoftwares");});
 vb6b.AddContent("给戈登登MONEY！", tt,function (){OpenPost("donate");});
