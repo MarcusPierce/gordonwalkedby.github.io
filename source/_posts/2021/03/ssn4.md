@@ -10,6 +10,7 @@ date: 2021-03-13
 [bilibili](https://www.bilibili.com/video/BV1Nr4y1P7Ss/)   
 [acfun](https://www.acfun.cn/v/ac26728928)   
 [youtube](https://www.youtube.com/watch?v=3YQ82UeCTr0)   
+[微信公众号（仅音频和台词）](https://mp.weixin.qq.com/s/Z384tkqGVoG-AII7hjvqMg)   
 
 -------
 
