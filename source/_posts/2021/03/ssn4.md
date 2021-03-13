@@ -3,6 +3,8 @@ title: 我遇到的电话推销岗位（碎碎念4）
 date: 2021-03-13
 ---
 
+[点我查看碎碎念列表](/?po=ssn0)
+
 这篇碎碎念的作为视频发布的。  
 你可以在下面选一个地方观看、讨论（自带字幕）：   
 [bilibili](https://www.bilibili.com/video/BV1Nr4y1P7Ss/)   
