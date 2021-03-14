@@ -4,7 +4,7 @@ Set-Location $PSScriptRoot
 $xml = Get-Item -Path "./docs/atom.xml"
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
     git add -A 
-    git commit -m "ByScript"
+    git commit -S -m "ByScript"
     Write-Host "开始 push 到 gitee"
     git push gitee master 
     Write-Host "开始 push 到 github"
