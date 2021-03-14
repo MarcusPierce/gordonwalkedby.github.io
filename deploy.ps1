@@ -1,4 +1,4 @@
-Set-Location $PSScriptRoot
+﻿Set-Location $PSScriptRoot
 dotnet run --project "./base_vb/base_vb.vbproj" g
 Set-Location $PSScriptRoot
 $xml = Get-Item -Path "./docs/atom.xml"

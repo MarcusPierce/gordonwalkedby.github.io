@@ -97,7 +97,8 @@ s - Open local test server.
                 Throw New Exception($"This post name has been used: {md.FullName}")
             End If
         Next
-        Dim dc As New DirectoryInfo(Path.Combine(postsFolder.FullName, Now.ToString("yyyy/MM")))
+        Dim td = Now
+        Dim dc As New DirectoryInfo(Path.Combine(postsFolder.FullName, td.ToString("yyyy"), td.ToString("MM")))
         If dc.Exists = False Then
             dc.Create()
         End If
