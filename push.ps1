@@ -1,7 +1,7 @@
 ﻿Set-Location $PSScriptRoot
-dotnet run --project "./base_vb/base_vb.vbproj" g
+dotnet "./base_vb/bin/Debug/netcoreapp3.1/vbb.dll" g
 Set-Location $PSScriptRoot
-$xml = Get-Item -Path "./docs/atom.xml"
+$xml = Get-Item -Path "./docs/sitemaps.xml"
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
     git add -A 
     git commit -S -m "ByScript"

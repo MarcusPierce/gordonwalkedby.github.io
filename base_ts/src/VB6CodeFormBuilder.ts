@@ -28,11 +28,11 @@ class VB6CodeFormBuilder {
                 throw "VB6CodeFormBuilder 无法识别的图标名字"
         }
         ttdiv.className = "winformtitle"
-        ttdiv.style.backgroundImage = "url(\"vb6img/" + imgname + ".png\")"
+        ttdiv.style.backgroundImage = "url(\"vb6img/" + imgname + ".webp\")"
         this.titleDiv = ttdiv
         maindiv.appendChild(ttdiv)
         let img = document.createElement("img")
-        img.src = "/vb6img/3buttons.png"
+        img.src = "/vb6img/3buttons.webp"
         img.className = "winform3buttons"
         ttdiv.appendChild(img)
         let inside = document.createElement("div")

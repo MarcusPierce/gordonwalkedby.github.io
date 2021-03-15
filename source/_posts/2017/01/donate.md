@@ -13,10 +13,10 @@ date: 2017-01-11
 [查看捐款感谢列表](https://shimo.im/sheets/C8kH6hHyvtvqPVJr/MODOC/)   
 
 # 支付宝
-![](/images/money/zfb.jpg)  
+![](/images/money/zfb.webp)  
 
 # QQ钱包
-![](/images/money/qqq.jpg)  
+![](/images/money/qqq.webp)  
 
 # 微信
-![](/images/money/wx.jpg)  
+![](/images/money/wx.webp)  

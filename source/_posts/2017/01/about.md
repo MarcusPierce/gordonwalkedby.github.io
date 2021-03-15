@@ -15,9 +15,10 @@ Gordon Walkedby
 - 干过空调售后信息员，业绩是全省倒数第一
 - 现在在昆明城区独立，姐姐会保护我，可是我还是找不到工作
 
-![](/images/avator.png)   
+![](/images/avator.webp)   
 
 # 我的 GPG / PGP 公钥
+
 ```asc
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 

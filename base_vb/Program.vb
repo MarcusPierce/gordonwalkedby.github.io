@@ -17,7 +17,7 @@ s - Open local test server.
 ")
             Environment.Exit(0)
         End If
-        Dim dc = New DirectoryInfo(Directory.GetCurrentDirectory)
+        Dim dc = New DirectoryInfo(AppContext.BaseDirectory)
         Dim isgoodFolder = False
         For retry As Integer = 1 To 15
             Dim folders = dc.GetDirectories("*", SearchOption.TopDirectoryOnly)
@@ -202,19 +202,39 @@ s - Open local test server.
         Next
         xw.Close()
         sb.AppendLine("})();")
-        smb.SaveToFile(Path.Combine(destf.FullName, "sitemaps.xml"))
         For Each i As String In {"index.html", "main.css", "main.js", "404.html", "max.html"}
             Dim f As New FileInfo(Path.Combine(baseTSFolder.FullName, i))
             If Not f.Exists Then
                 Throw New Exception($"Important file missed: {f.FullName}")
             End If
             Dim copyto As New FileInfo(Path.Combine(destf.FullName, i))
-            f.CopyTo(copyto.FullName, True)
+            Dim ct = File.ReadAllText(f.FullName)
             If i.Equals("main.js") Then
-                Dim ct = File.ReadAllText(copyto.FullName)
                 ct = ct.Replace("// 首页的JS添加在这里", sb.ToString)
-                File.WriteAllText(copyto.FullName, ct)
             End If
+            Dim r As UglifyResult = Nothing
+            Dim compressed As Boolean = True
+            Select Case f.Extension.ToLower
+                Case ".html"
+                    r = Uglify.Html(ct)
+                Case ".js"
+                    r = Uglify.Js(ct)
+                Case ".css"
+                    r = Uglify.Css(ct)
+                Case Else
+                    compressed = False
+            End Select
+            If compressed Then
+                If Not r.HasErrors Then
+                    ct = r.Code
+                Else
+                    For Each ie In r.Errors
+                        Console.WriteLine(ie.ToString)
+                    Next
+                    Throw New Exception($"compress error: {f.FullName} ")
+                End If
+            End If
+            File.WriteAllText(copyto.FullName, ct)
         Next
         If Output Then Console.WriteLine("Important files copied.")
         For Each i In sourceFolder.GetDirectories("*", SearchOption.TopDirectoryOnly)
@@ -225,6 +245,7 @@ s - Open local test server.
         For Each i In sourceFolder.GetFiles("*", SearchOption.TopDirectoryOnly)
             i.CopyTo(Path.Combine(destf.FullName, i.Name), True)
         Next
+        smb.SaveToFile(Path.Combine(destf.FullName, "sitemaps.xml"))
         If Output Then Console.WriteLine("Over")
         lastGen = Now
     End Sub

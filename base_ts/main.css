@@ -24,7 +24,7 @@ body {
 .filelistmenu {
     height: 24px;
     background-color: rgb(240, 240, 240);
-    background-image: url("/vb6img/buttons.png");
+    background-image: url("/vb6img/buttons.webp");
     background-repeat: no-repeat;
     background-position: 0px 0px;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .filelistProject {
-    background-image: url("/vb6img/project.png");
+    background-image: url("/vb6img/project.webp");
     background-repeat: no-repeat;
     background-position: 3px 0px;
     height: 17px;
@@ -167,16 +167,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: 9999999;
-}
-
-.msgboximg {
-    background-image: url("/vb6img/msgbox1.jpg");
-    background-repeat: no-repeat;
-    width: 270px;
-    height: 152px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
 }
 
 .msgboxtext {

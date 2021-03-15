@@ -265,8 +265,8 @@ class VB6FileListBuilder {
         this.leftline = line;
     }
     AddFolder(title, opened, icon) {
-        const OpenedFolderIMG = "url(\"/vb6img/openedfolder.png\")";
-        const ClosedFolderIMG = "url(\"/vb6img/closedfolder.png\")";
+        const OpenedFolderIMG = "url(\"/vb6img/openedfolder.webp\")";
+        const ClosedFolderIMG = "url(\"/vb6img/closedfolder.webp\")";
         if (this.folderdivs.has(title)) {
             console.error("重复添加文件夹，拒绝：", title);
             return;
@@ -377,7 +377,7 @@ class VB6FileListBuilder {
             return;
         }
         let div = document.createElement("div");
-        div.style.backgroundImage = "url('/vb6img/" + imgname + ".png')";
+        div.style.backgroundImage = "url('/vb6img/" + imgname + ".webp')";
         div.style.backgroundRepeat = "no-repeat";
         div.style.backgroundPosition = "1px 3px";
         div.style.height = "17px";
@@ -482,11 +482,11 @@ class VB6CodeFormBuilder {
                 throw "VB6CodeFormBuilder 无法识别的图标名字";
         }
         ttdiv.className = "winformtitle";
-        ttdiv.style.backgroundImage = "url(\"vb6img/" + imgname + ".png\")";
+        ttdiv.style.backgroundImage = "url(\"vb6img/" + imgname + ".webp\")";
         this.titleDiv = ttdiv;
         maindiv.appendChild(ttdiv);
         let img = document.createElement("img");
-        img.src = "/vb6img/3buttons.png";
+        img.src = "/vb6img/3buttons.webp";
         img.className = "winform3buttons";
         ttdiv.appendChild(img);
         let inside = document.createElement("div");

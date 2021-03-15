@@ -34,8 +34,8 @@ class VB6FileListBuilder {
     OnClickItem: (this: VB6FileListBuilder, folder: string, name: string, clicks: number) => void = function () { }
     lastUsedIcon: VB6ContentIcon = VB6ContentIcon.Class
     AddFolder(title: string, opened: boolean, icon?: VB6ContentIcon) {
-        const OpenedFolderIMG = "url(\"/vb6img/openedfolder.png\")"
-        const ClosedFolderIMG = "url(\"/vb6img/closedfolder.png\")"
+        const OpenedFolderIMG = "url(\"/vb6img/openedfolder.webp\")"
+        const ClosedFolderIMG = "url(\"/vb6img/closedfolder.webp\")"
         if (this.folderdivs.has(title)) {
             console.error("重复添加文件夹，拒绝：", title)
             return
@@ -141,7 +141,7 @@ class VB6FileListBuilder {
             return
         }
         let div = document.createElement("div")
-        div.style.backgroundImage = "url('/vb6img/" + imgname + ".png')"
+        div.style.backgroundImage = "url('/vb6img/" + imgname + ".webp')"
         div.style.backgroundRepeat = "no-repeat"
         div.style.backgroundPosition = "1px 3px"
         div.style.height = "17px"

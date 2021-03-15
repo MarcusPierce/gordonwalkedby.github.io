@@ -1,2 +1,2 @@
 Set-Location $PSScriptRoot
-dotnet run --project "./base_vb/base_vb.vbproj" $args
+dotnet "./base_vb/bin/Debug/netcoreapp3.1/vbb.dll" $args
