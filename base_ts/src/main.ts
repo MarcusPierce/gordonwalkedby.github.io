@@ -215,7 +215,19 @@
             OpenPost(post)
         }
         hljs.initHighlightingOnLoad()
-    })()
+    })();
+
+    setInterval(function () {
+        let body = document.body
+        let h = window.innerHeight
+        if (window.innerWidth < 650 || h < 650) {
+            body.style.backgroundImage = ""
+        } else {
+            body.style.height = h.toFixed() + "px"
+            body.style.backgroundPositionY = (h - 600).toFixed() + "px"
+            body.style.backgroundImage = "url('/images/avator_t.webp')"
+        }
+    }, 150)
 
     // 首页的JS添加在这里
 
