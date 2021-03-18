@@ -5,10 +5,10 @@ date: 2017-01-11
 我的所有的独立电脑软件，浏览器插件等都在这列出来。不包括 Steam Workshop 里的作品。   
 
 # 在支持和维护中的
-- 【油猴脚本】[Steam 聊天记录导出](https://github.com/gordonwalkedby/Steam-Chat-Log-Export)
+- 【油猴脚本】[Steam 聊天记录导出](/?po=steamchatlogexport)
 
 # 不再维护，但是你可以使用
-- 【.NET Framework】[服毒自杀的我，一款反自杀主题的打字游戏](https://github.com/gordonwalkedby/fdzsdw)
+- 【.NET Framework】[服毒自杀的我，一款反自杀主题的打字游戏](/?po=fdzsdw)
 
 # 不再维护的，且不建议使用的
 - 【火狐扩展】[Steam Friends Monitor 好友与聊天记录器](/?po=steamfriendsmonitor)
