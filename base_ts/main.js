@@ -890,6 +890,7 @@ function SetElementResizable(ele, minX, minY) {
             OpenPost(post);
         }
         hljs.initHighlightingOnLoad();
+        document.body.style.overflow = "hidden";
     })();
     setInterval(function () {
         let body = document.body;

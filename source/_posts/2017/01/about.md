@@ -7,19 +7,18 @@ tags: 日常
 （也可以写 戈登走过去）  
 Gordon Walkedby   
 
-- 高考全校第一，省重点本科辍学，恨死教育体制了
-- 抑郁症，服药中
+- 我有食品行业用的健康证，说明我很健康
 - 如果你运气好，你会看见我发了视频作品，然后过几天又把它删了
-- 喜欢聊天，交朋友，抱抱
-- 读书12年什么都不会，很笨
-- 干过空调售后信息员，业绩是全省倒数第一
-- 现在在昆明城区独立，姐姐会保护我，可是我还是找不到工作
+- 也就读了十二年的书吧，啥也不会
+- 做视频，写程序，发文章都是业余爱好，最喜欢 VB.NET 以及 TypeScript
 
 ![](/images/avator.webp)   
 
 # 我的 GPG / PGP 公钥
-
-```asc
+<button id="ButGPGkey">点我显示（隐藏）</button><br>
+<button id="ButCopyGPGkey">点我复制到剪贴板</button>
+<pre  id='gpgkey' style="display: none;">
+<code class="lang-plaintext">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQGNBGBN3lsBDACtZkglP9oqyq3HgwENX1UHIQ2dOBvGZjsj7N6SkmaSp9mUOJhV
@@ -61,4 +60,26 @@ dBIcCFMfbpB2mdwApo58ZQs74XPHaLzxdpyhLWyiXNf8v7gyA+apG5R8AZV2+bzO
 i0zit5BaAAJSPPfy92wW574O5ob6rdK9gLTXPmICIXuqmrX5
 =r8MH
 -----END PGP PUBLIC KEY BLOCK-----
-```
+</code>
+</pre>
+<script>
+(function(){
+let but = document.getElementById("ButGPGkey")
+but.onclick = function () {
+    let pp = document.getElementById("gpgkey")
+    let n = "none"
+    if (pp.style.display == n) {
+        n = ""
+    }
+    pp.style.display = n
+}
+let but2 = document.getElementById("ButCopyGPGkey")
+but2.onclick = function () {
+    let pp = document.getElementById("gpgkey")
+    let str = pp.innerText
+    if (str.length > 100) {
+        navigator.clipboard.writeText(str)
+    }
+}
+})();
+</script>

@@ -215,6 +215,7 @@
             OpenPost(post)
         }
         hljs.initHighlightingOnLoad()
+        document.body.style.overflow = "hidden"
     })();
 
     setInterval(function () {

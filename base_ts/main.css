@@ -4,7 +4,6 @@ body {
     margin: 0;
     background-repeat: no-repeat;
     background-position-x: right;
-    overflow: hidden;
 }
 
 .filelist {
@@ -161,7 +160,11 @@ body {
 }
 
 .winformComment {
-    color: #008000;
+	color: #008000;
+	font-size: inherit;
+	font-weight: inherit;
+	margin: 0px;
+	padding: 0px;
 }
 
 .msgboxbg {
