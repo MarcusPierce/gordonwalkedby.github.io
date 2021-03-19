@@ -5,7 +5,8 @@ date: 2017-01-11
 我的所有的独立电脑软件，浏览器插件等都在这列出来。不包括 Steam Workshop 里的作品。   
 
 # 在支持和维护中的
-- 【油猴脚本】[Steam 聊天记录导出](/?po=steamchatlogexport)
+- 【Tampermonkey 脚本】[石墨文档批量导出脚本](/?po=shimoexport)
+- 【Tampermonkey 脚本】[Steam 聊天记录导出](/?po=steamchatlogexport)
 
 # 不再维护，但是你可以使用
 - 【.NET Framework】[服毒自杀的我，一款反自杀主题的打字游戏](/?po=fdzsdw)
@@ -15,13 +16,13 @@ date: 2017-01-11
 - 【网页程序】[张小龙生成器](/?po=zxlgen)
 - 【.NET】[实现奥克斯售后/苏宁售后与MYSQL连接](/?po=porkball)
 - 【网页程序】[大学舒适度评分自测表](/?po=university)
-- 【油猴脚本】[Steam创意工坊列出工具](/?po=steamworkshoplistout)
+- 【Tampermonkey 脚本】[Steam创意工坊列出工具](/?po=steamworkshoplistout)
 - 【.NET Framework】[手机任务管理器重制版](/?po=runtaskmanageronyourphone)
 - 【网页程序】[B站投稿封面效果预览工具](/?po=bilibilicoverpreview)
 - 【网页程序】[电话流量套餐筛选排列工具](/?po=phone)
 - 【网页程序】[描述性文本转 ICS 文件在线转换器](/?po=icsbatch)
 - 【.NET Framework】[手机任务管理器](/?po=remotetaskmanager)
-- 【油猴脚本】[Steam 好友检查器](/?po=steamfriendschecker)
+- 【Tampermonkey 脚本】[Steam 好友检查器](/?po=steamfriendschecker)
 - 【网页程序】[B站六级计算器](/?po=whenlv6)
 - 【.NET Framework】[走過去的工具箱](/?po=oldsoftwares)
 - 【.NET Framework】[半条命风格WinForm控件库](/?po=oldsoftwares)
