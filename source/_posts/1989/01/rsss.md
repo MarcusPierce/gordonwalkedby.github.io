@@ -1,16 +1,21 @@
 ---
 title: 订阅 RSS
-date: 2017-01-13
+date: 1989-01-13
+tags: 我自己
 ---
 
 RSS 订阅链接：  
 
 <span id="RSSlink">https://walkedby.com/atom.xml</span><br>
-<button id="copyRSSlink">点我复制到剪贴板</button>
+<button id="copyRSSlink">点我复制到剪贴板</button><br>
+<a id="RSSlinka" href="/atom.xml">点我直接打开</a>
 <script>
     (function () {
+        var ak = document.getElementById("RSSlinka")
+        var span = document.getElementById("RSSlink")
+        var link = ak.href
+        span.innerText = ak.href
         var but = document.getElementById("copyRSSlink")
-        var link = document.getElementById("RSSlink").innerText
         var lastTimeout = -1
         but.onclick = function () {
             if (lastTimeout != -1) {

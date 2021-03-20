@@ -1,7 +1,7 @@
 ---
 title: 在 Windows 上给 Git SSH 设置代理
 date: 2019-09-01 07:44:20
-tags: [研究笔记,Git]
+tags: [杂]
 ---
 百度搜到的很多给 git 设置代理的办法，都是给 http 设置代理，而不是给 SSH 设置代理。那个 `git config --global http.proxy http://127.0.0.1:1080` 设置起来，只针对 http 的 git 有效果。  
 然后就是 `ProxyCommand nc -v -x 127.0.0.1:1080 %h %p` ，那个分明是给 linux 才能用的， windows 上哪里来的 nc 程序？  

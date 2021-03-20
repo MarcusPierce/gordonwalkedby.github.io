@@ -185,11 +185,6 @@ body {
     font-size: 14px;
 }
 
-.winformcodearea a,
-#inside a {
-    color: #c545ff;
-}
-
 .winformcodearea table,
 #inside table {
     border: 1px solid black;

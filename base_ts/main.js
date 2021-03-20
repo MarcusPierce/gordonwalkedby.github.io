@@ -31,6 +31,11 @@ function CreateSelectOptionElement(title, value = "") {
     s.value = value;
     return s;
 }
+// 返回随机的 boolean
+function RndBool() {
+    let rnd = Math.random();
+    return rnd > 0.5;
+}
 // 获取这个class的第一个元素，如果不存在就throw
 function GetFirstElementByClass(c) {
     let es = document.getElementsByClassName(c);
@@ -680,6 +685,14 @@ function SetElementResizable(ele, minX, minY) {
 /// <reference path = "VB6FileListBuilder.ts" />
 /// <reference path = "VB6CodeFormBuilder.ts" />
 (function () {
+    let st = document.createElement("style");
+    let css = ".winformcodearea a,#inside a { color: ";
+    css += RandomChoose(["#c545ff", "#235334", "#7b6800", "#006a7b"]);
+    css += ";}";
+    st.innerHTML = css;
+    document.head.appendChild(st);
+})();
+(function () {
     if (myIndexType != 0) {
         return;
     }
@@ -714,7 +727,7 @@ function SetElementResizable(ele, minX, minY) {
                 let jj = this.responseText;
                 try {
                     let obj = JSON.parse(jj);
-                    if (obj.Title.length > 0 && obj.Time > 2000000 && obj.Content.length > 0) {
+                    if (obj.Title.length > 0 && obj.Content.length > 0) {
                         let old = openedForms.get(obj.Title);
                         if (old != null) {
                             old.maindiv.remove();
@@ -793,7 +806,7 @@ function SetElementResizable(ele, minX, minY) {
         vb6b.AddContent("RSS订阅", tt, function () {
             OpenPost("rsss");
         });
-        vb6b.AddContent("关于我", tt, function () {
+        vb6b.AddContent("关于我（联系我）", tt, function () {
             OpenPost("about");
         });
         vb6b.AddContent("搜索本博客", tt, function () {
@@ -842,14 +855,8 @@ function SetElementResizable(ele, minX, minY) {
         vb6b.AddContent("我的 软件作品 列表", tt, function () {
             OpenPost("mysoftwares");
         });
-        vb6b.AddContent("我的 碎碎念 列表", tt, function () {
-            OpenPost("ssn0");
-        });
-        tt = "联系我";
+        tt = "关注我";
         vb6b.AddFolder(tt, false);
-        vb6b.AddContent("直接给我留言", tt, function () {
-            OpenURL("https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill", true);
-        });
         vb6b.AddContent("Twitter", tt, function () {
             OpenURL("https://twitter.com/GDZGQ", true);
         });

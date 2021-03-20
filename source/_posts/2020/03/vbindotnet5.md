@@ -1,7 +1,7 @@
 ---
 title: 在 .NET 5.0 中已计划的 VB 支持情况概述
 date: 2020-03-13 07:10:03
-tags: [.NET,翻译]
+tags: [.NET]
 ---
 本文是翻译，原文是[VB团队的官方博客里的文章](https://devblogs.microsoft.com/vbteam/visual-basic-support-planned-for-net-5-0/)，发布于2020年3月11日。  
 .NET 的 Visual Basic 还会继续被微软支持下去，但是很可能这门语言就要停滞不前了，语言本身将保持不变，变化的只有API。

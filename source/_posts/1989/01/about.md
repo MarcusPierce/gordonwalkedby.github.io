@@ -1,7 +1,7 @@
 ---
 title: 关于戈登走過去
-date: 2017-01-01
-tags: 日常
+date: 1989-01-01
+tags: 我自己
 ---
 戈登走過去   
 （也可以写 戈登走过去）  
@@ -15,9 +15,15 @@ Gordon Walkedby
 
 ![](/images/avator.webp)   
 
+# 联系我
+- [推荐：石墨文档在线留言（匿名，无需注册登录）](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)
+- EMAIL： 84y48tt8l艾特relay.firefox.com
+- [推特私信](https://twitter.com/GDZGQ)
+- [B站私信](https://space.bilibili.com/4523834)
+- 微博私信很可能看不见，ACFUN私信就更看不见了
+
 # 我的 GPG / PGP 公钥
-<button id="ButGPGkey">点我显示（隐藏）</button><br>
-<button id="ButCopyGPGkey">点我复制到剪贴板</button>
+
 <pre  id='gpgkey' style="display: none;">
 <code class="lang-plaintext">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -63,6 +69,8 @@ i0zit5BaAAJSPPfy92wW574O5ob6rdK9gLTXPmICIXuqmrX5
 -----END PGP PUBLIC KEY BLOCK-----
 </code>
 </pre>
+<button id="ButGPGkey">点我显示（隐藏）</button><br>
+<button id="ButCopyGPGkey">点我复制到剪贴板</button>
 <script>
 (function(){
 let but = document.getElementById("ButGPGkey")

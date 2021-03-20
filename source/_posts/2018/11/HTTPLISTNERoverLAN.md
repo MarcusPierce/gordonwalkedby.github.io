@@ -1,7 +1,7 @@
 ---
 title: .NET HttpListener 监听局域网其他设备HTTP请求的说明
 date: 2018-11-10 16:30:29
-tags: [研究笔记,.NET]
+tags: [.NET]
 ---
 
 我一直在想怎么在局域网内其他设备（手机、电脑）给自己的电脑传输HTTP请求，并且要用 .NET 的 [HttpListener](https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httplistener?redirectedfrom=MSDN&view=netframework-4.7.2) 监听到。然后今天终于试出来了，而且和 Windows 防火墙有离不开的关系，我说我以前怎么怎么测试都不行呢。 

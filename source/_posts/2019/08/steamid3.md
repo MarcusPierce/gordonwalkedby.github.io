@@ -1,7 +1,7 @@
 ---
 title: 使用第三代ID 的 STEAM 个人主页链接
 date: 2019-08-22 10:58:26
-tags: [研究笔记,Steam]
+tags: [Steam]
 ---
  
 现在 Steam 推出了用一个数字 ID 来加好友的功能，这个 ID 其实一直都在，

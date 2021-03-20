@@ -1,6 +1,7 @@
 ---
 title: 石墨文档批量导出脚本
 date: 2021-03-19
+tags: [我的软件]
 ---
 这是一个 Tampermonkey 脚本。  
 

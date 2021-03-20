@@ -1,7 +1,7 @@
 ---
 title: Steam 社区的神奇保护机制
 date: 2018-08-30 07:38:54
-tags: [日常,Steam]
+tags: Steam
 ---
 前几天我给我的steam账户换了一个邮箱：  
 ![](https://s1.ax1x.com/2018/08/30/PXRClD.png)

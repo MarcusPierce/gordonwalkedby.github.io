@@ -31,6 +31,12 @@ function CreateSelectOptionElement(title: string, value: string = ""): HTMLOptio
     return s
 }
 
+// 返回随机的 boolean
+function RndBool(): boolean {
+    let rnd = Math.random()
+    return rnd > 0.5
+}
+
 // 获取这个class的第一个元素，如果不存在就throw
 function GetFirstElementByClass(c: string): HTMLElement {
     let es = document.getElementsByClassName(c)
@@ -152,7 +158,7 @@ function GoSearch(engine: string) {
     let url = ""
     switch (engine) {
         case "github":
-            url = "https://github.com/gordonwalkedby/gordonwalkedby.github.io/search?q=" + str 
+            url = "https://github.com/gordonwalkedby/gordonwalkedby.github.io/search?q=" + str
             break
         case "google":
             url = "https://www.google.com/search?newwindow=1&safe=strict&q=" + str + "+site%3Awalkedby.com"
