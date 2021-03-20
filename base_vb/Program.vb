@@ -151,6 +151,8 @@ s - Open local test server.
             .WriteId("https://walkedby.com/")
             .WriteTitle("戈登走過去的博客")
             .WriteUpdated(New DateTimeOffset(posts.Item(0).Time))
+            Dim link As New SyndicationLink(New Uri("https://walkedby.com/atom.xml"), "self")
+            .Write(link)
         End With
         Dim smb As New SiteMapBuilder
         Dim tags As New Dictionary(Of String, List(Of BlogPost))
@@ -180,6 +182,7 @@ s - Open local test server.
                       End Sub
         addFolder("最新文章", 1)
         Dim index As Integer = -1
+        Dim rssPerson As New SyndicationPerson("戈登走過去", "84y48tt8l@relay.firefox.com")
         For Each i In posts
             index += 1
             Dim uu As New Uri("https://walkedby.com/?po=" + i.FileName)
@@ -197,7 +200,8 @@ s - Open local test server.
                     .Title = i.Title
                     .Published = .LastUpdated
                     .AddLink(New SyndicationLink(uu))
-                    .AddContributor(New SyndicationPerson("戈登走過去", "84y48tt8l@relay.firefox.com"))
+                    .AddContributor(rssPerson)
+                    .Description = i.Content
                 End With
                 atom.Write(rss).Wait()
             End If
