@@ -31,7 +31,13 @@ RSS 订阅链接：
     })();
 </script>
 
+该 RSS 已经通过 W3C 验证检测。  
+[![](https://validator.w3.org/feed/images/valid-atom.png)](https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fwalkedby.com%2Fatom.xml)   
+
 戈登推荐你使用一个浏览器扩展形式的 RSS 阅读器，在浏览器运行的时候，它会在后台自动更新订阅。   
 戈登一直在用 [FeedBro](https://nodetics.com/feedbro/) ，支持大部分现代浏览器，而且还受到了 Mozilla 的官方认可。    
-当你选择用 RSS 订阅的时候，你可以自豪地觉得自己比那些依赖手机推送的人要高雅。  
+当你选择用 RSS 订阅的时候，你可以自豪地觉得自己比那些依赖手机推送的人要高雅。   
 
+这里还可以使用谷歌旗下的 FeedBurner ，他可以云端检测RSS更新，更新后就会给你发送email。  
+你需要翻墙才能成功登记 FeedBurner 服务。  
+[点我去使用email订阅](https://feedburner.google.com/fb/a/mailverify?uri=walkedby/sIDA)   

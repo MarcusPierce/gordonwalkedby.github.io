@@ -148,11 +148,11 @@ s - Open local test server.
         Dim xw = Xml.XmlWriter.Create(Path.Combine(destf.FullName, "atom.xml"))
         Dim atom As New AtomFeedWriter(xw)
         With atom
-            .WriteId("https://walkedby.com/")
-            .WriteTitle("戈登走過去的博客")
-            .WriteUpdated(New DateTimeOffset(posts.Item(0).Time))
+            .WriteId("https://walkedby.com/").Wait()
+            .WriteTitle("戈登走過去的博客").Wait()
+            .WriteUpdated(New DateTimeOffset(posts.Item(0).Time)).Wait()
             Dim link As New SyndicationLink(New Uri("https://walkedby.com/atom.xml"), "self")
-            .Write(link)
+            .Write(link).Wait()
         End With
         Dim smb As New SiteMapBuilder
         Dim tags As New Dictionary(Of String, List(Of BlogPost))
@@ -201,7 +201,7 @@ s - Open local test server.
                     .Published = .LastUpdated
                     .AddLink(New SyndicationLink(uu))
                     .AddContributor(rssPerson)
-                    .Description = i.Content
+                    .Description = "全文请看  " + uu.ToString
                 End With
                 atom.Write(rss).Wait()
             End If
