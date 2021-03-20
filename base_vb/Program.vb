@@ -148,7 +148,7 @@ s - Open local test server.
         Dim xw = Xml.XmlWriter.Create(Path.Combine(destf.FullName, "atom.xml"))
         Dim atom As New AtomFeedWriter(xw)
         With atom
-            .WriteId("walkedby.com")
+            .WriteId("https://walkedby.com/")
             .WriteTitle("戈登走過去的博客")
             .WriteUpdated(New DateTimeOffset(posts.Item(0).Time))
         End With
