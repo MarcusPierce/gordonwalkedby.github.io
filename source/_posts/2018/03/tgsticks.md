@@ -4,7 +4,7 @@ date: 2018-03-11 21:53:57
 tags: 杂
 ---
 
-现在我知道的三个机器人：  
+现在我知道的2个机器人：  
 
 [@GIFDownloader_bot](https://t.me/GIFDownloader_bot)  
 发给他一张贴纸，得到贴纸的高清图片 PNG 下载。  
