@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "gen.vb": {
+      "commandName": "Project",
+      "commandLineArgs": "s"
+    }
+  }
+}

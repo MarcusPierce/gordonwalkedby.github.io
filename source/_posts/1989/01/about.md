@@ -20,7 +20,7 @@ Gordon Walkedby
 - EMAIL： 84y48tt8l艾特relay.firefox.com
 - [推特私信](https://twitter.com/GDZGQ)
 - [B站私信](https://space.bilibili.com/4523834)
-- 微博私信很可能看不见，ACFUN私信就更看不见了
+- [微博私信](https://weibo.com/gordon2001/) （很可能看不见）
 
 # 我的 GPG / PGP 公钥
 

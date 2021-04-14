@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "base_vb": {
-      "commandName": "Project",
-      "commandLineArgs": "s"
-    }
-  }
-}
