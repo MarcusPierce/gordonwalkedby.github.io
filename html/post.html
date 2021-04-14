@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>戈登走過去的博客</title>
     <link type=text/css rel=stylesheet href=/main.css>
+    <link type="text/css" rel="stylesheet" href="/vs.min.css">
     <link rel="alternate" type="application/atom+xml" title="戈登走過去的博客 - Atom" href="/atom.xml" />
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script>
 </head>
@@ -34,6 +35,16 @@
         </article>
     </main>
     <script src="/main.js"></script>
+    <script src="/highlight.min.js"></script>
+    <script>
+        (function() {
+            let precodes = document.body.querySelectorAll("pre code");
+            for (let i = 0; i < precodes.length; i++) {
+                let pre = precodes[i];
+                hljs.highlightBlock(pre);
+            }
+        })();
+    </script>
 </body>
 
 </html>
