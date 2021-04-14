@@ -45,6 +45,9 @@ function RandomHSLColor(s = 100, b = 85) {
         let t = SectionTitles[i];
         let str = t.innerText;
         for (let j = 0; j < 50; j++) {
+            if (j < 1 && str.length > 0) {
+                str = " " + str + " ";
+            }
             str = "+" + str + "+";
             t.innerText = str;
             if (t.offsetWidth > titleWidth) {
