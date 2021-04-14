@@ -67,6 +67,36 @@ article {
     padding: 4px;
 }
 
+.articleContent {
+    max-width: 100%;
+    overflow: hidden;
+}
+
 article h1 {
     text-align: center;
+    margin: 3px;
+}
+
+article a {
+    color: blue;
+}
+
+article img {
+    max-width: 100%;
+    display: block;
+    border: 1px solid black;
+}
+
+.articleDate {
+    display: block;
+    text-align: center;
+}
+
+#iam404 {
+    display: block;
+    text-align: center;
+}
+
+#header404 {
+    color: blue;
 }

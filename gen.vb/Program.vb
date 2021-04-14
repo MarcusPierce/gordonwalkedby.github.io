@@ -17,8 +17,13 @@ s - 启动本地服务器
         Dim command As String = args(0)
         Select Case command
             Case "new"
+                Generator.ReadLocalFiles()
             Case "g"
+                Generator.ReadLocalFiles()
+                Generator.GenerateAll()
+                Console.WriteLine("生成结束。")
             Case "s"
+                Generator.ReadLocalFiles()
                 Generator.StartTestServer()
             Case Else
                 Throw New Exception("不匹配任何可用参数")
