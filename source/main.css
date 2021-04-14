@@ -21,7 +21,7 @@ header {
     display: inline-block;
 }
 
-section {
+.pageSection {
     margin: 6px;
 }
 
@@ -84,6 +84,12 @@ article a {
 article img {
     max-width: 100%;
     display: block;
+    border: 1px solid black;
+    color: red;
+}
+
+article table,
+article td {
     border: 1px solid black;
 }
 

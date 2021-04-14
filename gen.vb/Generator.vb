@@ -39,11 +39,11 @@ Public Module Generator
         Dim html As String = TemplateContent.Item("index.html")
         Dim sb As New StringBuilder
         Dim addSection = Sub(title As String, ps As List(Of BlogPost))
-                             sb.AppendLine($"<section><div class='sectionTitleBox'><span class='sectionTitle'>{ HttpUtility.HtmlEncode(title)}</span></div><div class='secitonNavBox'>")
+                             sb.AppendLine($"<div class='pageSection'><div class='sectionTitleBox'><span class='sectionTitle'>{ HttpUtility.HtmlEncode(title)}</span></div><div class='secitonNavBox'>")
                              For Each p In ps
                                  sb.AppendLine($"<a href='/{p.FileName}'>{HttpUtility.HtmlEncode(p.Title)}</a>")
                              Next
-                             sb.AppendLine("</div></section>")
+                             sb.AppendLine("</div></div>")
                          End Sub
         addSection("最新文章", Posts.GetRange(0, 10))
         For Each tag In TagPosts.Keys
