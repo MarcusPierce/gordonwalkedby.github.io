@@ -17,7 +17,8 @@ s - 启动本地服务器
         Dim command As String = args(0)
         Select Case command
             Case "new"
-                Generator.ReadLocalFiles()
+                Dim name = args(1)
+                CreateNewPost(name)
             Case "g"
                 Generator.ReadLocalFiles()
                 Generator.GenerateAll()
@@ -73,5 +74,34 @@ s - 启动本地服务器
         posts.Sort()
         Return posts
     End Function
+
+    Sub CreateNewPost(name As String)
+        If String.IsNullOrWhiteSpace(name) Then
+            Throw New Exception("文章名字不能为空！")
+        End If
+        Dim posts = GetAllBlogPosts()
+        name = name.ToLower.Trim
+        For Each p In posts
+            If p.FileName.Equals(name) Then
+                Throw New Exception($"该文件名已经被使用过了： {name}")
+            End If
+        Next
+        Dim dt = Now
+        Dim dict = Path.Combine(Directory.GetCurrentDirectory, "source", "_posts", dt.Year.ToString, dt.Month.ToString.PadLeft(2, "0"c))
+        Directory.CreateDirectory(dict)
+        Dim pt = Path.Combine(dict, $"{name}.md")
+        Using writer As New StreamWriter(File.Create(pt), UTF8)
+            With writer
+                .AutoFlush = True
+                .WriteLine("---")
+                .WriteLine($"title: {name}")
+                .WriteLine($"date: {dt:yyyy-MM-dd}")
+                .WriteLine($"tags: [标签1,标签2]")
+                .WriteLine("---")
+            End With
+        End Using
+        Console.WriteLine("空白文章创建成功：")
+        Console.WriteLine(pt)
+    End Sub
 
 End Module
