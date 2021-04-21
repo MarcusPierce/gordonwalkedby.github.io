@@ -58,41 +58,44 @@ Markdown表格，不受支持：
 
 大代码框：
 
-```vb
-''' <summary>
-''' 判断寻找的对象是否是内容当中的一个，并使用对应的比较办法
-''' </summary>
-Public Function 是当中一个(比较办法 As 比较方法, 寻找 As Object,ParamArray 内容() As Object) As Boolean
-    If IsNothing(寻找) Then Return False
-    For Each i As Object In 内容
-        If 比较(i, 寻找, 比较办法) Then Return True
-    Next
-    Return False
-End Function
+```javascript
+
+class StreamUpdate{
+    constructor(Url,BufferSize = 1024 * 1024 * 128) { //Url 链接地址
+        this.Url = Url
+        this.Buffer = new ArrayBuffer(BufferSize);
+
+    }
+}
+
+class Stream{
+    constructor() {
+    }
+}
 ```
 
-```luA
-local function NewCitizen(female,i,g,c,wp,kv,bloody,flag)
-    local U = "_"
-    local s = "Male"
-    if female then s = "Female" end
-    local b = ".mdl"
-    if bloody then b = "_bloody"..b end
-    local bn = ""
-    if bloody then bn = " Bloody" end
-    local npc = {
-        Name = s.." "..i ..bn , 
-        Class = "npc_citizen",
-        Model = "models/humans/group"..g.."/"..string.lower(s).."_0"..i..b,
-        Category = "C17 " .. c,
-        SpawnFlags = flag,
-        Weapons = wp,
-        KeyValues = kv
-    }
-    b=""
-    if bloody then b = "_bloody" end
-    list.Set("NPC", "npc_"..g..U..string.lower(s)..U..i..b,npc)
-end
+```python
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+import os
+import sys
+
+
+def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == '__main__':
+    main()
 
 ```
 
