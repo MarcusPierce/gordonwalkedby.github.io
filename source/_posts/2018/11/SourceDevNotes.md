@@ -22,6 +22,9 @@ $surfaceprop grass
 $surfaceprop flesh
 $surfaceprop rubber
 
+// l4d2 里面贴图蓝和绿就加上这条
+$allowdiffusemodulation 0 
+
 $bumpmap 
 
 $alphatest 1
