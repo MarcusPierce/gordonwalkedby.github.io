@@ -198,27 +198,34 @@ Public Module Generator
             Return Nothing
         End If
         Const indexhtml = "/index.html"
+        '去掉链接末尾的 /index.html
         If url.EndsWith(indexhtml) Then
             url = url.Remove(url.Length - indexhtml.Length, indexhtml.Length)
         End If
         url = url.Trim("/", "\", " ")
+        '如果 url 长度为0，就是主页
         If url.Length < 1 Then
             Return UTF8.GetBytes(GenerateIndex())
         End If
+        '如果url == atom.xml
         If url.Equals(ATOMxml) Then
             Return UTF8.GetBytes(GenerateRSS())
         End If
+        '如果 url == sitemaps.xml
         If url.Equals(SITEMAPSxml) Then
             Return UTF8.GetBytes(GenerateSiteMap())
         End If
+        '如果 url 是某文章的 filename
         For Each p In Posts
             If p.FileName.Equals(url) Then
                 Return UTF8.GetBytes(GeneratePostPage(p))
             End If
         Next
+        '如果 url 是以 下划线开头，就提供 null
         If url.StartsWith("_") Then
-            Return Get404()
+            Return Nothing
         End If
+        '如果 url 指向的文件，是本地source文件夹里的文件，就返回那个文件的内容
         Dim fi = Path.Combine(Directory.GetCurrentDirectory, "source", url)
         If File.Exists(fi) Then
             Return File.ReadAllBytes(fi)
