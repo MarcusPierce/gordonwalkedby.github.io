@@ -29,6 +29,8 @@ function RandomHSLColor(s = 100, b = 85) {
         return;
     }
     iam404.innerText = "这是一个 404 页面！";
+})();
+(function () {
     let str = location.search;
     let se = new URLSearchParams(str);
     let po = se.get("po");
