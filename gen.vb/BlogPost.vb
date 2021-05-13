@@ -10,7 +10,7 @@ Public Class BlogPost
             Throw New Exception($"空的 .md 文件: {f.FullName}")
         End If
         mdsource = ResetLF(mdsource, vbLf)
-        Dim header = Regex.Match(mdsource, "-{3,}\ntitle: (.+?)\ndate: ([0-9\-]+).*?\ntags: (.+?)\n-{3,}\n(.+)", regop)
+        Dim header = Regex.Match(mdsource, "-{3,}\ntitle: (.+?)\ndate: ([0-9\-\: ]+).*?\ntags: (.+?)\n-{3,}\n(.+)", regop)
         If Not header.Success Then
             Throw New Exception($"文章头部解析出错: {f.FullName}")
         End If
@@ -63,7 +63,11 @@ Public Class BlogPost
     Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
         If obj.GetType.Equals(Me.GetType) Then
             Dim bp As BlogPost = obj
-            Return -Me.Time.CompareTo(bp.Time)
+            Dim c = -Me.Time.CompareTo(bp.Time)
+            If c = 0 Then
+                c = Me.FileName.CompareTo(bp.FileName)
+            End If
+            Return c
         End If
         Return 0
     End Function

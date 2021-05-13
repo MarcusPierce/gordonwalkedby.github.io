@@ -74,7 +74,13 @@ Public Module Generator
             sb.Replace($"</h{i}>", $"</h{add}>")
         Next
         If p.Time.Year > 2010 Then
-            sb.Insert(0, $"<time datetime='{p.Time:yyyy-MM-dd}' class='articleDate'>本文发布于公元 {p.Time:yyyy 年 MM 月 dd 日}</time>")
+            Dim timestr As String
+            If p.Time.Hour > 0 OrElse p.Time.Minute > 0 OrElse p.Time.Second > 0 Then
+                timestr = p.Time.ToString("yyyy 年 MM 月 dd 日 HH:mm:ss")
+            Else
+                timestr = p.Time.ToString("yyyy 年 MM 月 dd 日")
+            End If
+            sb.Insert(0, $"<time datetime='{p.Time:yyyy-MM-dd HH:mm:ss.001+0800}' class='articleDate'>本文发布于公元 {timestr}</time>")
         End If
         Dim tt = HttpUtility.HtmlEncode(p.Title)
         html = html.Replace("<title>标题t</title>", $"<title>{tt} - 戈登走過去的博客</title>").Replace("我是文章标题7537537", tt).Replace("我是文章内容24542642", sb.ToString)
