@@ -24,7 +24,7 @@ v1.3 为最终版，就这样把。
 - [Internet Explorer 11](https://support.microsoft.com/zh-cn/topic/%E4%B8%8B%E8%BD%BD-internet-explorer-11-%E8%84%B1%E6%9C%BA%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F-99d492a1-3a62-077b-c476-cf028aff9a7f)
 
 # 下载游戏及源码
-- [蓝奏云](https://walkedby.lanzoui.com/iOPQnkkpvja)  
+- [蓝奏云](https://walkedby.lanzoui.com/ihS9lma8cuh)  
 - [Github](https://github.com/gordonwalkedby/fdzsdw/releases)   
 
 # 讨论
