@@ -39,7 +39,7 @@ function RandomHSLColor(s = 100, b = 85) {
     }
     else {
         let url = location.href.toLowerCase();
-        url = url.replace("www.walkedby.com", "walkedby.com").replace(/\/donate.+/, "/donate");
+        url = url.replace("www.walkedby.com", "walkedby.com").replace(/\/donate[a-z0-9]+/, "/donate");
         if (location.href != url) {
             location.href = url;
         }
