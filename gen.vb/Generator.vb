@@ -76,7 +76,8 @@ Public Module Generator
         If p.Time.Year > 2010 Then
             sb.Insert(0, $"<time datetime='{p.Time:yyyy-MM-dd}' class='articleDate'>本文发布于公元 {p.Time:yyyy 年 MM 月 dd 日}</time>")
         End If
-        html = html.Replace("我是文章标题7537537", HttpUtility.HtmlEncode(p.Title)).Replace("我是文章内容24542642", sb.ToString)
+        Dim tt = HttpUtility.HtmlEncode(p.Title)
+        html = html.Replace("<title>标题t</title>", $"<title>{tt} - 戈登走過去的博客</title>").Replace("我是文章标题7537537", tt).Replace("我是文章内容24542642", sb.ToString)
         Dim cs As New Html.HtmlSettings
         With cs
             .RemoveOptionalTags = False

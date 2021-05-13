@@ -23,8 +23,9 @@ v1.3 为最终版，就这样把。
 - [.NET Framework 4.8](https://dotnet.microsoft.com/download/dotnet-framework)
 - [Internet Explorer 11](https://support.microsoft.com/zh-cn/topic/%E4%B8%8B%E8%BD%BD-internet-explorer-11-%E8%84%B1%E6%9C%BA%E5%AE%89%E8%A3%85%E7%A8%8B%E5%BA%8F-99d492a1-3a62-077b-c476-cf028aff9a7f)
 
-# 源码以及下载游戏
-[Github](https://github.com/gordonwalkedby/fdzsdw/releases)
+# 下载游戏及源码
+- [蓝奏云](https://walkedby.lanzoui.com/iOPQnkkpvja)  
+- [Github](https://github.com/gordonwalkedby/fdzsdw/releases)   
 
 # 讨论
 - [B站](https://www.bilibili.com/video/BV1ab4y1X7My)  
