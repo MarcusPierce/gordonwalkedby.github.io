@@ -20,6 +20,9 @@ tags: [我的软件]
 珠子全部散开了，摆放失效了。   
 我就下决心，一定要做出这个照片数珠子的网页。   
 
+不要问戈登为什么不让电脑自动数珠子。  
+我不懂图像算法，我也不懂也不信任机器学习。  
+
 - [源码](https://github.com/gordonwalkedby/pointcounter)   
 - [在线使用](https://pct.walkedby.com/)   
 
