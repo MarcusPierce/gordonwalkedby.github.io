@@ -95,7 +95,7 @@ s - 启动本地服务器
                 .AutoFlush = True
                 .WriteLine("---")
                 .WriteLine($"title: {name}")
-                .WriteLine($"date: {dt:yyyy-MM-dd}")
+                .WriteLine($"date: {dt:yyyy-MM-dd HH:mm:ss}")
                 .WriteLine($"tags: [标签1,标签2]")
                 .WriteLine("---")
             End With
