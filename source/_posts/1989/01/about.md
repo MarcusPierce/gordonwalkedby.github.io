@@ -15,14 +15,20 @@ Gordon Walkedby
 
 ![](/images/avator.webp)   
 
-# 联系我
-- [推荐：石墨文档在线留言（匿名，无需注册登录）](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)
-- EMAIL： 84y48tt8l艾特relay.firefox.com
+捐助戈登的渠道已经关闭，请不要浪费钱了。[原来的捐款列表在这里](https://shimo.im/sheets/C8kH6hHyvtvqPVJr/MODOC/)。  
+
+# 看戈登的视频
+- [B站](https://space.bilibili.com/4523834)
+- [YouTube](https://www.youtube.com/channel/UCpnf5wTnI9br8IxJbRV5Tew)
+
+# 联系戈登
+- [推荐：石墨文档在线留言（非公开，匿名，无需注册登录）](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)
+- EMAIL： 84y48tt8l哀特relay点firefox电com
 - [推特私信](https://twitter.com/GDZGQ)
 - [B站私信](https://space.bilibili.com/4523834)
-- [微博私信](https://weibo.com/gordon2001/) （很可能看不见）
+- [微博私信](https://weibo.com/5977985000) （很可能看不见）  
 
-# 我的 GPG / PGP 公钥
+# 戈登的 GPG / PGP 公钥
 
 <pre  id='gpgkey' style="display: none;">
 <code class="lang-plaintext">
