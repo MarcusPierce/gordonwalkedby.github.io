@@ -13,13 +13,14 @@ Gordon Walkedby
 - 做视频，写程序，发文章都是业余爱好，最喜欢 VB .NET 以及 TypeScript
 - 家暴受害者，已和父母断开联系
 
-![](/images/avator.webp)   
+![](/images/tx.jpg)   
 
 捐助戈登的渠道已经关闭，请不要浪费钱了。[原来的捐款列表在这里](https://shimo.im/sheets/C8kH6hHyvtvqPVJr/MODOC/)。  
 
 # 看戈登的视频
 - [B站](https://space.bilibili.com/4523834)
 - [YouTube](https://www.youtube.com/channel/UCpnf5wTnI9br8IxJbRV5Tew)
+- [Acfun](https://www.acfun.cn/u/13194917)
 
 # 联系戈登
 - [推荐：石墨文档在线留言（非公开，匿名，无需注册登录）](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)
