@@ -3,13 +3,13 @@ Module Program
     Sub Main(args As String())
         Console.WriteLine("welcome")
         SetConsoleEncoding()
-        Console.WriteLine("³ÌĞòÆô¶¯£¬ÕâÀïÊÇ¸êµÇ×ßß^È¥µÄ²©¿ÍÉú³ÉÆ÷")
+        Console.WriteLine("ç¨‹åºå¯åŠ¨ï¼Œè¿™é‡Œæ˜¯æˆˆç™»èµ°éå»çš„åšå®¢ç”Ÿæˆå™¨")
         If args.Length < 1 Then
-            Console.WriteLine("Ã»ÓĞÈÎºÎ²ÎÊı¡£
-¿ÉÓÃ²ÎÊı£º
-new name - ´´½¨Ò»ÆªĞÂÎÄÕÂ
-g - Çå³ıÀÏµÄÉú³É½á¹û£¬Éú³ÉĞÂµÄµ½ docs ÎÄ¼ş¼Ğ
-s - Æô¶¯±¾µØ·şÎñÆ÷
+            Console.WriteLine("æ²¡æœ‰ä»»ä½•å‚æ•°ã€‚
+å¯ç”¨å‚æ•°ï¼š
+new name - åˆ›å»ºä¸€ç¯‡æ–°æ–‡ç« 
+g - æ¸…é™¤è€çš„ç”Ÿæˆç»“æœï¼Œç”Ÿæˆæ–°çš„åˆ° docs æ–‡ä»¶å¤¹
+s - å¯åŠ¨æœ¬åœ°æœåŠ¡å™¨
 ")
             Environment.Exit(0)
         End If
@@ -22,12 +22,12 @@ s - Æô¶¯±¾µØ·şÎñÆ÷
             Case "g"
                 Generator.ReadLocalFiles()
                 Generator.GenerateAll()
-                Console.WriteLine("Éú³É½áÊø¡£")
+                Console.WriteLine("ç”Ÿæˆç»“æŸã€‚")
             Case "s"
                 Generator.ReadLocalFiles()
                 Generator.StartTestServer()
             Case Else
-                Throw New Exception("²»Æ¥ÅäÈÎºÎ¿ÉÓÃ²ÎÊı")
+                Throw New Exception("ä¸åŒ¹é…ä»»ä½•å¯ç”¨å‚æ•°")
         End Select
     End Sub
 
@@ -42,7 +42,7 @@ s - Æô¶¯±¾µØ·şÎñÆ÷
                     goods += 1
                     If goods >= needFolders.Length Then
                         Directory.SetCurrentDirectory(dc.FullName)
-                        Console.WriteLine("¹¤×÷ÎÄ¼ş¼Ğ¶¨Î»³É¹¦£º")
+                        Console.WriteLine("å·¥ä½œæ–‡ä»¶å¤¹å®šä½æˆåŠŸï¼š")
                         Console.WriteLine(dc.FullName)
                         Exit Sub
                     End If
@@ -53,7 +53,7 @@ s - Æô¶¯±¾µØ·şÎñÆ÷
                 Exit For
             End If
         Next
-        Throw New Exception("ÎŞ·¨¶¨Î»µ½ºÏÊÊµÄ¹¤×÷ÎÄ¼ş¼Ğ£¡")
+        Throw New Exception("æ— æ³•å®šä½åˆ°åˆé€‚çš„å·¥ä½œæ–‡ä»¶å¤¹ï¼")
     End Sub
 
     Function GetAllBlogPosts() As List(Of BlogPost)
@@ -65,7 +65,7 @@ s - Æô¶¯±¾µØ·şÎñÆ÷
         For Each f In mds
             Dim p As New BlogPost(f)
             If usednames.Contains(p.FileName) Then
-                Throw New Exception($"Õâ¸öÎÄÕÂµÄÎÄ¼şÃûÒÑ¾­±»Ê¹ÓÃ¹ıÁË £¡ {f.FullName}")
+                Throw New Exception($"è¿™ä¸ªæ–‡ç« çš„æ–‡ä»¶åå·²ç»è¢«ä½¿ç”¨è¿‡äº† ï¼ {f.FullName}")
             End If
             posts.Add(p)
             usednames.Add(p.FileName)
@@ -77,13 +77,13 @@ s - Æô¶¯±¾µØ·şÎñÆ÷
 
     Sub CreateNewPost(name As String)
         If String.IsNullOrWhiteSpace(name) Then
-            Throw New Exception("ÎÄÕÂÃû×Ö²»ÄÜÎª¿Õ£¡")
+            Throw New Exception("æ–‡ç« åå­—ä¸èƒ½ä¸ºç©ºï¼")
         End If
         Dim posts = GetAllBlogPosts()
         name = name.ToLower.Trim
         For Each p In posts
             If p.FileName.Equals(name) Then
-                Throw New Exception($"¸ÃÎÄ¼şÃûÒÑ¾­±»Ê¹ÓÃ¹ıÁË£º {name}")
+                Throw New Exception($"è¯¥æ–‡ä»¶åå·²ç»è¢«ä½¿ç”¨è¿‡äº†ï¼š {name}")
             End If
         Next
         Dim dt = Now
@@ -96,11 +96,11 @@ s - Æô¶¯±¾µØ·şÎñÆ÷
                 .WriteLine("---")
                 .WriteLine($"title: {name}")
                 .WriteLine($"date: {dt:yyyy-MM-dd HH:mm:ss}")
-                .WriteLine($"tags: [±êÇ©1,±êÇ©2]")
+                .WriteLine($"tags: [æ ‡ç­¾1,æ ‡ç­¾2]")
                 .WriteLine("---")
             End With
         End Using
-        Console.WriteLine("¿Õ°×ÎÄÕÂ´´½¨³É¹¦£º")
+        Console.WriteLine("ç©ºç™½æ–‡ç« åˆ›å»ºæˆåŠŸï¼š")
         Console.WriteLine(pt)
     End Sub
 
