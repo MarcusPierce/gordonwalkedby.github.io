@@ -6,12 +6,8 @@ $xml = Get-Item -Path "./docs/sitemaps.xml"
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
     git add -A 
     git commit -m "ByScript"
-    Write-Host "开始 push 到 gitee"
-    git push gitee master 
     Write-Host "开始 push 到 github"
-    git push github master 
-    Write-Host "开始 push 到 gitlab"
-    git push gitlab master 
+    git push origin master 
     Write-Host " push 完成"
 }
 else {
