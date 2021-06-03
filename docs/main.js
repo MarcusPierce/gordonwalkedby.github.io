@@ -59,7 +59,7 @@ articles.forEach(function (c) {
             }
             let a = document.createElement("a");
             a.innerText = ac.Title;
-            a.href = ac.FileName;
+            a.href = "/" + ac.FileName;
             leftBar.appendChild(a);
             if (CurrentAricle == ac.FileName) {
                 a.className = "selectedTitle";
