@@ -50,11 +50,9 @@ articles.forEach(function (c) {
         div.innerText = c.Name;
         div.className = "leftSectionTitle";
         leftBar.appendChild(div);
-        let opt = document.createElement("option");
-        opt.innerText = "--" + c.Name + "--";
-        opt.value = "";
-        articleTitleSelect.appendChild(opt);
-        articleTitleSelectIndex += 1;
+        let gp = document.createElement("optgroup");
+        gp.label = c.Name;
+        articleTitleSelect.appendChild(gp);
         c.Articles.forEach(function (ac) {
             if (CurrentAricle.length < 1) {
                 CurrentAricle = ac.FileName;
@@ -66,10 +64,10 @@ articles.forEach(function (c) {
             if (CurrentAricle == ac.FileName) {
                 a.className = "selectedTitle";
             }
-            opt = document.createElement("option");
+            let opt = document.createElement("option");
             opt.innerText = " " + ac.Title;
             opt.value = ac.FileName;
-            articleTitleSelect.appendChild(opt);
+            gp.appendChild(opt);
             articleTitleSelectIndex += 1;
             if (articleTitleSelect.selectedIndex < 1 && ac.FileName == CurrentAricle) {
                 articleTitleSelect.selectedIndex = articleTitleSelectIndex;
