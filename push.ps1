@@ -5,7 +5,7 @@ Set-Location $PSScriptRoot
 $xml = Get-Item -Path "./docs/sitemaps.xml"
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
     git add -A 
-    git commit -m "ByScript"
+    git commit -m "ByScript" -S
     Write-Host "开始 push 到 github"
     git push origin master 
     Write-Host " push 完成"

@@ -1,11 +1,11 @@
 "use strict";
-var Question = (function () {
+var Question = (function() {
     function Question(title, max) {
         this.Choices = [];
         this.Title = title;
         this.MaxScore = max;
     }
-    Question.prototype.AddChoice = function (title, score) {
+    Question.prototype.AddChoice = function(title, score) {
         var a = {
             Index: this.Choices.length,
             Title: title,
@@ -15,7 +15,7 @@ var Question = (function () {
         this.Choices.push(a);
         return this;
     };
-    Question.prototype.GetAnswer = function () {
+    Question.prototype.GetAnswer = function() {
         var i = 0;
         for (i = 0; i < this.Choices.length; i++) {
             var c = this.Choices[i];
@@ -27,7 +27,7 @@ var Question = (function () {
         }
         return null;
     };
-    Question.prototype.GetScore = function () {
+    Question.prototype.GetScore = function() {
         var c = this.GetAnswer();
         if (c == null) {
             return -1;
@@ -37,11 +37,13 @@ var Question = (function () {
     return Question;
 }());
 var AllQuestions = [];
+
 function AddQuestion(title, max) {
     var q = new Question(title, max);
     AllQuestions.push(q);
     return q;
 }
+
 function GetMaxScore() {
     var s = 0;
     var i = 0;
@@ -51,6 +53,7 @@ function GetMaxScore() {
     }
     return s;
 }
+
 function CalcScores() {
     var s = 0;
     var i = 0;
@@ -155,7 +158,7 @@ for (i = 0; i < AllQuestions.length; i++) {
     title.innerText = (i + 1).toString() + ". " + q.Title;
     div.appendChild(title);
     div.appendChild(document.createElement("br"));
-    var _loop_1 = function () {
+    var _loop_1 = function() {
         var div2 = document.createElement("div");
         var c = q.Choices[j];
         var choice = document.createElement("span");
@@ -165,10 +168,9 @@ for (i = 0; i < AllQuestions.length; i++) {
         input.name = "question" + (i + 1).toFixed();
         input.className = "choiceoption";
         c.Input = input;
-        input.addEventListener("click", function (ev) {
-        });
+        input.addEventListener("click", function(ev) {});
         choice.style.marginRight = "20px";
-        choice.addEventListener("click", function (ev) {
+        choice.addEventListener("click", function(ev) {
             input.checked = true;
         });
         div2.appendChild(input);
@@ -200,7 +202,7 @@ scores.style.display = "block";
 testDiv.appendChild(scores);
 var outputs = document.createElement("div");
 testDiv.appendChild(outputs);
-button.addEventListener("click", function (ev) {
+button.addEventListener("click", function(ev) {
     if (testDiv == null) {
         throw "testdiv is null!";
     }
@@ -211,11 +213,10 @@ button.addEventListener("click", function (ev) {
     testDiv.appendChild(outputs);
     if (NameInput.value.length < 1) {
         scores.innerText = "请先输入你们大学的名字";
-    }
-    else {
+    } else {
         var s = CalcScores();
         if (s >= 0) {
-            AllQuestions.sort(function (a, b) {
+            AllQuestions.sort(function(a, b) {
                 var av = a.GetScore();
                 var bv = b.GetScore();
                 if (av > bv) {
@@ -238,16 +239,13 @@ button.addEventListener("click", function (ev) {
                     span.setAttribute("vv", q.GetScore().toFixed());
                     if (c.Score <= 0.1) {
                         span.style.backgroundColor = "#ffbfbf";
-                    }
-                    else {
+                    } else {
                         if (c.Score < 0.5) {
                             span.style.backgroundColor = "#fff55f";
-                        }
-                        else {
+                        } else {
                             if (c.Score < 0.9) {
                                 span.style.backgroundColor = "#deffb5";
-                            }
-                            else {
+                            } else {
                                 span.style.backgroundColor = "#80fb88";
                             }
                         }
@@ -256,13 +254,13 @@ button.addEventListener("click", function (ev) {
                 }
             }
             scores.innerText = "最终分数：" + s.toString();
-        }
-        else {
+        } else {
             s = -s;
             scores.innerText = "还有未完成的题目，请检查第 " + s.toString() + " 题！";
         }
     }
 });
+
 function RandomUniversity() {
     var i = 0;
     var options = document.getElementsByClassName("choiceoption");

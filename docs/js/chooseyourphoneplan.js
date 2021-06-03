@@ -1,6 +1,6 @@
 "use strict";
 var MNO;
-(function (MNO) {
+(function(MNO) {
     MNO[MNO["\u4E2D\u56FD\u7535\u4FE1"] = 0] = "\u4E2D\u56FD\u7535\u4FE1";
     MNO[MNO["\u4E2D\u56FD\u79FB\u52A8"] = 1] = "\u4E2D\u56FD\u79FB\u52A8";
     MNO[MNO["\u4E2D\u56FD\u8054\u901A"] = 2] = "\u4E2D\u56FD\u8054\u901A";
@@ -8,7 +8,7 @@ var MNO;
     MNO[MNO["\u5C0F\u7C73\u79FB\u52A8"] = 4] = "\u5C0F\u7C73\u79FB\u52A8";
     MNO[MNO["\u963F\u91CC\u79FB\u52A8"] = 5] = "\u963F\u91CC\u79FB\u52A8";
 })(MNO || (MNO = {}));
-var PhonePlan = (function () {
+var PhonePlan = (function() {
     function PhonePlan(name, company, signal) {
         this.AddonDescription = "";
         this.IsVirtualMNO = false;
@@ -37,6 +37,7 @@ var PhonePlan = (function () {
     }
     return PhonePlan;
 }());
+
 function CalcMonthBill(plan, talk, text, data, usedatadays) {
     usedatadays = Math.min(usedatadays, 30);
     var p = plan.MonthTake;
@@ -72,8 +73,7 @@ function CalcMonthBill(plan, talk, text, data, usedatadays) {
                     remainData -= EachDayData;
                     remainDays -= 1;
                 }
-            }
-            else {
+            } else {
                 p += plan.DataPrice * data * 1000;
             }
         }
@@ -81,6 +81,7 @@ function CalcMonthBill(plan, talk, text, data, usedatadays) {
     return Math.max(plan.MustSpend, p, 0);
 }
 var AllPhonePlans = [];
+
 function BuildNewPlan(Name, AddonDescription, MNO, Signal, onSell, URL, MustSpend, MonthTake, FreeTalk, FreeText, TalkPrice, TextPrice, FreeData, DataPrice, DataPkgPrice, DataPkgDays, DataPkgSize, FamilyNumber, ViceCard, DataLimit, FreeDataApps) {
     var p = new PhonePlan(Name, MNO, Signal);
     p.AddonDescription = AddonDescription;
@@ -188,6 +189,7 @@ BuildNewPlan("蜗牛全国流量王卡 99元", "合约期12个月，期限内不
 BuildNewPlan("畅玩12", "", MNO.蜗牛移动, MNO.中国联通, true, "http://mall.snail.com/item/1759-0-325.html", 2, 5, 0, 0, 0.12, 0.1, 0, 0.12, 0, 0, 0, 0, 0, 0, "");
 BuildNewPlan("蜗牛全国流量王卡 199元", "合约期12个月，期限内不能换套餐", MNO.蜗牛移动, MNO.中国联通, true, "http://mall.snail.com/item/2388-0-280.html", 0, 199, 0, 0, 0.12, 0.1, 100, 0.12, 0, 0, 0, 0, 0, 0, "");
 BuildNewPlan("30免卡", "5元来电显示可取消", MNO.蜗牛移动, MNO.中国联通, true, "http://mall.snail.com/item/76-0-326.html", 0, 5, 0, 0, 0.15, 0.1, 0, 0.15, 0, 0, 0, 0, 0, 0, "");
+
 function GetInputStr(id, def) {
     var e = document.getElementById(id);
     if (e == null) {
@@ -196,6 +198,7 @@ function GetInputStr(id, def) {
     var i = e;
     return i.value;
 }
+
 function GetInputNum(id, def) {
     var e = document.getElementById(id);
     if (e == null) {
@@ -204,6 +207,7 @@ function GetInputNum(id, def) {
     var i = e;
     return Math.min(Math.max(i.valueAsNumber, 0), 9999);
 }
+
 function GetInputBool(id, def) {
     var e = document.getElementById(id);
     if (e == null) {
@@ -212,14 +216,15 @@ function GetInputBool(id, def) {
     var i = e;
     return i.checked;
 }
+
 function DataSizeStr(n) {
     if (n >= 1) {
         return n.toFixed(1).replace(".0", "") + "G";
-    }
-    else {
+    } else {
         return (n * 1000).toString() + "M";
     }
 }
+
 function SortUsersPlan() {
     var supportSignals = [];
     if (GetInputBool("check1", true)) {
@@ -273,11 +278,11 @@ function SortUsersPlan() {
     }
     if (expensiveFirst) {
         AllPhonePlans.sort(ComparePlanLastCalcValueDESC);
-    }
-    else {
+    } else {
         AllPhonePlans.sort(ComparePlanLastCalcValueASC);
     }
 }
+
 function ComparePlanLastCalcValueASC(a, b) {
     var m1 = a.LastCalcValue;
     var m2 = b.LastCalcValue;
@@ -289,9 +294,11 @@ function ComparePlanLastCalcValueASC(a, b) {
     }
     return 0;
 }
+
 function ComparePlanLastCalcValueDESC(a, b) {
     return -ComparePlanLastCalcValueASC(a, b);
 }
+
 function DisplayPlans(showcount) {
     var h = document.getElementById("displayplans");
     if (h == null) {
@@ -299,8 +306,10 @@ function DisplayPlans(showcount) {
     }
     var box = h;
     box.innerHTML = "以下结果仅供参考，请以运营商提供的最终服务为准。<br>";
-    var i = -1, shown = 0, good = 0;
-    var _loop_1 = function () {
+    var i = -1,
+        shown = 0,
+        good = 0;
+    var _loop_1 = function() {
         i += 1;
         if (i >= AllPhonePlans.length) {
             return "break";
@@ -355,7 +364,7 @@ function DisplayPlans(showcount) {
         div.appendChild(link);
         div.appendChild(document.createElement("br"));
         var ul = document.createElement("ul");
-        var addline = function (txt) {
+        var addline = function(txt) {
             if (txt.length < 1) {
                 return;
             }
@@ -376,8 +385,7 @@ function DisplayPlans(showcount) {
             str = "";
             if (p.MonthTake > 0) {
                 str += "\u57FA\u672C\u6708\u8D39\uFF1A" + p.MonthTake + "\u5143";
-            }
-            else {
+            } else {
                 str += "无月费";
             }
             if (p.MustSpend > 0) {
@@ -412,19 +420,16 @@ function DisplayPlans(showcount) {
             str = "流量包：";
             if (p.DataPkgDays == 1) {
                 str += "日租";
-            }
-            else {
+            } else {
                 if (p.DataPkgDays > 29) {
                     str += "月内用";
-                }
-                else {
+                } else {
                     str += p.DataPkgDays.toString() + "天内";
                 }
             }
             str += "，" + p.DataPkgPrice + "元" + DataSizeStr(p.DataPkgSize);
             addline(str);
-        }
-        else {
+        } else {
             str = "\u6D41\u91CF\u6BCFM " + p.DataPrice + "\u5143";
             addline(str);
         }
