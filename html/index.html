@@ -88,11 +88,17 @@
             border-left: 2px solid #0071BC;
         }
         
+        .leftBarSubMenuContent {
+            overflow: hidden;
+            transition: height 100ms;
+        }
+        
         .leftSectionTitle {
             color: black;
             padding-top: 13px;
             padding-bottom: 13px;
             padding-left: 8px;
+            cursor: pointer;
         }
         
         .selectedTitle {
@@ -159,10 +165,14 @@
         #headerNavExpand {
             padding-top: 10px;
             padding-bottom: 10px;
-            display: none;
+            height: 0px;
             background-color: #2C2C32;
-            transition-duration: 0.2ms;
+            transition: height 100ms;
             font-size: larger;
+            position: relative;
+            visibility: hidden;
+            overflow: hidden;
+            width: 100%;
         }
         
         #headerNavExpand a {

@@ -43,38 +43,65 @@ let rightHeaders = document.getElementById("rightHeaders");
     let data = JSON.parse(jj);
     articles = data.Articles;
 })();
-let articleTitleSelectIndex = -1;
-articles.forEach(function (c) {
-    if (c.Articles.length > 0) {
-        let div = document.createElement("div");
-        div.innerText = c.Name;
-        div.className = "leftSectionTitle";
-        leftBar.appendChild(div);
-        let gp = document.createElement("optgroup");
-        gp.label = c.Name;
-        articleTitleSelect.appendChild(gp);
-        c.Articles.forEach(function (ac) {
+(function () {
+    let articleTitleSelectIndex = -1;
+    let CurrentAricleChosen = false;
+    articles.forEach(function (c, index) {
+        if (c.Articles.length > 0) {
             if (CurrentAricle.length < 1) {
-                CurrentAricle = ac.FileName;
+                CurrentAricle = c.Articles[0].FileName;
             }
-            let a = document.createElement("a");
-            a.innerText = ac.Title;
-            a.href = "/" + ac.FileName;
-            leftBar.appendChild(a);
-            if (CurrentAricle == ac.FileName) {
-                a.className = "selectedTitle";
+            let div = document.createElement("div");
+            div.className = "leftSectionTitle";
+            leftBar.appendChild(div);
+            let gp = document.createElement("optgroup");
+            gp.label = c.Name;
+            articleTitleSelect.appendChild(gp);
+            let div2 = document.createElement("div");
+            div2.className = "leftBarSubMenuContent";
+            leftBar.appendChild(div2);
+            let fullheight = 0;
+            let includeCurrentArticle = false;
+            c.Articles.forEach(function (ac) {
+                let a = document.createElement("a");
+                a.innerText = ac.Title;
+                a.href = "/" + ac.FileName;
+                div2.appendChild(a);
+                if (CurrentAricle == ac.FileName) {
+                    a.className = "selectedTitle";
+                    includeCurrentArticle = true;
+                }
+                fullheight += a.offsetHeight;
+                let opt = document.createElement("option");
+                opt.innerText = " " + ac.Title;
+                opt.value = ac.FileName;
+                gp.appendChild(opt);
+                articleTitleSelectIndex += 1;
+                if (articleTitleSelect.selectedIndex < 1 && ac.FileName == CurrentAricle) {
+                    articleTitleSelect.selectedIndex = articleTitleSelectIndex;
+                }
+            });
+            if (!CurrentAricleChosen && includeCurrentArticle) {
+                div.innerText = "▼" + c.Name;
+                CurrentAricleChosen = true;
             }
-            let opt = document.createElement("option");
-            opt.innerText = " " + ac.Title;
-            opt.value = ac.FileName;
-            gp.appendChild(opt);
-            articleTitleSelectIndex += 1;
-            if (articleTitleSelect.selectedIndex < 1 && ac.FileName == CurrentAricle) {
-                articleTitleSelect.selectedIndex = articleTitleSelectIndex;
+            else {
+                div2.style.height = "0px";
+                div.innerText = "▶" + c.Name;
             }
-        });
-    }
-});
+            div.addEventListener("click", function () {
+                if (div2.style.height == "0px") {
+                    div2.style.height = fullheight.toFixed() + "px";
+                    div.innerText = "▼" + c.Name;
+                }
+                else {
+                    div2.style.height = "0px";
+                    div.innerText = "▶" + c.Name;
+                }
+            });
+        }
+    });
+})();
 articleTitleSelect.addEventListener("input", function () {
     let v = this.value;
     console.log(v);
@@ -105,20 +132,25 @@ headerLinks.forEach(function (v, k) {
     }
     a2.appendChild(document.createElement("br"));
 });
+headerNavExpand.style.visibility = "hidden";
 ButheaderNavExpand.addEventListener("click", function () {
-    if (headerNavExpand.offsetHeight < 10) {
-        headerNavExpand.style.display = block;
+    if (headerNavExpand.style.visibility == "hidden") {
+        headerNavExpand.style.height = (headerLinks.size * 26).toFixed() + "px";
         this.style.color = "black";
         this.style.backgroundColor = "white";
+        headerNavExpand.style.visibility = "visible";
     }
     else {
-        headerNavExpand.style.display = none;
+        headerNavExpand.style.height = "0px";
         this.style.color = "white";
         this.style.backgroundColor = "black";
+        setTimeout(function () {
+            headerNavExpand.style.visibility = "hidden";
+        }, 100);
     }
 });
 function ResetView() {
-    let phoneView = window.innerWidth < window.innerHeight || window.innerWidth < 800;
+    let phoneView = window.innerWidth < window.innerHeight && window.innerWidth < 800;
     if (phoneView) {
         ButheaderNavExpand.style.display = inline;
         headerNav.style.display = none;
@@ -137,7 +169,7 @@ function ResetView() {
         leftBar.style.display = block;
         articleDiv.style.marginLeft = "180px";
         articleDiv.style.marginRight = "180px";
-        headerNavExpand.style.display = none;
+        headerNavExpand.style.height = "0px";
         rightBar.style.left = (articleDiv.offsetLeft + articleDiv.offsetWidth).toFixed() + "px";
         rightBar.style.position = "fixed";
         rightBar.style.width = "180px";
