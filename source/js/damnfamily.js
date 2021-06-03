@@ -13,15 +13,14 @@ class Question {
         this.Span.innerText = text;
         this.Li.appendChild(this.Input);
         this.Li.appendChild(this.Span);
-        this.Span.addEventListener("click", function () {
+        this.Span.addEventListener("click", function() {
             me.Input.click();
         });
-        this.Input.addEventListener("input", function () {
+        this.Input.addEventListener("input", function() {
             if (this.checked) {
                 me.Span.style.color = "red";
                 me.Span.style.fontWeight = "bold";
-            }
-            else {
+            } else {
                 me.Span.style.color = "black";
                 me.Span.style.fontWeight = "";
             }
@@ -37,9 +36,10 @@ tests.appendChild(output);
 const mainDiv = document.getElementsByTagName("main")[0];
 mainDiv.style.display = "block";
 const AllQuestions = [];
+
 function RefreshOutput() {
     let checks = 0;
-    AllQuestions.forEach(function (v) {
+    AllQuestions.forEach(function(v) {
         if (v.Input.checked) {
             checks += 1;
         }
@@ -49,16 +49,15 @@ function RefreshOutput() {
         str = "你已经选择了：" + checks.toFixed() + " 项。";
         if (checks > 3) {
             str += "\n你所处的关系可能存在潜在危险，或者你已经受到了一定的伤害。\n如果有需要，请积极寻求帮助。";
-        }
-        else {
+        } else {
             str += "\n这可能是合理范围，但请你谨慎考虑。";
         }
-    }
-    else {
+    } else {
         str = "你一项都没有选择。希望你真的很安全，也很幸福。";
     }
     output.innerText = str;
 }
+
 function AddQuestion(t) {
     let q = new Question(t);
     AllQuestions.push(q);
