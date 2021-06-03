@@ -1,28 +1,8 @@
 "use strict";
-function RandomInt(a, b) {
-    if (a == b) {
-        return Math.floor(a);
-    }
-    let min = Math.round(Math.min(a, b)) - 0.49;
-    let max = Math.round(Math.max(a, b)) + 0.49;
-    let rnd = Math.random();
-    return Math.round(rnd * (max - min) + min);
-}
-function RandomChoose(array) {
-    let l = array.length;
-    if (l < 2) {
-        return array[0];
-    }
-    let index = RandomInt(0, l - 1);
-    return array[index];
-}
-function RandomHSLColor(s = 100, b = 85) {
-    let str = "hsl(";
-    str += RandomInt(0, 359).toFixed() + ",";
-    str += s.toFixed() + "%,";
-    str += b.toFixed() + "%)";
-    return str;
-}
+const inline = "inline-block";
+const none = "none";
+const block = "block";
+let CurrentAricle = "";
 (function () {
     let iam404 = document.getElementById("iam404");
     if (iam404 == null) {
@@ -43,24 +23,157 @@ function RandomHSLColor(s = 100, b = 85) {
         if (location.href != url) {
             location.href = url;
         }
+        else {
+            CurrentAricle = location.pathname.replace(/[\/\\]/gim, "");
+        }
+    }
+})();
+let articles = [];
+let leftBar = document.getElementById("leftBar");
+let rightBar = document.getElementById("rightBar");
+let articleDiv = document.getElementsByTagName("article")[0];
+let headerNav = document.getElementById("headerNav");
+let ButheaderNavExpand = document.getElementById("ButheaderNavExpand");
+let headerNavExpand = document.getElementById("headerNavExpand");
+let articleTitleSelect = document.getElementById("articleTitleSelect");
+let rightHeaders = document.getElementById("rightHeaders");
+(function () {
+    let insidejson = document.getElementById("insidejson");
+    let jj = insidejson.innerText.trim();
+    let data = JSON.parse(jj);
+    articles = data.Articles;
+})();
+let articleTitleSelectIndex = -1;
+articles.forEach(function (c) {
+    if (c.Articles.length > 0) {
+        let div = document.createElement("div");
+        div.innerText = c.Name;
+        div.className = "leftSectionTitle";
+        leftBar.appendChild(div);
+        let opt = document.createElement("option");
+        opt.innerText = "--" + c.Name + "--";
+        opt.value = "";
+        articleTitleSelect.appendChild(opt);
+        articleTitleSelectIndex += 1;
+        c.Articles.forEach(function (ac) {
+            if (CurrentAricle.length < 1) {
+                CurrentAricle = ac.FileName;
+            }
+            let a = document.createElement("a");
+            a.innerText = ac.Title;
+            a.href = ac.FileName;
+            leftBar.appendChild(a);
+            if (CurrentAricle == ac.FileName) {
+                a.className = "selectedTitle";
+            }
+            opt = document.createElement("option");
+            opt.innerText = " " + ac.Title;
+            opt.value = ac.FileName;
+            articleTitleSelect.appendChild(opt);
+            articleTitleSelectIndex += 1;
+            if (articleTitleSelect.selectedIndex < 1 && ac.FileName == CurrentAricle) {
+                articleTitleSelect.selectedIndex = articleTitleSelectIndex;
+            }
+        });
+    }
+});
+articleTitleSelect.addEventListener("input", function () {
+    let v = this.value;
+    console.log(v);
+    if (v.length > 0) {
+        location.href = "/" + v;
+    }
+});
+let headerLinks = new Map();
+headerLinks.set("首页", "/");
+headerLinks.set("RSS", "/rsss");
+headerLinks.set("搜索", "/search");
+headerLinks.set("关于", "/about");
+headerLinks.set("留言", "https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill");
+headerLinks.forEach(function (v, k) {
+    let a = document.createElement("a");
+    a.innerText = k;
+    a.href = v;
+    headerNav.appendChild(a);
+    if (a.host != location.host) {
+        a.target = "_blank";
+    }
+    let a2 = document.createElement("a");
+    a2.innerText = k;
+    a2.href = v;
+    headerNavExpand.appendChild(a2);
+    if (a2.host != location.host) {
+        a2.target = "_blank";
+    }
+    a2.appendChild(document.createElement("br"));
+});
+ButheaderNavExpand.addEventListener("click", function () {
+    if (headerNavExpand.offsetHeight < 10) {
+        headerNavExpand.style.display = block;
+        this.style.color = "black";
+        this.style.backgroundColor = "white";
+    }
+    else {
+        headerNavExpand.style.display = none;
+        this.style.color = "white";
+        this.style.backgroundColor = "black";
+    }
+});
+function ResetView() {
+    let phoneView = window.innerWidth < window.innerHeight || window.innerWidth < 800;
+    if (phoneView) {
+        ButheaderNavExpand.style.display = inline;
+        headerNav.style.display = none;
+        articleTitleSelect.style.display = block;
+        leftBar.style.display = none;
+        articleDiv.style.marginLeft = "2px";
+        articleDiv.style.marginRight = articleDiv.style.marginLeft;
+        rightBar.style.position = "relative";
+        rightBar.style.left = "20px";
+        rightBar.style.width = "90%";
+    }
+    else {
+        ButheaderNavExpand.style.display = none;
+        headerNav.style.display = inline;
+        articleTitleSelect.style.display = none;
+        leftBar.style.display = block;
+        articleDiv.style.marginLeft = "180px";
+        articleDiv.style.marginRight = "180px";
+        headerNavExpand.style.display = none;
+        rightBar.style.left = (articleDiv.offsetLeft + articleDiv.offsetWidth).toFixed() + "px";
+        rightBar.style.position = "fixed";
+        rightBar.style.width = "180px";
+    }
+    leftBar.style.height = (window.innerHeight - 52).toFixed() + "px";
+}
+ResetView();
+setInterval(ResetView, 40);
+(function () {
+    let selected = leftBar.getElementsByClassName("selectedTitle");
+    if (selected.length > 0) {
+        let s = selected[0];
+        leftBar.scrollTo(0, s.offsetTop - 60);
     }
 })();
 (function () {
-    let SectionTitles = document.getElementsByClassName("sectionTitle");
-    let titleWidth = Math.min(400, window.innerWidth * 0.7);
-    for (let i = 0; i < SectionTitles.length; i++) {
-        let t = SectionTitles[i];
-        let str = t.innerText;
-        for (let j = 0; j < 50; j++) {
-            if (j < 1 && str.length > 0) {
-                str = " " + str + " ";
-            }
-            str = "+" + str + "+";
-            t.innerText = str;
-            if (t.offsetWidth > titleWidth) {
-                break;
+    let h1s = articleDiv.getElementsByTagName("h2");
+    if (h1s.length > 0) {
+        for (let i = 0; i < h1s.length; i++) {
+            let h1 = h1s[i];
+            let pp = h1.parentElement;
+            if (pp != null) {
+                let a = document.createElement("a");
+                a.innerText = h1.innerText;
+                a.href = "#" + a.innerText;
+                rightHeaders.appendChild(a);
+                let a2 = document.createElement("a");
+                a2.id = a.innerText;
+                pp.insertBefore(a2, h1);
             }
         }
+    }
+    else {
+        rightHeaders.remove();
     }
 })();
 (function () {
@@ -85,59 +198,6 @@ function RandomHSLColor(s = 100, b = 85) {
             }
             img.alt = str;
         }
-    }
-})();
-(function () {
-    let div = document.getElementById("randomSaying");
-    if (div == null) {
-        return;
-    }
-    let says = [
-        "Steam版中文半条命1，删除 valve_schinese 里面的 titles.txt 文件可以提升游戏体验。",
-        "“男生最好不要戴手链。” 可戈登从来没有当TA是男生。",
-        "盒马生鲜某招聘负责人：“北京人有钱我们用不起”",
-        "你应该做的是摧毁他们，而不是成为他们：任务管理器未响应",
-        "隐士的特点：有本事，能做事，不做事",
-        "即使我是成年人，在外省合法独立工作，我依然担心父母为了他们的养老钱来带走我。"
-    ];
-    div.innerText = RandomChoose(says);
-})();
-function AddFriendsLink(title, url) {
-    let div = document.getElementById("friendLinksBox");
-    if (div == null) {
-        return;
-    }
-    let a = document.createElement("a");
-    a.href = url;
-    a.title = title;
-    a.target = "_blank";
-    a.className = "friendslink";
-    a.innerText = title;
-    let bg = "linear-gradient(to bottom," + RandomHSLColor() + "0%," + RandomHSLColor() + "50%," + RandomHSLColor() + "52%," + RandomHSLColor() + "100%)";
-    a.style.background = bg;
-    a.style.color = RandomHSLColor(100, 11);
-    div.appendChild(a);
-}
-(function () {
-    let links = [];
-    links.push({
-        k: "技术宅的结界",
-        v: "https://www.0xaa55.com/"
-    });
-    links.push({
-        k: "AceSheep",
-        v: "https://blog.acesheep.com/"
-    });
-    links.push({
-        k: "Sonic853",
-        v: "https://blog.853lab.com/"
-    });
-    let len = links.length;
-    for (let i = 0; i < len; i++) {
-        let index = RandomInt(0, links.length - 1);
-        let item = links[index];
-        links.splice(index, 1);
-        AddFriendsLink(item.k, item.v);
     }
 })();
 (function () {

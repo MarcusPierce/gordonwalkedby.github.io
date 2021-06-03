@@ -60,6 +60,11 @@ Public Class BlogPost
 
     Public ReadOnly Property Tags As String()
 
+    Public Function ToArticle() As Article
+        Dim a As New Article With {.FileName = FileName, .Title = Title}
+        Return a
+    End Function
+
     Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
         If obj.GetType.Equals(Me.GetType) Then
             Dim bp As BlogPost = obj

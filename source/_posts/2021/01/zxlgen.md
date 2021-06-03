@@ -9,7 +9,6 @@ tags: [我的软件]
 
 这个网站可以生成关于他的言论，下面选一个打开。     
 [国外点我(github)](https://gordonwalkedby.github.io/ZXLgen/)    
-[国内点我(gitee)](https://walkedby.gitee.io/zxlgen/)    
 
 [源码点我](https://github.com/gordonwalkedby/ZXLgen)    
 

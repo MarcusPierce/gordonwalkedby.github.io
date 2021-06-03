@@ -9,6 +9,7 @@ Public Module Generator
     Public Property TagPosts As New Dictionary(Of String, List(Of BlogPost))
     Public Const ATOMxml As String = "atom.xml"
     Public Const SITEMAPSxml As String = "sitemaps.xml"
+    Public Property InsideJson As String = ""
 
     Public Sub ReadLocalFiles()
         Posts = GetAllBlogPosts()
@@ -19,7 +20,11 @@ Public Module Generator
         Next
         TemplateContent = ls
         Dim ts As New Dictionary(Of String, List(Of BlogPost))
+        Dim latest As New List(Of BlogPost)
         For Each p In Posts
+            If latest.Count < 10 Then
+                latest.Add(p)
+            End If
             For Each t In p.Tags
                 If ts.ContainsKey(t) = False Then
                     Dim list = New List(Of BlogPost) From {p}
@@ -33,39 +38,22 @@ Public Module Generator
             Next
         Next
         TagPosts = ts
+        Dim ij As New InsideJSON
+        With ij
+            .AddArticleCollection("最新文章", latest.ToArray)
+            For Each tag In TagPosts
+                .AddArticleCollection(tag.Key, tag.Value.ToArray)
+            Next
+        End With
+        InsideJson = ij.ToString
     End Sub
 
     Public Function GenerateIndex() As String
-        Dim html As String = TemplateContent.Item("index.html")
-        Dim sb As New StringBuilder
-        Dim addSection = Sub(title As String, ps As List(Of BlogPost))
-                             sb.AppendLine($"<div class='pageSection'><div class='sectionTitleBox'><span class='sectionTitle'>{ HttpUtility.HtmlEncode(title)}</span></div><div class='secitonNavBox'>")
-                             For Each p In ps
-                                 sb.AppendLine($"<a href='/{p.FileName}'>{HttpUtility.HtmlEncode(p.Title)}</a>")
-                             Next
-                             sb.AppendLine("</div></div>")
-                         End Sub
-        addSection("最新文章", Posts.GetRange(0, 10))
-        For Each tag In TagPosts.Keys
-            Dim ps = TagPosts.Item(tag)
-            If ps.Count > 0 Then
-                addSection(tag, ps)
-            End If
-        Next
-        html = html.Replace("这里是主页插入4134315", sb.ToString)
-        Dim cs As New Html.HtmlSettings
-        With cs
-            .RemoveOptionalTags = False
-        End With
-        Dim r = Uglify.Html(html, cs)
-        If Not r.HasErrors Then
-            html = r.Code
-        End If
-        Return html
+        Return GeneratePostPage(Posts.Item(0))
     End Function
 
     Public Function GeneratePostPage(p As BlogPost) As String
-        Dim html As String = TemplateContent.Item("post.html")
+        Dim html As String = TemplateContent.Item("index.html")
         Dim sb As New StringBuilder
         sb.AppendLine(p.HTMLContent)
         For i As Integer = 5 To 1 Step -1
@@ -83,7 +71,7 @@ Public Module Generator
             sb.Insert(0, $"<time datetime='{p.Time:yyyy-MM-dd HH:mm:ss.001+0800}' class='articleDate'>本文发布于公元 {timestr}</time>")
         End If
         Dim tt = HttpUtility.HtmlEncode(p.Title)
-        html = html.Replace("<title>标题t</title>", $"<title>{tt} - 戈登走過去的博客</title>").Replace("我是文章标题7537537", tt).Replace("我是文章内容24542642", sb.ToString)
+        html = html.Replace("<title>标题t</title>", $"<title>{tt} - 戈登走過去的博客</title>").Replace("我是文章标题7537537", tt).Replace("我是文章内容24542642", sb.ToString).Replace("76484配置JSON写这里426", InsideJson)
         Dim cs As New Html.HtmlSettings
         With cs
             .RemoveOptionalTags = False
