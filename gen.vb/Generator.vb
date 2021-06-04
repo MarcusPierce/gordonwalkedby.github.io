@@ -49,10 +49,10 @@ Public Module Generator
     End Sub
 
     Public Function GenerateIndex() As String
-        Return GeneratePostPage(Posts.Item(0))
+        Return GeneratePostPage(Posts.Item(0), True)
     End Function
 
-    Public Function GeneratePostPage(p As BlogPost) As String
+    Public Function GeneratePostPage(p As BlogPost, Optional IndexTitle As Boolean = False) As String
         Dim html As String = TemplateContent.Item("index.html")
         Dim sb As New StringBuilder
         sb.AppendLine(p.HTMLContent)
@@ -71,7 +71,8 @@ Public Module Generator
             sb.Insert(0, $"<time datetime='{p.Time:yyyy-MM-dd HH:mm:ss.001+0800}' class='articleDate'>本文发布于公元 {timestr}</time>")
         End If
         Dim tt = HttpUtility.HtmlEncode(p.Title)
-        html = html.Replace("<title>标题t</title>", $"<title>{tt} - 戈登走過去的博客</title>").Replace("我是文章标题7537537", tt).Replace("我是文章内容24542642", sb.ToString).Replace("76484配置JSON写这里426", InsideJson)
+        html = html.Replace("<title>标题t</title>", $"<title>{ If(IndexTitle, "", tt + " - ") }戈登走過去的博客</title>")
+        html = html.Replace("我是文章标题7537537", tt).Replace("我是文章内容24542642", sb.ToString).Replace("76484配置JSON写这里426", InsideJson)
         Dim cs As New Html.HtmlSettings
         With cs
             .RemoveOptionalTags = False
