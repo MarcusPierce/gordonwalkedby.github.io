@@ -84,6 +84,7 @@ let rightHeaders = document.getElementById("rightHeaders");
             if (!CurrentAricleChosen && includeCurrentArticle) {
                 div.innerText = "▼" + c.Name;
                 CurrentAricleChosen = true;
+                div2.style.height = fullheight.toFixed() + "px";
             }
             else {
                 div2.style.height = "0px";
