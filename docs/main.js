@@ -109,46 +109,40 @@ articleTitleSelect.addEventListener("input", function () {
         location.href = "/" + v;
     }
 });
-let headerLinks = new Map();
-headerLinks.set("首页", "/");
-headerLinks.set("RSS", "/rsss");
-headerLinks.set("搜索", "/search");
-headerLinks.set("关于", "/about");
-headerLinks.set("留言", "https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill");
-headerLinks.forEach(function (v, k) {
-    let a = document.createElement("a");
-    a.innerText = k;
-    a.href = v;
-    headerNav.appendChild(a);
-    if (a.host != location.host) {
-        a.target = "_blank";
-    }
-    let a2 = document.createElement("a");
-    a2.innerText = k;
-    a2.href = v;
-    headerNavExpand.appendChild(a2);
-    if (a2.host != location.host) {
-        a2.target = "_blank";
-    }
-    a2.appendChild(document.createElement("br"));
-});
-headerNavExpand.style.visibility = "hidden";
-ButheaderNavExpand.addEventListener("click", function () {
-    if (headerNavExpand.style.visibility == "hidden") {
-        headerNavExpand.style.height = (headerLinks.size * 26).toFixed() + "px";
-        this.style.color = "black";
-        this.style.backgroundColor = "white";
-        headerNavExpand.style.visibility = "visible";
-    }
-    else {
-        headerNavExpand.style.height = "0px";
-        this.style.color = "white";
-        this.style.backgroundColor = "black";
-        setTimeout(function () {
-            headerNavExpand.style.visibility = "hidden";
-        }, 100);
-    }
-});
+(function () {
+    let headerLinks = new Map();
+    headerLinks.set("首页", "/");
+    headerLinks.set("RSS", "/rsss");
+    headerLinks.set("搜索", "/search");
+    headerLinks.set("关于", "/about");
+    headerLinks.set("留言", "https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill");
+    let fullheight = 0;
+    headerLinks.forEach(function (v, k) {
+        let a = document.createElement("a");
+        a.innerText = k;
+        a.href = v;
+        headerNav.appendChild(a);
+        let a2 = document.createElement("a");
+        a2.innerText = k;
+        a2.href = v;
+        headerNavExpand.appendChild(a2);
+        a2.appendChild(document.createElement("br"));
+        fullheight += a2.offsetHeight;
+    });
+    headerNavExpand.style.height = "0px";
+    ButheaderNavExpand.addEventListener("click", function () {
+        if (headerNavExpand.style.height == "0px") {
+            headerNavExpand.style.height = fullheight.toFixed() + "px";
+            this.style.color = "black";
+            this.style.backgroundColor = "white";
+        }
+        else {
+            headerNavExpand.style.height = "0px";
+            this.style.color = "white";
+            this.style.backgroundColor = "black";
+        }
+    });
+})();
 function ResetView() {
     let phoneView = window.innerWidth < window.innerHeight && window.innerWidth < 800;
     if (phoneView) {
