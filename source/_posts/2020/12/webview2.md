@@ -27,15 +27,15 @@ Evergreen 指的是常青的，比如常青藤（意义不明）。
 如果你要使用这个 Fixed Version ，最好好好阅读一下这个 https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/concepts/distribution   
 
 安装好runtime之后，到你的 .NET 项目里面安装这个 NUGET 包。   
-![](https://s3.ax1x.com/2020/12/13/rew5K1.png)   
+![](https://z3.ax1x.com/2020/12/13/rew5K1.png)   
 注意只能在以下平台运行：   
-![](https://s3.ax1x.com/2020/12/13/rewIDx.md.png)  
+![](https://z3.ax1x.com/2020/12/13/rewIDx.md.png)  
 
 # 入门，链接跳转
 下面我全部的内容使用的都是 .NET Framework 4.8 ， Windows Forms， VB .NET 。  
 不同的版本会有小的差异。    
 你应该可以在这个控件工具箱列表里找到这个控件，放置出来就可以了。   
-![](https://s3.ax1x.com/2020/12/13/rewHUO.png)   
+![](https://z3.ax1x.com/2020/12/13/rewHUO.png)   
 尽量不要操作右边的属性栏，把要初始化的代码都写在窗体的Load里面就好。  
 下面我把这个控件实例命名为 edge 。  
 在窗体的 Load 事件里面写上：    
@@ -44,9 +44,9 @@ edge.Source = New Uri("https://www.baidu.com")
 ```
 Source 属性可以让控件跳到指定的链接。可以是`http://localhost`，也可以是 `file:///C:/xxx.html` 格式的本地文件链接，还可以是 `edge://version` ，不过好像没有那个小恐龙游戏了。     
 运行程序，看见窗口内的浏览器控件自动跳到了百度，说明咱们成功了。  
-![](https://s3.ax1x.com/2020/12/13/re00iD.png)  
+![](https://z3.ax1x.com/2020/12/13/re00iD.png)  
 还有，别让用户手贱把这些进程给关了。  
-![](https://s3.ax1x.com/2020/12/13/reBNlj.png)  
+![](https://z3.ax1x.com/2020/12/13/reBNlj.png)  
 
 # 设置运行环境，保存用户数据 
 在不设置运行环境的情况下，默认的用户数据是保存在webview2 runtime里面的，和用户平时的edge是隔离的，但是会在所有webview2程序里共享。   
@@ -119,7 +119,7 @@ Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button
     Debug.WriteLine(t.Result)
 End Sub
 ```
-![](https://s3.ax1x.com/2020/12/13/reyw2F.png)  
+![](https://z3.ax1x.com/2020/12/13/reyw2F.png)  
 效果就是这样，然后debug那边应该会显示一个 true 或者 false ，返回的一定是字符串，如果啥都没有就是`"null"`了。  
 
 # 网页传递信息到程序

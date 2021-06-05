@@ -43,10 +43,10 @@ tags: [.NET]
             </tr>
             <tr>
                 <td>
-                    <img src="https://s3.ax1x.com/2020/12/09/rPZPXQ.png">
+                    <img src="https://z3.ax1x.com/2020/12/09/rPZPXQ.png">
                 </td>
                 <td>
-                    <img src="https://s3.ax1x.com/2020/12/09/rPVvkt.png">
+                    <img src="https://z3.ax1x.com/2020/12/09/rPVvkt.png">
                 </td>
             </tr>
             <tr>
@@ -115,18 +115,18 @@ tags: [.NET]
             </tr>
             <tr>
                 <td>
-                    <img src="https://s3.ax1x.com/2020/12/09/rPmQoR.png">
+                    <img src="https://z3.ax1x.com/2020/12/09/rPmQoR.png">
                 </td>
                 <td>
-                    <img src="https://s3.ax1x.com/2020/12/09/rPmVzT.png">
+                    <img src="https://z3.ax1x.com/2020/12/09/rPmVzT.png">
                 </td>
             </tr>
             <tr>
                 <td>
-                    <img src="https://s3.ax1x.com/2020/12/09/rPm6l8.png">
+                    <img src="https://z3.ax1x.com/2020/12/09/rPm6l8.png">
                 </td>
                 <td>
-                    <img src="https://s3.ax1x.com/2020/12/09/rPmrfP.png">
+                    <img src="https://z3.ax1x.com/2020/12/09/rPmrfP.png">
                 </td>
             </tr>
             <tr>

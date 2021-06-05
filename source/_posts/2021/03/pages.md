@@ -101,7 +101,7 @@ github 这边，只要你把自己的仓库的名字改成 用户名.github.io �
 gitlab 是要把仓库的名字改成 gordonwalkedby.gitlab.io 才能是 .io 域名本身。  
 
 gitee 就比较特色了，仓库的名字和你的用户名一致就好。  
-![](https://s3.ax1x.com/2021/03/09/68osJI.png)    
+![](https://z3.ax1x.com/2021/03/09/68osJI.png)    
 
 # CloudFlare Pages
 这新出的功能，就NB。  

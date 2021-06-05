@@ -5,7 +5,7 @@ tags: [我的软件,.NET]
 ---
 本项目已经不再继续维护。   
 v1.3 为最终版，就这样把。    
-![](https://s3.ax1x.com/2021/03/09/61Xqqf.png)   
+![](https://z3.ax1x.com/2021/03/09/61Xqqf.png)   
 感谢你们的体验和评论和 Star。  
 
 一款反自杀主题的打字游戏。   
@@ -15,8 +15,8 @@ v1.3 为最终版，就这样把。
 但是不是一般的人可以做到的，希望你可以活下来，就像我当年一样。   
   
 # 截图：
-![](https://s3.ax1x.com/2021/02/09/ywS9Mj.png)  
-![](https://s3.ax1x.com/2021/02/09/ywSFZq.png)  
+![](https://z3.ax1x.com/2021/02/09/ywS9Mj.png)  
+![](https://z3.ax1x.com/2021/02/09/ywSFZq.png)  
 
 # 游戏运行环境
 - Windows 7 或更高

@@ -21,7 +21,7 @@ tags: [我的软件]
 [greasyfork](https://greasyfork.org/scripts/423544-%E7%9F%B3%E5%A2%A8%E6%96%87%E6%A1%A3%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA)
 
 # 截图
-![截图afda](https://s3.ax1x.com/2021/03/19/6R7YkV.png)   
-![截图gfdfhd](https://s3.ax1x.com/2021/03/19/6RhDmV.png)  
-![截图0dfhgdh2](https://s3.ax1x.com/2021/03/19/6RhPQ1.png)    
-![截图gfhhte3](https://s3.ax1x.com/2021/03/19/6RhtYQ.png)   
+![截图afda](https://z3.ax1x.com/2021/03/19/6R7YkV.png)   
+![截图gfdfhd](https://z3.ax1x.com/2021/03/19/6RhDmV.png)  
+![截图0dfhgdh2](https://z3.ax1x.com/2021/03/19/6RhPQ1.png)    
+![截图gfhhte3](https://z3.ax1x.com/2021/03/19/6RhtYQ.png)   

@@ -62,14 +62,14 @@ A 的 STEAM 账号依然活跃，在 2021 年 3 月 11 日的时候，A 依然�
 
 # 截图证据
 
-![](https://s3.ax1x.com/2021/01/26/sv1KQf.png)  
-![](https://s3.ax1x.com/2021/01/26/sv18oj.png)  
-![](https://s3.ax1x.com/2021/01/26/sXYdqU.png)  
-![](https://s3.ax1x.com/2021/01/26/sXYDIJ.png)  
-![](https://s3.ax1x.com/2021/01/26/sXY6R1.png)  
-![](https://s3.ax1x.com/2021/03/11/6YTgzR.png)  
+![](https://z3.ax1x.com/2021/01/26/sv1KQf.png)  
+![](https://z3.ax1x.com/2021/01/26/sv18oj.png)  
+![](https://z3.ax1x.com/2021/01/26/sXYdqU.png)  
+![](https://z3.ax1x.com/2021/01/26/sXYDIJ.png)  
+![](https://z3.ax1x.com/2021/01/26/sXY6R1.png)  
+![](https://z3.ax1x.com/2021/03/11/6YTgzR.png)  
 
-![](https://s3.ax1x.com/2021/03/11/6Y79YQ.png)  
+![](https://z3.ax1x.com/2021/03/11/6Y79YQ.png)  
 
 # 参与讨论
 [B站专栏](https://www.bilibili.com/read/cv10225017)  

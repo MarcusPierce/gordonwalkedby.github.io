@@ -20,6 +20,6 @@ Chrome or Edge is not supported.
 - [使用说明](https://github.com/gordonwalkedby/steam-friends-monitor/wiki/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8)  
 
 # 截图
-![](https://s3.ax1x.com/2021/02/01/yZHDU0.png)  
-![](https://s3.ax1x.com/2021/02/02/ymCDDx.png)  
+![](https://z3.ax1x.com/2021/02/01/yZHDU0.png)  
+![](https://z3.ax1x.com/2021/02/02/ymCDDx.png)  
 

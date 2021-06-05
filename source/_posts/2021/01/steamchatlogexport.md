@@ -17,8 +17,8 @@ Steam官方只保留了14天，14天以前的steam就不提供了。
 源码： [github](https://github.com/gordonwalkedby/Steam-Chat-Log-Export)    
 
 # 截图： 
-![这是效果图1](https://s3.ax1x.com/2021/01/28/y9wj8x.png)   
-![这是效果图2](https://s3.ax1x.com/2021/01/28/y9wAjU.png)   
+![这是效果图1](https://z3.ax1x.com/2021/01/28/y9wj8x.png)   
+![这是效果图2](https://z3.ax1x.com/2021/01/28/y9wAjU.png)   
 
 # 反馈
 - [github issue](https://github.com/gordonwalkedby/Steam-Chat-Log-Export/issues)   
