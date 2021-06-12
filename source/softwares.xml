@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ArrayOfSoftwareInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SoftwareInfo>
+        <Name>example</Name>
+        <LatestVersionStr>1.2.3.4</LatestVersionStr>
+        <LastUpdateNote>我只是一个样例。</LastUpdateNote>
+        <UpdateURL>https://www.baidu.com/?c&amp;gh</UpdateURL>
+    </SoftwareInfo>
+    <SoftwareInfo>
+        <Name>DDJZ</Name>
+        <LatestVersionStr>1.0</LatestVersionStr>
+        <LastUpdateNote>这是第一个发行版。</LastUpdateNote>
+        <UpdateURL>https://github.com/gordonwalkedby/DDJZ/releases</UpdateURL>
+    </SoftwareInfo>
+</ArrayOfSoftwareInfo>
