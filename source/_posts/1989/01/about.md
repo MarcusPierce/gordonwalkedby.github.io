@@ -19,15 +19,10 @@ Gordon Walkedby
 
 # 看戈登的视频
 - [B站](https://space.bilibili.com/4523834)
-- [YouTube](https://www.youtube.com/channel/UCpnf5wTnI9br8IxJbRV5Tew)
-- [Acfun](https://www.acfun.cn/u/13194917)
+- [Acfun（有同步发视频，但是我基本不去管理评论区或者私信）](https://www.acfun.cn/u/13194917)
 
 # 联系戈登
-- [推荐：石墨文档在线留言（非公开，匿名，无需注册登录）](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)
-- EMAIL： 84y48tt8l哀特relay点firefox电com
-- [推特私信](https://twitter.com/GDZGQ)
-- [B站私信](https://space.bilibili.com/4523834)
-- [微博私信](https://weibo.com/5977985000) （很可能看不见）  
+- EMAIL： 84y48tt8l哀特relay点firefox电康母
 
 # 戈登的 GPG / PGP 公钥
 
