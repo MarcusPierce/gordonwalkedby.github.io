@@ -37,6 +37,7 @@ let headerNav = document.getElementById("headerNav") as HTMLDivElement
 let ButheaderNavExpand = document.getElementById("ButheaderNavExpand") as HTMLDivElement
 let headerNavExpand = document.getElementById("headerNavExpand") as HTMLDivElement
 let articleTitleSelect = document.getElementById("articleTitleSelect") as HTMLSelectElement
+let articleTitle = document.getElementById("articleTitle") as HTMLAnchorElement
 let rightHeaders = document.getElementById("rightHeaders") as HTMLDivElement;
 
 (function () {
@@ -64,6 +65,9 @@ let rightHeaders = document.getElementById("rightHeaders") as HTMLDivElement;
             div2.className = "leftBarSubMenuContent"
             leftBar.appendChild(div2)
             let fullheight = 0
+            if (index < 1) {
+                fullheight = c.Articles.length
+            }
             let includeCurrentArticle = false
             c.Articles.forEach(function (ac) {
                 let a = document.createElement("a")
@@ -145,6 +149,7 @@ articleTitleSelect.addEventListener("input", function () {
             this.style.backgroundColor = "black"
         }
     })
+    articleTitle.href = "/" + CurrentAricle
 })();
 
 function ResetView() {

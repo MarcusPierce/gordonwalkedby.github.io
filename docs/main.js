@@ -36,6 +36,7 @@ let headerNav = document.getElementById("headerNav");
 let ButheaderNavExpand = document.getElementById("ButheaderNavExpand");
 let headerNavExpand = document.getElementById("headerNavExpand");
 let articleTitleSelect = document.getElementById("articleTitleSelect");
+let articleTitle = document.getElementById("articleTitle");
 let rightHeaders = document.getElementById("rightHeaders");
 (function () {
     let insidejson = document.getElementById("insidejson");
@@ -61,6 +62,9 @@ let rightHeaders = document.getElementById("rightHeaders");
             div2.className = "leftBarSubMenuContent";
             leftBar.appendChild(div2);
             let fullheight = 0;
+            if (index < 1) {
+                fullheight = c.Articles.length;
+            }
             let includeCurrentArticle = false;
             c.Articles.forEach(function (ac) {
                 let a = document.createElement("a");
@@ -143,6 +147,7 @@ articleTitleSelect.addEventListener("input", function () {
             this.style.backgroundColor = "black";
         }
     });
+    articleTitle.href = "/" + CurrentAricle;
 })();
 function ResetView() {
     let phoneView = window.innerWidth < window.innerHeight && window.innerWidth < 800;

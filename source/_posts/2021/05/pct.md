@@ -26,7 +26,6 @@ tags: [我的软件]
 - [源码](https://github.com/gordonwalkedby/pointcounter)   
 - [在线使用](https://pct.walkedby.com/)   
 
-# 图片：
 效果截图：  
 ![](https://z3.ax1x.com/2021/05/12/gdJ5M4.png)   
 

@@ -22,9 +22,11 @@ Gordon Walkedby
 - [Acfun（有同步发视频，但是我基本不去管理评论区或者私信）](https://www.acfun.cn/u/13194917)
 
 # 联系戈登
-- EMAIL： 84y48tt8l哀特relay点firefox电康母
+- EMAIL： 使用下面的 GPG 公钥对应的邮箱即可
+- [石墨文档匿名留言，无需注册登录](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)  
+- [新浪微博：@戈登走過去](https://weibo.com/gordon2001)
 
-# 戈登的 GPG / PGP 公钥
+# 戈登的 GPG 公钥
 
 <pre  id='gpgkey' style="display: none;">
 <code class="lang-plaintext">
