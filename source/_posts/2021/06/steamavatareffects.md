@@ -12,6 +12,7 @@ Steam 最近几年来一直搞花里胡哨的东西，用户社交的个人资�
 这是一个 Tampermonkey 脚本，未在 Greasemonkey 、Violentmonkey 等软件上测试过可用性。    
 
 安装、源码： [greasyfork](https://greasyfork.org/scripts/428155)   
+讨论： [keylol](https://keylol.com/t724922-1-1)   
 
 效果截图：   
 
