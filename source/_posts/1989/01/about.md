@@ -23,7 +23,7 @@ Gordon Walkedby
 
 # 联系戈登
 - EMAIL： 使用下面的 GPG 公钥对应的邮箱即可
-- [石墨文档匿名留言，无需注册登录](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)  
+- [谷歌表单留言，无需注册登录，但可能需要代理](https://forms.gle/eVniFL6cSGmMgAVC6)  
 - [新浪微博：@戈登走過去](https://weibo.com/gordon2001)
 
 # 戈登的 GPG 公钥
