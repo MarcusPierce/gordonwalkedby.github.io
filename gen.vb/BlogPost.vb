@@ -61,7 +61,10 @@ Public Class BlogPost
     Public ReadOnly Property Tags As String()
 
     Public Function ToArticle() As Article
-        Dim a As New Article With {.FileName = FileName, .Title = Title}
+        Dim a As New Article With {.FileName = FileName,
+            .Title = Title,
+            .Tags = Tags
+        }
         Return a
     End Function
 

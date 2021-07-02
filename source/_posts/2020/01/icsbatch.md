@@ -1,14 +1,14 @@
 ---
-title: 描述性文本转 ICS 文件在线转换器【不再更新】
+title: 描述性文本转 ICS 文件在线转换器
 date: 2020-01-04 19:31:36
-tags: [我的软件]
+tags: [我的垃圾软件]
 ---
 
 # 本软件不再更新！因为对普通人来说没有任何意义。您可以离开了！
 
 此工具是用来把一个描述性的文本转变成 ICS 日历文件的，仅支持以今年开始一年一次的事件，用起来比较硬核，最初是我为了记录好朋友的生日准备的，需要一定的正则表达式编写能力。  
 
-使用的农历JS库：  https://github.com/jjonline/calendar.js  
+使用的农历JS库：  [https://github.com/jjonline/calendar.js](https://github.com/jjonline/calendar.js)  
 
 <div>
 在下面输入单个事件的正则匹配表达式，需要用括号括出月数字、日数字、事件名：<br>

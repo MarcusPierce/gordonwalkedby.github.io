@@ -4,7 +4,8 @@ interface InsideJSON {
 
 interface Article {
     Title: string,
-    FileName: string
+    FileName: string,
+    Tags: string[]
 }
 
 interface ArticleCollection {

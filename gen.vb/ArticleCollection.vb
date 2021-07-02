@@ -45,5 +45,6 @@ Public Class Article
 
     Public Property Title As String
     Public Property FileName As String
+    Public Property Tags As String()
 
 End Class

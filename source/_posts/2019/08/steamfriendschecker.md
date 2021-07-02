@@ -1,14 +1,12 @@
 ---
-title: Steam 好友检查器【不再更新】
+title: Steam 好友检查器
 date: 2019-08-17 20:45:02
-tags: [我的软件]
+tags: [我的垃圾软件]
 ---
 
-# 本工具自从2020年5月之后已经不再提供更新。可能在现在的steam网站上无法运行，那我就不管了。
+# 本脚本自从2020年5月之后已经不再维护和提供。
 
 这是我自己编写的第一个猴子脚本。
-
-Greasy Fork 链接： https://greasyfork.org/zh-CN/scripts/388807-steam-friends-checker  
 
 （是的，我是个拿 TypeScript 写网页脚本的奇葩）  
 

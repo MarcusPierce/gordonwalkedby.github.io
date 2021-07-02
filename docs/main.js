@@ -44,6 +44,8 @@ let rightHeaders = document.getElementById("rightHeaders");
     let data = JSON.parse(jj);
     articles = data.Articles;
 })();
+const LastCategory = "lastcategory";
+let lastcategory = localStorage.getItem(LastCategory);
 (function () {
     let articleTitleSelectIndex = -1;
     let CurrentAricleChosen = false;
@@ -62,18 +64,21 @@ let rightHeaders = document.getElementById("rightHeaders");
             div2.className = "leftBarSubMenuContent";
             leftBar.appendChild(div2);
             let fullheight = 0;
-            if (index < 1) {
-                fullheight = c.Articles.length;
-            }
             let includeCurrentArticle = false;
             c.Articles.forEach(function (ac) {
                 let a = document.createElement("a");
                 a.innerText = ac.Title;
                 a.href = "/" + ac.FileName;
+                a.addEventListener("click", function () {
+                    localStorage.setItem(LastCategory, c.Name);
+                });
                 div2.appendChild(a);
                 if (CurrentAricle == ac.FileName) {
-                    a.className = "selectedTitle";
-                    includeCurrentArticle = true;
+                    if (lastcategory == null || c.Name == lastcategory || !ac.Tags.includes(lastcategory)) {
+                        a.className = "selectedTitle";
+                        includeCurrentArticle = true;
+                        localStorage.setItem(LastCategory, c.Name);
+                    }
                 }
                 fullheight += a.offsetHeight;
                 let opt = document.createElement("option");
@@ -88,6 +93,7 @@ let rightHeaders = document.getElementById("rightHeaders");
             if (!CurrentAricleChosen && includeCurrentArticle) {
                 div.innerText = "▼" + c.Name;
                 CurrentAricleChosen = true;
+                fullheight += c.Articles.length;
                 div2.style.height = fullheight.toFixed() + "px";
             }
             else {
@@ -103,6 +109,7 @@ let rightHeaders = document.getElementById("rightHeaders");
                     div2.style.height = "0px";
                     div.innerText = "▶" + c.Name;
                 }
+                localStorage.setItem(LastCategory, c.Name);
             });
         }
     });
