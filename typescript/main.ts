@@ -28,6 +28,7 @@ let CurrentAricle = "";
     }
 })();
 
+
 let articles: ArticleCollection[] = []
 
 let leftBar = document.getElementById("leftBar") as HTMLDivElement
@@ -49,6 +50,10 @@ let rightHeaders = document.getElementById("rightHeaders") as HTMLDivElement;
 
 const LastCategory: string = "lastcategory";
 let lastcategory = localStorage.getItem(LastCategory);
+
+if (CurrentAricle.length < 1) {
+    lastcategory = null
+}
 
 (function () {
     let articleTitleSelectIndex = -1

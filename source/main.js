@@ -46,6 +46,9 @@ let rightHeaders = document.getElementById("rightHeaders");
 })();
 const LastCategory = "lastcategory";
 let lastcategory = localStorage.getItem(LastCategory);
+if (CurrentAricle.length < 1) {
+    lastcategory = null;
+}
 (function () {
     let articleTitleSelectIndex = -1;
     let CurrentAricleChosen = false;
