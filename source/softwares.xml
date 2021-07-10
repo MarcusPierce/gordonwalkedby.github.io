@@ -8,7 +8,7 @@
     </SoftwareInfo>
     <SoftwareInfo>
         <Name>DDJZ</Name>
-        <LatestVersionStr>1.1</LatestVersionStr>
+        <LatestVersionStr>1.2</LatestVersionStr>
         <LastUpdateNote>修复了一些BUG</LastUpdateNote>
         <UpdateURL>https://github.com/gordonwalkedby/DDJZ/releases</UpdateURL>
     </SoftwareInfo>
