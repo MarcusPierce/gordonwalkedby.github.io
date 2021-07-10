@@ -8,7 +8,7 @@ tags: [我的软件,.NET]
 源码：  [github](https://github.com/gordonwalkedby/DDJZ)   
 下载：  
 - [github](https://github.com/gordonwalkedby/DDJZ/releases)  
-- [国内蓝奏云](https://walkedby.lanzoui.com/iiDWwqx4ewj)   
+- [国内蓝奏云](https://walkedby.lanzoui.com/iHmm9r8smuf)   
 
 ![](https://z3.ax1x.com/2021/06/16/2XrfDe.png)   
 
