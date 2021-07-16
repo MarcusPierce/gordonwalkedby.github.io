@@ -206,7 +206,8 @@ setInterval(ResetView, 40);
 (function () {
     let h1s = articleDiv.getElementsByTagName("h2")
     if (h1s.length > 0) {
-        for (let i = 0; i < h1s.length; i++) {
+        let length = Math.min(h1s.length, 9)
+        for (let i = 0; i < length; i++) {
             let h1 = h1s[i]
             let pp = h1.parentElement
             if (pp != null) {

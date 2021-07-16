@@ -3,6 +3,9 @@ title: 登登记账
 date: 2021-06-18 07:21:00
 tags: [我的软件,.NET]
 ---
+
+# 只有我自己一个人用的垃圾玩意
+
 考虑到自己对记账这个事情的需求，戈登决定亲自做一个软件来解决记账的问题。   
 
 源码：  [github](https://github.com/gordonwalkedby/DDJZ)   
