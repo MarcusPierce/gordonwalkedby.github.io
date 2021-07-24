@@ -136,7 +136,7 @@ articleTitleSelect.addEventListener("input", function () {
     headerLinks.set("RSS", "/rsss")
     headerLinks.set("搜索", "/search")
     headerLinks.set("关于", "/about")
-    headerLinks.set("留言", "https://forms.gle/eVniFL6cSGmMgAVC6")
+    headerLinks.set("留言", "https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill")
     let fullheight = 0
     headerLinks.forEach(function (v, k) {
         let a = document.createElement("a")
