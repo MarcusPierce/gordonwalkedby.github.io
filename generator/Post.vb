@@ -3,48 +3,76 @@
 Public Class Post
     Implements IComparable
 
-    Protected Sub New(filename As String, title As String, releaseDate As Date, tags As String(), mdcontent As String)
-        Me.FileName = Path.ChangeExtension(filename.ToLower, Nothing)
-        Me.Title = title
-        Me.ReleaseDate = releaseDate
-        Me.ReleaseDateDisplayStr = GetChineseTimeFormat(releaseDate)
-        Me.ReleaseDateISOStr = GetISOTimeFormat(releaseDate)
-        If tags Is Nothing Then
-            tags = Array.Empty(Of String)
-        End If
-        Me.Tags = tags
-        Me.MDContent = mdcontent
-        Me.HTMLContent = Markdown.ToHtml(mdcontent)
-        Me.TextContent = Markdown.ToPlainText(mdcontent)
-        If tags.Length > 0 Then
-            Dim sb As New StringBuilder
-            For Each i In tags
-                sb.Append("<a>")
-                sb.Append(WebUtility.HtmlEncode(i))
-                sb.Append("</a>")
-            Next
-            Me.TagsHTML = sb.ToString
-        Else
-            Me.TagsHTML = String.Empty
-        End If
+    Private _tags As String() = Array.Empty(Of String)
+    Private _tagshtml As String = String.Empty
+    Private _releaseDate As Date
+    Private _releaseDateISOStr As String
+    Private _releaseDateDisplayStr As String
+
+    Protected Sub New()
     End Sub
 
-    Public ReadOnly Property FileName As String
-    Public ReadOnly Property Title As String
-    Public ReadOnly Property ReleaseDateISOStr As String
-    Public ReadOnly Property ReleaseDateDisplayStr As String
+    Public Property FileName As String
+    Public Property Title As String
 
     <JsonIgnore>
-    Public ReadOnly Property ReleaseDate As Date
-    Public ReadOnly Property Tags As String()
+    Public Property ReleaseDate As Date
+        Get
+            Return _releaseDate
+        End Get
+        Set(value As Date)
+            _releaseDate = value
+            _releaseDateISOStr = GetISOTimeFormat(value)
+            _releaseDateDisplayStr = GetChineseTimeFormat(value)
+        End Set
+    End Property
+
+    Public ReadOnly Property ReleaseDateISOStr As String
+        Get
+            Return _releaseDateISOStr
+        End Get
+    End Property
+
+    Public ReadOnly Property ReleaseDateDisplayStr As String
+        Get
+            Return _releaseDateDisplayStr
+        End Get
+    End Property
+
+    Public Property Tags As String()
+        Get
+            Return _tags
+        End Get
+        Set(value As String())
+            If value Is Nothing Then
+                _tags = Array.Empty(Of String)
+                _tagshtml = String.Empty
+            Else
+                _tags = value
+                Dim sb As New StringBuilder
+                For Each i In Tags
+                    sb.Append("<a>")
+                    sb.Append(WebUtility.HtmlEncode(i))
+                    sb.Append("</a>")
+                Next
+                _tagshtml = sb.ToString
+            End If
+        End Set
+    End Property
+
     <JsonIgnore>
     Public ReadOnly Property TagsHTML As String
+        Get
+            Return _tagshtml
+        End Get
+    End Property
+
     <JsonIgnore>
-    Public ReadOnly Property MDContent As String
+    Public Property SrcContent As String
     <JsonIgnore>
-    Public ReadOnly Property HTMLContent As String
+    Public Property HTMLContent As String
     <JsonIgnore>
-    Public ReadOnly Property TextContent As String
+    Public Property TextContent As String
 
     Public Overrides Function ToString() As String
         Return $"[{FileName}]{Title} {ReleaseDate}"
@@ -65,38 +93,49 @@ Public Class Post
     Public Function CompareTo(obj As Object) As Integer Implements IComparable.CompareTo
         If obj IsNot Nothing AndAlso obj.GetType.Equals(GetType(Post)) Then
             Dim a As Post = CType(obj, Post)
-            Return -Me.ReleaseDate.CompareTo(a.ReleaseDate)
+            Dim cp = Me.ReleaseDate.CompareTo(a.ReleaseDate)
+            If cp = 0 Then
+                cp = Me.FileName.CompareTo(a.FileName)
+            End If
+            Return -cp
         End If
         Return 0
     End Function
 
-    Public Shared Function CreateFromMDText(filename As String, md As String) As Post
+    Public Shared Function Create(filename As String, src As String) As Post
         If String.IsNullOrWhiteSpace(filename) Then
             Throw New ArgumentNullException(NameOf(filename))
         End If
-        If String.IsNullOrWhiteSpace(md) Then
-            Throw New ArgumentNullException(NameOf(md))
+        If String.IsNullOrWhiteSpace(src) Then
+            Throw New ArgumentNullException(NameOf(src))
         End If
-        md = md.Trim
-        Const headBlock = "---"
+        src = src.Trim
+        Const mdBlock = "---"
+        Const htmlBlock1 = "<!--"
+        Const htmlBlock2 = "-->"
+        Dim isHTML As Boolean = False
         Dim lineNum As Integer = 0
         Dim title As String = Nothing
         Dim releaseDate As Date = #1900-1-1#
         Dim tags As New List(Of String)
         Dim content As String = Nothing
         Dim headComplete As Boolean = False
-        Using reader As New StringReader(md)
+        Using reader As New StringReader(src)
             Do While reader.Peek >= 0
                 lineNum += 1
                 Dim line = reader.ReadLine
                 If lineNum < 2 Then
-                    If line.StartsWith(headBlock) Then
+                    If line.StartsWith(mdBlock) Then
+                        isHTML = False
+                        Continue Do
+                    ElseIf line.StartsWith(htmlBlock1) Then
+                        isHTML = True
                         Continue Do
                     Else
-                        Throw New Exception("Content is not started with ---")
+                        Throw New Exception("Content is not started with --- or <!--")
                     End If
                 End If
-                If line.StartsWith(headBlock) Then
+                If (isHTML = False AndAlso line.StartsWith(mdBlock)) OrElse (isHTML AndAlso line.StartsWith(htmlBlock2)) Then
                     If String.IsNullOrWhiteSpace(title) Then
                         Throw New Exception("Missing title.")
                     ElseIf releaseDate.Year <= 1900 Then
@@ -161,7 +200,20 @@ Public Class Post
         If String.IsNullOrWhiteSpace(content) Then
             Throw New Exception("Missing content.")
         End If
-        Dim out As New Post(filename.Trim, title, releaseDate, tags.ToArray, content)
+        Dim out As New Post() With {
+            .FileName = Path.ChangeExtension(filename.Trim.ToLower, Nothing),
+            .Title = title,
+            .ReleaseDate = releaseDate,
+            .Tags = tags.ToArray,
+            .SrcContent = content
+        }
+        If isHTML Then
+            out.HTMLContent = content
+            out.TextContent = GetXMLInnerText(content)
+        Else
+            out.HTMLContent = Markdown.ToHtml(content)
+            out.TextContent = Markdown.ToPlainText(content)
+        End If
         Return out
     End Function
 

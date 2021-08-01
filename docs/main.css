@@ -155,6 +155,14 @@ header {
     color: #005da6;
 }
 
+.articleContent hr {
+    width: 85%;
+    border-top: 3px dotted black;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
 .articleContent img {
     display: block;
     max-width: 99%;

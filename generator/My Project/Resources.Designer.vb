@@ -59,5 +59,21 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {
+        '''  &quot;compilerOptions&quot;: {
+        '''    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+        '''
+        '''    /* Basic Options */
+        '''    // &quot;incremental&quot;: true,                         /* Enable incremental compilation */
+        '''    &quot;target&quot;: &quot;ES2021&quot;,                                /* Specify ECMAScript target version: &apos;ES3&apos; (default), &apos;ES5&apos;, &apos;ES2015&apos;, &apos;ES2016&apos;, &apos;ES2017&apos;, &apos;ES2018&apos;, &apos;ES2019&apos;, &apos;ES2020&apos;, &apos;ES2021&apos;, or &apos;ESNEXT&apos;. */
+        '''    &quot;module&quot;: &quot;amd&quot;,                           /* Specify module code generation: &apos;none&apos;, [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property defaultTSconfig() As String
+            Get
+                Return ResourceManager.GetString("defaultTSconfig", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

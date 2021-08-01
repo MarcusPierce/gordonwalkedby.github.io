@@ -4,6 +4,7 @@
     Public HtmlFolder As DirectoryInfo = Nothing
     Public PostsFolder As DirectoryInfo = Nothing
     Public StaticsFolder As DirectoryInfo = Nothing
+    Public DocsFolder As DirectoryInfo = Nothing
 
     Sub Main(args As String())
         Console.WriteLine("Welcome! This is made for walkedby.com")
@@ -20,27 +21,9 @@
         RefreshPosts()
         Select Case command
             Case "new"
-                If String.IsNullOrWhiteSpace(commandValue) Then
-                    Throw New Exception("You must give me a article file name.")
-                End If
-                commandValue = commandValue.ToLower
-                If Posts.ContainsKey(commandValue) Then
-                    Throw New Exception($"This name has been used: {commandValue}")
-                End If
-                Dim time = Date.Now
-                Dim dic = Path.Combine(PostsFolder.FullName, time.ToString("yyyy/MM"))
-                If Directory.Exists(dic) = False Then
-                    Directory.CreateDirectory(dic)
-                End If
-                Dim f = Path.Combine(dic, $"{commandValue}.md")
-                File.WriteAllText(f, $"---
-title: 订阅 RSS
-date: {time:yyyy-MM-dd}
-tags: [标签1,标签2]
----
-三天之内鲨了你")
-                Console.WriteLine("You can edit it: ")
-                Console.WriteLine(f)
+                CreateNewPost(commandValue)
+            Case "newproject"
+                CreateNewSubProject(commandValue)
             Case "s"
                 If Posts.Count < 1 Then
                     Throw New Exception("I cannot found any post! You must add one first.")
@@ -94,7 +77,58 @@ tags: [标签1,标签2]
         HtmlFolder = New DirectoryInfo(Path.Combine(fullname, "html"))
         PostsFolder = New DirectoryInfo(Path.Combine(fullname, "posts"))
         StaticsFolder = New DirectoryInfo(Path.Combine(fullname, "statics"))
+        DocsFolder = New DirectoryInfo(Path.Combine(WorkFolder.FullName, "docs"))
         Console.WriteLine($"Found work folder: {fullname}")
+    End Sub
+
+    Sub CheckNewPostName(ByRef name As String)
+        If String.IsNullOrWhiteSpace(name) Then
+            Throw New Exception("You must give me a article file name.")
+        End If
+        name = name.ToLower
+        If Not IsGoodFileName(name) Then
+            Throw New Exception($"The name can only use English letters and numbers: {name}")
+        End If
+        If Posts.ContainsKey(name) Then
+            Throw New Exception($"This name has been used: {name}")
+        End If
+    End Sub
+
+    Sub CreateNewPost(name As String)
+        CheckNewPostName(name)
+        Dim time = Date.Now
+        Dim dic = Path.Combine(PostsFolder.FullName, time.ToString("yyyy/MM"))
+        If Directory.Exists(dic) = False Then
+            Directory.CreateDirectory(dic)
+        End If
+        Dim f = Path.Combine(dic, $"{name}.md")
+        File.WriteAllText(f, $"---
+title: {name}
+date: {time:yyyy-MM-dd}
+tags: [标签1,标签2]
+---
+三天之内鲨了你")
+        Console.WriteLine("You can edit it: ")
+        Console.WriteLine(f)
+    End Sub
+
+    Sub CreateNewSubProject(name As String)
+        CheckNewPostName(name)
+        Dim time = Date.Now
+        Dim dic = PostsFolder.CreateSubdirectory(name)
+        Dim fullname = dic.FullName
+        Dim f = Path.Combine(fullname, "index.html")
+        File.WriteAllText(f, $"<!--
+title: {name}
+date: {time:yyyy-MM-dd}
+tags: [标签1,标签2]
+-->
+<p>三天之内鲨了你 a~</p>
+<script src=""/js/{name}.js""></script>")
+        f = Path.Combine(fullname, "tsconfig.json")
+        File.WriteAllText(f, My.Resources.defaultTSconfig.Replace("%名字%", name))
+        Console.WriteLine("You can edit it:")
+        Console.WriteLine(fullname)
     End Sub
 
 End Module

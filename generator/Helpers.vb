@@ -62,4 +62,12 @@
         Return Nothing
     End Function
 
+    Public Function GetXMLInnerText(src As String) As String
+        Static getInnerText As New Regex("<.+?>", RegexOptions.Compiled And RegexOptions.Singleline)
+        If String.IsNullOrWhiteSpace(src) Then
+            Return String.Empty
+        End If
+        Return WebUtility.HtmlDecode(getInnerText.Replace(src, String.Empty))
+    End Function
+
 End Module

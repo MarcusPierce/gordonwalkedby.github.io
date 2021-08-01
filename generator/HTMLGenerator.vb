@@ -3,23 +3,40 @@
     Const WebsiteTitle = "戈登走過去的树洞"
     Const WebsiteURL = "https://walkedby.com/"
     Const AtomURL = "atom.xml"
+    Const htmlIndex = "index"
+    Const htmlPost = "post"
+    Const html404 = "404"
     Const HTMLIndexHead = "<!-- %头部附加% -->"
     Const HTMLIndexCenter = "<!-- %中心% -->"
-    Public ReadOnly HTMLFileExts As String() = {".html"}
     Public ReadOnly HTMLFileContents As New Dictionary(Of String, (String, Date))
-    Public ReadOnly PostFileExts As String() = {".md", ".markdown", ".txt"}
     Public ReadOnly PostFileContents As New Dictionary(Of String, (String, Date))
+    Public ReadOnly SubProjectContents As New Dictionary(Of String, (String, Date))
     Public ReadOnly Posts As New Dictionary(Of String, Post)
 
+    Public Function IsGoodFileName(str As String) As Boolean
+        Static r As New Regex("^[a-z|0-9|\-]*$", RegexOptions.Compiled And RegexOptions.Singleline)
+        If String.IsNullOrWhiteSpace(str) Then Return False
+        Return r.IsMatch(str)
+    End Function
+
     ''' <summary>
-    ''' 从 folder 里过滤出 goodexts 格式的文件，读取utf8文本存入 dict 里，返回的是新读取的文件的名字数组。这只适用于文件名不重复的情况
+    ''' 从 folder 里过滤出符合 searchPattern 的文件，读取 utf8 文本存入 dict 里，返回的是新读取的文件的名字数组。这只适用于文件名不重复的情况.
+    ''' 如果 searchPattern 不包含?或者*，那么会使用父文件夹的名字存入 dict。
     ''' </summary>
-    Public Function RefreshReadTextFiles(folder As DirectoryInfo, dict As Dictionary(Of String, (String, Date)), goodexts As String(), throwIOex As Boolean) As String()
+    Public Function RefreshReadTextFiles(folder As DirectoryInfo, dict As Dictionary(Of String, (String, Date)), searchPattern As String, throwIOex As Boolean) As String()
         Dim timeNow = Date.Now
         Dim out As New List(Of String)
         Dim readNames As New List(Of String)
-        For Each f In folder.GetFiles("*", SearchOption.AllDirectories)
-            Dim name = f.Name.ToLower
+        For Each f In folder.GetFiles(searchPattern, SearchOption.AllDirectories)
+            Dim name = f.Name
+            If searchPattern.Contains("*") = False AndAlso searchPattern.Contains("?") = False Then
+                name = f.Directory.Name.ToLower
+            Else
+                name = Path.ChangeExtension(name, Nothing).ToLower
+            End If
+            If Not IsGoodFileName(name) Then
+                Throw New Exception($"The name can only use English letters and numbers: {f.FullName}")
+            End If
             If readNames.Contains(name) Then
                 Throw New Exception($"Got multi files that has the same name: {f.FullName}")
             End If
@@ -28,24 +45,22 @@
             If noNeedRead Then
                 Continue For
             End If
-            If StringsContains(goodexts, f.Extension, StringComparison.OrdinalIgnoreCase) Then
-                Dim content As String = Nothing
-                Try
-                    content = ReadFileAllText(f.FullName)
-                Catch ex As Exception
-                    Console.WriteLine($"File IO error: {f.FullName}")
-                    If throwIOex Then
-                        Throw
-                    End If
-                    Console.WriteLine(ex)
-                End Try
-                If content IsNot Nothing Then
-                    out.Add(name)
-                    If dict.ContainsKey(name) Then
-                        dict.Item(name) = (content, timeNow)
-                    Else
-                        dict.Add(name, (content, timeNow))
-                    End If
+            Dim content As String = Nothing
+            Try
+                content = ReadFileAllText(f.FullName)
+            Catch ex As Exception
+                Console.WriteLine($"File IO error: {f.FullName}")
+                If throwIOex Then
+                    Throw
+                End If
+                Console.WriteLine(ex)
+            End Try
+            If content IsNot Nothing Then
+                out.Add(name)
+                If dict.ContainsKey(name) Then
+                    dict.Item(name) = (content, timeNow)
+                Else
+                    dict.Add(name, (content, timeNow))
                 End If
             End If
         Next
@@ -53,23 +68,40 @@
     End Function
 
     Public Sub RefreshHTMLFiles()
+        Static needs As String() = {htmlIndex, html404, htmlPost}
         Static readTimes As Integer = 0
-        RefreshReadTextFiles(HtmlFolder, HTMLFileContents, HTMLFileExts, readTimes < 1)
+        RefreshReadTextFiles(HtmlFolder, HTMLFileContents, "*.html", readTimes < 1)
+        For Each i In needs
+            If Not HTMLFileContents.ContainsKey(i) Then
+                Throw New FileNotFoundException($"I cannot find: {i}.html")
+            End If
+        Next
         readTimes += 1
     End Sub
 
     Public Sub RefreshPosts()
         Static readTimes As Integer = 0
-        Dim news = RefreshReadTextFiles(PostsFolder, PostFileContents, PostFileExts, readTimes < 1)
+        Dim news = RefreshReadTextFiles(PostsFolder, PostFileContents, "*.md", readTimes < 1)
+        For Each name In news
+            If SubProjectContents.ContainsKey(name) Then
+                Throw New Exception($"This post name has been used in subproject: {name}")
+            End If
+            Dim ct = PostFileContents.Item(name).Item1
+            Dim a As Post = Post.Create(name, ct)
+            Posts.Remove(a.FileName)
+            Posts.Add(a.FileName, a)
+        Next
+        news = RefreshReadTextFiles(PostsFolder, SubProjectContents, "index.html", readTimes < 1)
+        For Each name In news
+            If PostFileContents.ContainsKey(name) Then
+                Throw New Exception($"This subproject name has been used in normal post: {name}")
+            End If
+            Dim ct = SubProjectContents.Item(name).Item1
+            Dim a As Post = Post.Create(name, ct)
+            Posts.Remove(a.FileName)
+            Posts.Add(a.FileName, a)
+        Next
         readTimes += 1
-        If news.Length > 0 Then
-            For Each name In news
-                Dim ct = PostFileContents.Item(name).Item1
-                Dim a As Post = Post.CreateFromMDText(name, ct)
-                Posts.Remove(a.FileName)
-                Posts.Add(a.FileName, a)
-            Next
-        End If
     End Sub
 
     Public Function BuildPostHTML(a As Post) As String
@@ -87,9 +119,9 @@
         End If
         sb.Append(HttpUtility.HtmlEncode(preview))
         sb.Append("..."" />")
-        Dim html = HTMLFileContents.Item("index.html").Item1
+        Dim html = HTMLFileContents.Item(htmlIndex).Item1
         html = html.Replace(HTMLIndexHead, sb.ToString)
-        Dim div = HTMLFileContents.Item("post.html").Item1
+        Dim div = HTMLFileContents.Item(htmlPost).Item1
         div = div.Replace("%时间内部%", HttpUtility.HtmlAttributeEncode(a.ReleaseDateISOStr))
         div = div.Replace("%时间显示%", HttpUtility.HtmlEncode(a.ReleaseDateDisplayStr))
         div = div.Replace("%TAG标签区%", a.TagsHTML)
@@ -100,7 +132,7 @@
     End Function
 
     Public Function BuildIndexHTML() As String
-        Dim html = HTMLFileContents.Item("index.html").Item1
+        Dim html = HTMLFileContents.Item(htmlIndex).Item1
         Dim sb As New StringBuilder
         sb.Append("<title>")
         sb.Append(WebsiteTitle)
@@ -116,9 +148,9 @@
     End Function
 
     Public Function Build404HTML() As String
-        Dim html = HTMLFileContents.Item("index.html").Item1
+        Dim html = HTMLFileContents.Item(htmlIndex).Item1
         html = html.Replace(HTMLIndexHead, "<title>404</title>")
-        Dim ct = HTMLFileContents.Item("404.html").Item1
+        Dim ct = HTMLFileContents.Item(html404).Item1
         html = html.Replace(HTMLIndexCenter, ct)
         Return html
     End Function
@@ -139,7 +171,6 @@
     End Function
 
     Public Sub GenerateAllFiles()
-        Static DocsFolder As New DirectoryInfo(Path.Combine(WorkFolder.FullName, "docs"))
         Static docsfullname As String = DocsFolder.FullName
         Static staticsfullname As String = StaticsFolder.FullName
         DocsFolder.Refresh()
