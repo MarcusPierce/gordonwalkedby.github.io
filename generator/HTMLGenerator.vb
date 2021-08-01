@@ -140,7 +140,7 @@
             DocsFolder.Delete(True)
         End If
         DocsFolder.Create()
-        Dim staticfiles = StaticsFolder.GetFiles
+        Dim staticfiles = StaticsFolder.GetFiles("*", SearchOption.AllDirectories)
         For Each f In staticfiles
             Dim target As New FileInfo(Path.Combine(docsfullname, f.FullName.Replace(staticsfullname, "").Trim(" "c, "/"c, "\"c).ToLower))
             Dim dc = target.Directory
