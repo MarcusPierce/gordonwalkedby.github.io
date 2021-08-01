@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "generator": {
+      "commandName": "Project",
+      "commandLineArgs": "s "
+    }
+  }
+}

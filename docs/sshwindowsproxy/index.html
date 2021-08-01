@@ -1,10 +1,87 @@
-<!DOCTYPE html><html lang=zh><head><meta charset=UTF-8 /><meta name=viewport content="width=device-width, initial-scale=1.0" /><title>在 Windows 上给 Git SSH 设置代理 - 戈登走過去的博客</title><link rel=alternate type=application/atom+xml title="戈登走過去的博客 - Atom" href=/atom.xml /><link rel=icon href=/favicon.ico /><style>body{margin:0;padding:0}main{max-width:1100px;margin-left:auto;margin-right:auto}header{background-color:#2c2c32;height:50px;width:100%;left:0;position:fixed;z-index:999}#headerCenter{max-width:1100px;margin-left:auto;margin-right:auto}#logo{color:#fff;font-size:larger;margin-top:10px;display:inline-block;margin-left:15px}#headerNav{display:inline-block}#headerNav a{color:#fff;opacity:.6;text-decoration:none;margin-left:13px;transition-duration:.2s}#headerNav a:hover{opacity:1}aside{width:180px;margin-top:50px;overflow-x:hidden;word-break:normal;position:fixed}#leftBar{overflow-y:auto;height:400px}#leftBar a{display:block;padding-top:13px;padding-bottom:13px;padding-left:8px;color:#000;opacity:.6;transition-duration:.2s;text-decoration:none;border-left:2px solid #707070}#leftBar a:hover{opacity:1;border-left:2px solid #0071bc}.leftBarSubMenuContent{overflow:hidden;transition:height 500ms}.leftSectionTitle{color:#000;padding-top:13px;padding-bottom:13px;padding-left:8px;cursor:pointer}.selectedTitle{font-weight:bold;color:#0071bc !important;opacity:1 !important;border-left:2px solid #0071bc !important}#rightBar{margin-left:0;right:0;top:0;margin-bottom:30px}#rightHeaders a{color:#000;opacity:.6;text-decoration:none;display:block;transition-duration:200ms;margin-top:15px}#rightHeaders a:hover{opacity:1;text-decoration:underline}#rightHeaders b,#otherURLs b{display:block;margin-bottom:10px;margin-top:15px}article{margin-left:180px;margin-right:180px;padding-top:10px;padding-left:30px;padding-right:30px;top:50px;position:relative}#ButheaderNavExpand{display:none;border:1px solid #fff;font-weight:bold;color:#fff;font-size:large;float:right;margin-top:13px;margin-right:20px;user-select:none;width:25px;height:25px;text-align:center;vertical-align:middle}#headerNavExpand{height:0;background-color:#2c2c32;transition:height 500ms;font-size:larger;position:relative;overflow:hidden;width:100%}#headerNavExpand a{color:#fff;margin-left:13px;text-decoration:none;padding-bottom:8px;display:table}#articleTitleSelect{display:none;width:90%}#articleContent{overflow:hidden}#articleContent img{color:#f00;border:1px solid #000;max-width:95%;margin-left:auto;margin-right:auto;display:block}#articleTitle{color:#000;text-decoration:none;font-size:28px;font-weight:300}#articleContent h2,#articleContent h3,#articleContent h4,#articleContent h5,#articleContent h6{font-weight:100;font-weight:bold;text-align:center}#articleContent a,#otherURLs a{color:#0071bc;text-decoration:none}#articleContent a:hover,#otherURLs a:hover{text-decoration:underline}.articleDate{opacity:.6;font-size:small}article table,article td{border:1px solid #000}</style><link type=text/css rel=stylesheet href=/vs.min.css /><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script></head><body><main><header><div id=headerCenter><div id=logo>戈登走過去的博客</div><nav id=headerNav></nav><div id=ButheaderNavExpand>▼</div></div><nav id=headerNavExpand></nav></header><aside id=leftBar></aside><article><select id=articleTitleSelect></select><h1><a href=# id=articleTitle>在 Windows 上给 Git SSH 设置代理</a></h1><div id=articleContent><time datetime="2019-09-01 07:44:20.001+0800" class=articleDate>本文发布于公元 2019 年 09 月 01 日 07:44:20</time><p>百度搜到的很多给 git 设置代理的办法，都是给 http 设置代理，而不是给 SSH 设置代理。那个 <code>git config --global http.proxy http://127.0.0.1:1080</code> 设置起来，只针对 http 的 git 有效果。<br /> 然后就是 <code>ProxyCommand nc -v -x 127.0.0.1:1080 %h %p</code> ，那个分明是给 linux 才能用的， windows 上哪里来的 nc 程序？</p><h2>我的操作：</h2><ol><li>在自己的用户文件夹找到 .ssh 文件夹，比如我的是 <code>C:\Users\wby\.ssh</code> ，在里面新建一个空白文件，取名 <code>config</code>。<br /> 注意不是 <code>config.txt</code> ！<br /> 我强烈建议把 Windows 的后缀显示给打开，不然你根本不知道自己到底在编辑什么文件。<br /> 都用 Git 了不至于还害怕自己把文件后缀名给改错了吧？ <img src=https://s2.ax1x.com/2019/09/01/nSe1X9.png alt="" /></li><li>在 <code>config</code> 文件里写上一行就行：<br /> <code>ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S 127.0.0.1:1080 %h %p</code><br /> 这里 git 的安装路径和后面的代理自己看着填，不要试着用相对路径，保证要吃亏。因为 <code>Program Files</code> 文件夹中间带一个空格，所以这里需要把整个路径给引号引起来。 后面的代理的话，<code>-S</code> 指是 socks 代理，默认是 socks5，后面的 <code>%h %p</code> 意思是 Host 和 Port，必须得写上，我也不知道为什么要这么设计。 如果要使用 HTTP 代理，就写 <code>-H</code>，更多代理类型（比如 socks4）请参<a href=https://bitbucket.org/gotoh/connect/wiki/Home#!more-detail>这个</a>。<br /> 以上这个写法是针对全局的，如果想只针对某个网站的话，就这么写：</li></ol><pre><code>Host github.com
-  ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S 127.0.0.1:1080 %h %p
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/main.css" rel="stylesheet">
+    <title>在 Windows 上给 Git SSH 设置代理 - 戈登走過去的树洞</title>
+</head>
+
+<body>
+    <header>
+        <div id="headerCenter">
+            <h1><a href="/">戈登走過去的树洞</a></h1>
+            <nav>
+                <a href="/rsss">RSS</a>
+                <a href="/about">关于</a>
+                <a href="https://m.weibo.cn/u/5977985000">微博</a>
+                <a href="https://space.bilibili.com/4523834">B站</a>
+                <a href="https://twitter.com/GDZGQ">twitter</a>
+                <a href="https://shimo.im/forms/WgWqrRWWjTYRDqCR/result">匿名留言</a>
+                <br>
+                <a href="https://www.0xaa55.com/">技术宅的结界</a>
+                <a href="https://blog.853lab.com/">Sonic853</a>
+                <a href="https://blog.acesheep.com/">AceSheep</a>
+            </nav>
+        </div>
+    </header>
+    <div id="removeWhenSuccess">如果你可以看见我，说明本网页的 JavaScript 加载不顺利。</div>
+    <main>
+        <div class="articleFull">
+    <h1 class="articleTitle">在 Windows 上给 Git SSH 设置代理</h1>
+    <time class="articleTime" datetime="2019-09-01T07:44:20.000+0800">2019 年 09 月 01 日 星期日</time>
+    <div class="articleContent"><p>百度搜到的很多给 git 设置代理的办法，都是给 http 设置代理，而不是给 SSH 设置代理。那个 <code>git config --global http.proxy http://127.0.0.1:1080</code> 设置起来，只针对 http 的 git 有效果。  <br />
+然后就是 <code>ProxyCommand nc -v -x 127.0.0.1:1080 %h %p</code> ，那个分明是给 linux 才能用的， windows 上哪里来的 nc 程序？</p>
+<h1>我的操作：</h1>
+<ol>
+<li>在自己的用户文件夹找到 .ssh 文件夹，比如我的是 <code>C:\Users\wby\.ssh</code> ，在里面新建一个空白文件，取名 <code>config</code>。  <br />
+注意不是 <code>config.txt</code> ！  <br />
+我强烈建议把 Windows 的后缀显示给打开，不然你根本不知道自己到底在编辑什么文件。  <br />
+都用 Git 了不至于还害怕自己把文件后缀名给改错了吧？ 
+<img src="https://s2.ax1x.com/2019/09/01/nSe1X9.png" alt="" /></li>
+<li>在 <code>config</code> 文件里写上一行就行：  <br />
+<code>ProxyCommand &quot;C:\Program Files\Git\mingw64\bin\connect.exe&quot; -S 127.0.0.1:1080 %h %p</code>  <br />
+这里 git 的安装路径和后面的代理自己看着填，不要试着用相对路径，保证要吃亏。因为 <code>Program Files</code> 文件夹中间带一个空格，所以这里需要把整个路径给引号引起来。  后面的代理的话，<code>-S</code> 指是 socks 代理，默认是 socks5，后面的 <code>%h %p</code> 意思是 Host 和 Port，必须得写上，我也不知道为什么要这么设计。  如果要使用 HTTP 代理，就写 <code>-H</code>，更多代理类型（比如 socks4）请参<a href="https://bitbucket.org/gotoh/connect/wiki/Home#!more-detail">这个</a>。     <br />
+以上这个写法是针对全局的，如果想只针对某个网站的话，就这么写：</li>
+</ol>
+<pre><code>Host github.com
+  ProxyCommand &quot;C:\Program Files\Git\mingw64\bin\connect.exe&quot; -S 127.0.0.1:1080 %h %p
 
 Host gitlab.com
-  ProxyCommand "C:\Program Files\Git\mingw64\bin\connect.exe" -S 127.0.0.1:1080 %h %p
-</code></pre><ol><li>接下来可以先初步尝试一下，找个地方随便 clone 个仓库试试。比如 <code>git clone git@github.com:nodejs/node.git</code>，nodejs 的官方库，clone过来有800MB+，作为速度测试还是蛮可以的。 这时候会出现一个问题，程序会对你询问代理的密码，如果你代理没有设置密码就直接回车即可。 确定没有问题了再说。如图是我的情况，速度可以达到 7 MiB/s，比不开代理的 SSH 快了几百倍。 <img src=https://s2.ax1x.com/2019/09/01/nSnuM4.png alt="" /></li><li>那个代理密码输入是每次都会来询问你的，所以如果你想省事，只能靠设置环境变量来实现。<br /> 设置环境变量不来的看<a href=https://www.jianshu.com/p/895f4e80305a>这个</a>好了，我也懒得说。<br /> 如果要设置默认密码：<pre><code>SOCKS5_PASSWD
+  ProxyCommand &quot;C:\Program Files\Git\mingw64\bin\connect.exe&quot; -S 127.0.0.1:1080 %h %p
+</code></pre>
+<ol>
+<li>接下来可以先初步尝试一下，找个地方随便 clone 个仓库试试。比如 <code>git clone git@github.com:nodejs/node.git</code>，nodejs 的官方库，clone过来有800MB+，作为速度测试还是蛮可以的。
+这时候会出现一个问题，程序会对你询问代理的密码，如果你代理没有设置密码就直接回车即可。
+确定没有问题了再说。如图是我的情况，速度可以达到 7 MiB/s，比不开代理的 SSH 快了几百倍。
+<img src="https://s2.ax1x.com/2019/09/01/nSnuM4.png" alt="" /></li>
+<li>那个代理密码输入是每次都会来询问你的，所以如果你想省事，只能靠设置环境变量来实现。  <br />
+设置环境变量不来的看<a href="https://www.jianshu.com/p/895f4e80305a">这个</a>好了，我也懒得说。  <br />
+如果要设置默认密码：
+<pre><code>SOCKS5_PASSWD
 HTTP_PROXY_PASSWORD
-</code></pre>如果要设置默认用户名：<pre><code>SOCKS_USER
+</code></pre>
+如果要设置默认用户名：
+<pre><code>SOCKS_USER
 HTTP_PROXY_USER
-</code></pre>如果你的代理设置里，对用户名和密码没有要求，随便填写一个密码即可（代理会直接确认通过的），代理的默认用户名就是你的系统用户名。<br /> <img src=https://s2.ax1x.com/2019/09/01/nSubNt.png alt="" /><br /> 更多类型的代理用户名密码设置可以看<a href=https://bitbucket.org/gotoh/connect/wiki/Home#!specifying-user-name-via-environment-variables>这个</a>。</li><li>测试一下速度，下面是我的情况：<br /> clone 速度普遍在 5 MiB/s 以上：<br /> <img src=https://s2.ax1x.com/2019/09/01/nSMjmQ.png alt="" /><br /> push 速度还是比较慢的，只有 120 KiB/s 左右：<br /> <img src=https://s2.ax1x.com/2019/09/01/nSQjgK.png alt="" /><br /> 可能是 git 文件结构的关系，都是零散的小文件，不过整体是比不开代理快的，不开代理的 push 速度简直是随缘。</li></ol></div></article><aside id=rightBar><nav id=rightHeaders><b>本文目录：</b></nav><nav id=otherURLs><b>友情链接：</b> <a href=https://blog.853lab.com/>Sonic853</a><br /> <a href=https://www.0xaa55.com/>技术宅的结界</a><br /> <a href=https://blog.acesheep.com/>AceSheep</a><br /> <b>本博客文章均采用<a href=https://creativecommons.org/licenses/by-nc/4.0/deed.zh>知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。</b></nav></aside></main><code id=insidejson style=display:none>{"Articles":[{"Name":"\u6700\u65B0\u6587\u7AE0","Articles":[{"Title":"\u767B\u767B\u8BB0\u8D26","FileName":"ddjz","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"VB.NET\u5B9E\u73B0\u7684Steam\u5404\u7C7B\u7528\u6237ID\u8F6C\u6362","FileName":"steamidconvert","Tags":["STEAM"]},{"Title":"\u7528\u9F20\u6807\u548C\u7167\u7247\u6765\u6570\u73E0\u5B50\u7684\u5DE5\u5177","FileName":"pct","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u5F00\u6E90\u7684\u4FDD\u9669\u7BB1\uFF08\u642D\u914D Github Gist\uFF09","FileName":"gistsecury","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u4EB2\u5BC6\u5173\u7CFB\u66B4\u529B\u5371\u9669\u81EA\u6D4B\u8868","FileName":"family","Tags":["\u6742"]},{"Title":"\u5982\u679C\u4F60\u770B\u89C1\u534A\u6761\u7FE0\uFF0C\u8BF7\u4E0D\u8981\u5E2E\u52A9\u4ED6","FileName":"helpless1","Tags":["\u6742"]},{"Title":"\u7B80\u5355\u4ECB\u7ECD\u76EE\u524D\u53EF\u7528\u7684\u514D\u8D39\u9759\u6001\u7AD9\u90E8\u7F72\u5E73\u53F0\uFF08Pages \u670D\u52A1\uFF09","FileName":"pages","Tags":["\u6742"]},{"Title":"\u670D\u6BD2\u81EA\u6740\u7684\u6211","FileName":"fdzsdw","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u4ECE\u5FAE\u8F6F\u5B98\u65B9\u76F4\u63A5\u4E0B\u8F7Dwin10\u955C\u50CF\u7684\u529E\u6CD5\uFF08\u4E0D\u4F9D\u8D56\u5A92\u4F53\u521B\u5EFA\u5DE5\u5177\uFF09","FileName":"win10iso","Tags":["\u6742"]},{"Title":"\u6211\u66FE\u7ECF\u4E24\u6B21\u6539\u53D8B\u7AD9\u7684UI\u4E0E\u8BBE\u8BA1","FileName":"change","Tags":["\u6742","BILIBILI"]}]},{"Name":"\u6211\u7684\u8F6F\u4EF6","Articles":[{"Title":"\u767B\u767B\u8BB0\u8D26","FileName":"ddjz","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u7528\u9F20\u6807\u548C\u7167\u7247\u6765\u6570\u73E0\u5B50\u7684\u5DE5\u5177","FileName":"pct","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u5F00\u6E90\u7684\u4FDD\u9669\u7BB1\uFF08\u642D\u914D Github Gist\uFF09","FileName":"gistsecury","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u670D\u6BD2\u81EA\u6740\u7684\u6211","FileName":"fdzsdw","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u65E9\u671F\u8F6F\u4EF6\u96C6\u5408","FileName":"oldsoftwares","Tags":["\u6211\u7684\u8F6F\u4EF6"]}]},{"Name":".NET","Articles":[{"Title":"\u767B\u767B\u8BB0\u8D26","FileName":"ddjz","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u670D\u6BD2\u81EA\u6740\u7684\u6211","FileName":"fdzsdw","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u7B80\u5355\u4ECB\u7ECD\u5FAE\u8F6F\u5B98\u65B9\u8C37\u6B4C\u5185\u6838.NET\u6D4F\u89C8\u5668\u63A7\u4EF6WebView2","FileName":"webview2","Tags":[".NET"]},{"Title":"VB.NET\u4E0EC#\u7684\u8BED\u6CD5\u6BD4\u8F83","FileName":"vbcs","Tags":[".NET"]},{"Title":"\u5728 .NET 5.0 \u4E2D\u5DF2\u8BA1\u5212\u7684 VB \u652F\u6301\u60C5\u51B5\u6982\u8FF0","FileName":"vbindotnet5","Tags":[".NET"]},{"Title":".NET HttpListener \u76D1\u542C\u5C40\u57DF\u7F51\u5176\u4ED6\u8BBE\u5907HTTP\u8BF7\u6C42\u7684\u8BF4\u660E","FileName":"httplistneroverlan","Tags":[".NET"]},{"Title":"\u5728 VB.NET \u91CC\u8FDB\u884C\u6587\u4EF6\u62D6\u5165\u548C\u62D6\u51FA\u7684\u65B9\u6CD5","FileName":"how-to-drag-in-vb","Tags":[".NET"]}]},{"Name":"STEAM","Articles":[{"Title":"VB.NET\u5B9E\u73B0\u7684Steam\u5404\u7C7B\u7528\u6237ID\u8F6C\u6362","FileName":"steamidconvert","Tags":["STEAM"]},{"Title":"\u4F7F\u7528\u7B2C\u4E09\u4EE3ID \u7684 STEAM \u4E2A\u4EBA\u4E3B\u9875\u94FE\u63A5","FileName":"steamid3","Tags":["STEAM"]},{"Title":"Steam\u6B63\u7248GTA4\u5B58\u6863\u5BFC\u5165\u7684\u6B63\u786E\u59FF\u52BF","FileName":"gtaivsavedgames","Tags":["STEAM"]},{"Title":"Steam \u5404\u56FD\u5BB6\u533A\u57DF\u7684\u4EF7\u683C\u3001\u9501\u533A\u60C5\u51B5\u6897\u6982","FileName":"steam-countries","Tags":["STEAM"]},{"Title":"Steam \u793E\u533A\u7684\u795E\u5947\u4FDD\u62A4\u673A\u5236","FileName":"steamcommunitys","Tags":["STEAM"]}]},{"Name":"\u6742","Articles":[{"Title":"\u4EB2\u5BC6\u5173\u7CFB\u66B4\u529B\u5371\u9669\u81EA\u6D4B\u8868","FileName":"family","Tags":["\u6742"]},{"Title":"\u5982\u679C\u4F60\u770B\u89C1\u534A\u6761\u7FE0\uFF0C\u8BF7\u4E0D\u8981\u5E2E\u52A9\u4ED6","FileName":"helpless1","Tags":["\u6742"]},{"Title":"\u7B80\u5355\u4ECB\u7ECD\u76EE\u524D\u53EF\u7528\u7684\u514D\u8D39\u9759\u6001\u7AD9\u90E8\u7F72\u5E73\u53F0\uFF08Pages \u670D\u52A1\uFF09","FileName":"pages","Tags":["\u6742"]},{"Title":"\u4ECE\u5FAE\u8F6F\u5B98\u65B9\u76F4\u63A5\u4E0B\u8F7Dwin10\u955C\u50CF\u7684\u529E\u6CD5\uFF08\u4E0D\u4F9D\u8D56\u5A92\u4F53\u521B\u5EFA\u5DE5\u5177\uFF09","FileName":"win10iso","Tags":["\u6742"]},{"Title":"\u6211\u66FE\u7ECF\u4E24\u6B21\u6539\u53D8B\u7AD9\u7684UI\u4E0E\u8BBE\u8BA1","FileName":"change","Tags":["\u6742","BILIBILI"]},{"Title":"\u628A\u65E5\u5386\u6587\u4EF6\u5BFC\u5165\u82F9\u679C\u65E5\u5386\u7684\u529E\u6CD5","FileName":"icloudcalendarimport","Tags":["\u6742"]},{"Title":"\u4E2D\u56FD\u90AE\u653F \u56FD\u5185\u3001\u6E2F\u6FB3\u53F0\u3001\u56FD\u9645\u5E73\u90AE\u90AE\u8D39 \u7559\u6863","FileName":"chinapostprices","Tags":["\u6742"]},{"Title":"\u5728 Windows \u4E0A\u7ED9 Git SSH \u8BBE\u7F6E\u4EE3\u7406","FileName":"sshwindowsproxy","Tags":["\u6742"]},{"Title":"\u6211\u7684\u8D77\u6E90\u5F00\u53D1\u7B14\u8BB0","FileName":"sourcedevnotes","Tags":["\u6742"]},{"Title":"Telegram \u8D34\u7EB8\u5305\u6279\u91CF\u4E0B\u8F7D\u89E3\u51B3\u65B9\u6848","FileName":"tgsticks","Tags":["\u6742"]}]},{"Name":"BILIBILI","Articles":[{"Title":"\u6211\u66FE\u7ECF\u4E24\u6B21\u6539\u53D8B\u7AD9\u7684UI\u4E0E\u8BBE\u8BA1","FileName":"change","Tags":["\u6742","BILIBILI"]}]},{"Name":"\u6211\u81EA\u5DF1","Articles":[{"Title":"\u8BA2\u9605 RSS","FileName":"rsss","Tags":["\u6211\u81EA\u5DF1"]},{"Title":"\u641C\u7D22\u672C\u535A\u5BA2","FileName":"search","Tags":["\u6211\u81EA\u5DF1"]},{"Title":"\u6C99\u76D2\u6D4B\u8BD5\u9875","FileName":"sandbox","Tags":["\u6211\u81EA\u5DF1"]},{"Title":"\u5173\u4E8E\u6208\u767B\u8D70\u904E\u53BB","FileName":"about","Tags":["\u6211\u81EA\u5DF1"]}]}]}</code><script src=/main.js></script><script src=/highlight.min.js></script><script>(function(){let n=document.body.querySelectorAll("pre code");for(let t=0;t<n.length;t++){let i=n[t];hljs.highlightBlock(i)}})()</script></body></html>
+</code></pre>
+如果你的代理设置里，对用户名和密码没有要求，随便填写一个密码即可（代理会直接确认通过的），代理的默认用户名就是你的系统用户名。  <br />
+<img src="https://s2.ax1x.com/2019/09/01/nSubNt.png" alt="" />  <br />
+更多类型的代理用户名密码设置可以看<a href="https://bitbucket.org/gotoh/connect/wiki/Home#!specifying-user-name-via-environment-variables">这个</a>。</li>
+<li>测试一下速度，下面是我的情况：  <br />
+clone 速度普遍在 5 MiB/s 以上：  <br />
+<img src="https://s2.ax1x.com/2019/09/01/nSMjmQ.png" alt="" />  <br />
+push 速度还是比较慢的，只有 120 KiB/s 左右：  <br />
+<img src="https://s2.ax1x.com/2019/09/01/nSQjgK.png" alt="" />  <br />
+可能是 git 文件结构的关系，都是零散的小文件，不过整体是比不开代理快的，不开代理的 push 速度简直是随缘。</li>
+</ol>
+</div>
+    <hr class="articleEndLine">
+    <div class="articleTags"><a>杂</a></div>
+</div>
+        <script src="/main.js"></script>
+    </main>
+</body>
+
+</html>

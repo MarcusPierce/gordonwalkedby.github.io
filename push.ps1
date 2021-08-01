@@ -1,16 +1,15 @@
 ﻿Set-Location $PSScriptRoot
-Remove-Item -Path "./docs/" -Recurse -Force
-dotnet "./gen.vb/bin/Debug/netcoreapp3.1/gen.vb.dll" g
+dotnet "./generator/bin/Debug/netcoreapp3.1/generator.dll" g
 Set-Location $PSScriptRoot
-$xml = Get-Item -Path "./docs/sitemaps.xml"
+$xml = Get-Item -Path "./docs/atom.xml"
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
     git add -A 
     git commit -m "ByScript" -S
-    Write-Host "开始 push 到 github"
+    Write-Host "starting push."
     git push origin master 
-    Write-Host " push 完成"
+    Write-Host " push is over."
 }
 else {
-    Write-Error "生成信息很可能有误！请检查！！"
+    Write-Error "Cannot check atom.xml !!"
 }
 Set-Location $PSScriptRoot

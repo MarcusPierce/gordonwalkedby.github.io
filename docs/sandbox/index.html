@@ -1,4 +1,79 @@
-<!DOCTYPE html><html lang=zh><head><meta charset=UTF-8 /><meta name=viewport content="width=device-width, initial-scale=1.0" /><title>沙盒测试页 - 戈登走過去的博客</title><link rel=alternate type=application/atom+xml title="戈登走過去的博客 - Atom" href=/atom.xml /><link rel=icon href=/favicon.ico /><style>body{margin:0;padding:0}main{max-width:1100px;margin-left:auto;margin-right:auto}header{background-color:#2c2c32;height:50px;width:100%;left:0;position:fixed;z-index:999}#headerCenter{max-width:1100px;margin-left:auto;margin-right:auto}#logo{color:#fff;font-size:larger;margin-top:10px;display:inline-block;margin-left:15px}#headerNav{display:inline-block}#headerNav a{color:#fff;opacity:.6;text-decoration:none;margin-left:13px;transition-duration:.2s}#headerNav a:hover{opacity:1}aside{width:180px;margin-top:50px;overflow-x:hidden;word-break:normal;position:fixed}#leftBar{overflow-y:auto;height:400px}#leftBar a{display:block;padding-top:13px;padding-bottom:13px;padding-left:8px;color:#000;opacity:.6;transition-duration:.2s;text-decoration:none;border-left:2px solid #707070}#leftBar a:hover{opacity:1;border-left:2px solid #0071bc}.leftBarSubMenuContent{overflow:hidden;transition:height 500ms}.leftSectionTitle{color:#000;padding-top:13px;padding-bottom:13px;padding-left:8px;cursor:pointer}.selectedTitle{font-weight:bold;color:#0071bc !important;opacity:1 !important;border-left:2px solid #0071bc !important}#rightBar{margin-left:0;right:0;top:0;margin-bottom:30px}#rightHeaders a{color:#000;opacity:.6;text-decoration:none;display:block;transition-duration:200ms;margin-top:15px}#rightHeaders a:hover{opacity:1;text-decoration:underline}#rightHeaders b,#otherURLs b{display:block;margin-bottom:10px;margin-top:15px}article{margin-left:180px;margin-right:180px;padding-top:10px;padding-left:30px;padding-right:30px;top:50px;position:relative}#ButheaderNavExpand{display:none;border:1px solid #fff;font-weight:bold;color:#fff;font-size:large;float:right;margin-top:13px;margin-right:20px;user-select:none;width:25px;height:25px;text-align:center;vertical-align:middle}#headerNavExpand{height:0;background-color:#2c2c32;transition:height 500ms;font-size:larger;position:relative;overflow:hidden;width:100%}#headerNavExpand a{color:#fff;margin-left:13px;text-decoration:none;padding-bottom:8px;display:table}#articleTitleSelect{display:none;width:90%}#articleContent{overflow:hidden}#articleContent img{color:#f00;border:1px solid #000;max-width:95%;margin-left:auto;margin-right:auto;display:block}#articleTitle{color:#000;text-decoration:none;font-size:28px;font-weight:300}#articleContent h2,#articleContent h3,#articleContent h4,#articleContent h5,#articleContent h6{font-weight:100;font-weight:bold;text-align:center}#articleContent a,#otherURLs a{color:#0071bc;text-decoration:none}#articleContent a:hover,#otherURLs a:hover{text-decoration:underline}.articleDate{opacity:.6;font-size:small}article table,article td{border:1px solid #000}</style><link type=text/css rel=stylesheet href=/vs.min.css /><script defer src=https://static.cloudflareinsights.com/beacon.min.js data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script></head><body><main><header><div id=headerCenter><div id=logo>戈登走過去的博客</div><nav id=headerNav></nav><div id=ButheaderNavExpand>▼</div></div><nav id=headerNavExpand></nav></header><aside id=leftBar></aside><article><select id=articleTitleSelect></select><h1><a href=# id=articleTitle>沙盒测试页</a></h1><div id=articleContent><p>这个页面只是用作沙盒测试的<br /> 试试博客和网页渲染的一些功能是否正常</p><div>你的浏览器UA是： <span id=uaaa></span><br /> 你的浏览器 <span id=webrtcsupports></span> WebRTC。<br /><br /></div><script>(function(){document.getElementById("uaaa").innerText=navigator.userAgent;var n="支持";typeof RTCPeerConnection=="undefined"&&(n="不"+n);document.getElementById("webrtcsupports").innerText=n})()</script><p>如果要关闭 firefox webRTC， 请到 about:config 然后找到 media.peerconnection.enabled ，设置为false</p><p>我是<strong>粗体abc</strong>，我是<em>斜体xyz</em>，对吗？</p><ul><li><a href=https://test1.gordonwalkedby.workers.dev>cloudflare 测试页面</a></li><li><a href=/sitemaps.xml>查看本站sitemap.xml</a></li></ul><p>H1-H6:</p><h2>标题1，你<code>能x</code><em>斜体</em>看见<strong>粗体</strong>吗<a href=https://ww.baidu.com>dd</a>超链接</h2><h3>标题2，啦<code>code me</code>ddww</h3><h4>标题3ddddd<a href=https://ww.baidu.com>百度</a>超链接</h4><h5>标题4，能<em>斜体</em>看见<strong>粗体</strong>吗</h5><h6>标题5，嗷</h6><h6>标题6</h6><p>Markdown表格，不受支持：</p><p>| 左对齐 | 右对齐 | 居中对齐 | | :-----| ----: | :----: | | 单元格 | 单元格 | 单元格 | | 单元格 | 单元格 | 单元格 |</p><p>下面是 <code>&lt;table></code> ，里面有几个 EMOJI:</p><table><tr><td>姓名</td><td>身高</td></tr><tr><td>小捞</td><td>35131CM</td></tr><tr><td>分阶段😊卡拉囧里个囧❤懒得</td><td>35.131CM</td></tr><tr><td>接👀发阿迪</td><td>315✈CM</td></tr></table><p>大代码框：</p><pre><code class=language-javascript>
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/main.css" rel="stylesheet">
+    <title>沙盒测试页 - 戈登走過去的树洞</title>
+</head>
+
+<body>
+    <header>
+        <div id="headerCenter">
+            <h1><a href="/">戈登走過去的树洞</a></h1>
+            <nav>
+                <a href="/rsss">RSS</a>
+                <a href="/about">关于</a>
+                <a href="https://m.weibo.cn/u/5977985000">微博</a>
+                <a href="https://space.bilibili.com/4523834">B站</a>
+                <a href="https://twitter.com/GDZGQ">twitter</a>
+                <a href="https://shimo.im/forms/WgWqrRWWjTYRDqCR/result">匿名留言</a>
+                <br>
+                <a href="https://www.0xaa55.com/">技术宅的结界</a>
+                <a href="https://blog.853lab.com/">Sonic853</a>
+                <a href="https://blog.acesheep.com/">AceSheep</a>
+            </nav>
+        </div>
+    </header>
+    <div id="removeWhenSuccess">如果你可以看见我，说明本网页的 JavaScript 加载不顺利。</div>
+    <main>
+        <div class="articleFull">
+    <h1 class="articleTitle">沙盒测试页</h1>
+    <time class="articleTime" datetime="2010-01-04T00:00:00.000+0800">2010 年 01 月 04 日 星期一</time>
+    <div class="articleContent"><p>这个页面只是用作沙盒测试的  <br />
+试试博客和网页渲染的一些功能是否正常</p>
+<div>
+你的浏览器UA是： 
+<span id="uaaa"></span>
+<br>
+你的浏览器 <span id="webrtcsupports"></span> WebRTC。
+<br><br>
+</div>
+<script>
+(function(){
+document.getElementById("uaaa").innerText =navigator.userAgent
+var s="支持"
+if(typeof(RTCPeerConnection)=="undefined"){s="不"+s;}
+document.getElementById("webrtcsupports").innerText = s
+})()
+  </script>  
+<p>如果要关闭 firefox webRTC， 请到 about:config 然后找到 media.peerconnection.enabled ，设置为false</p>
+<p>我是<strong>粗体abc</strong>，我是<em>斜体xyz</em>，对吗？</p>
+<ul>
+<li><a href="https://test1.gordonwalkedby.workers.dev">cloudflare 测试页面</a></li>
+</ul>
+<p>H1-H6:</p>
+<h1>标题1，你<code>能x</code><em>斜体</em>看见<strong>粗体</strong>吗<a href="https://ww.baidu.com">dd</a>超链接</h1>
+<h2>标题2，啦<code>code me</code>ddww</h2>
+<h3>标题3ddddd<a href="https://ww.baidu.com">百度</a>超链接</h3>
+<h4>标题4，能<em>斜体</em>看见<strong>粗体</strong>吗</h4>
+<h5>标题5，嗷</h5>
+<h6>标题6</h6>
+<p>Markdown表格，不受支持：</p>
+<p>| 左对齐 | 右对齐 | 居中对齐 |
+| :-----| ----: | :----: |
+| 单元格 | 单元格 | 单元格 |
+| 单元格 | 单元格 | 单元格 |</p>
+<p>下面是 <code>&lt;table&gt;</code> ，里面有几个 EMOJI:</p>
+<table>
+<tr><td>姓名</td><td>身高</td></tr>
+<tr><td>小捞</td><td>35131CM</td></tr>
+<tr><td>分阶段😊卡拉囧里个囧❤懒得</td><td>35.131CM</td></tr>
+<tr><td>接👀发阿迪</td><td>315✈CM</td></tr>
+</table>
+<p>大代码框：</p>
+<pre><code class="language-javascript">
 class StreamUpdate{
     constructor(Url,BufferSize = 1024 * 1024 * 128) { //Url 链接地址
         this.Url = Url
@@ -11,8 +86,9 @@ class Stream{
     constructor() {
     }
 }
-</code></pre><pre><code class=language-python>#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
+</code></pre>
+<pre><code class="language-python">#!/usr/bin/env python
+&quot;&quot;&quot;Django's command-line utility for administrative tasks.&quot;&quot;&quot;
 import os
 import sys
 
@@ -23,9 +99,9 @@ def main():
         from django.core.management import execute_from_command_line
     except ImportError as exc:
         raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
+            &quot;Couldn't import Django. Are you sure it's installed and &quot;
+            &quot;available on your PYTHONPATH environment variable? Did you &quot;
+            &quot;forget to activate a virtual environment?&quot;
         ) from exc
     execute_from_command_line(sys.argv)
 
@@ -33,5 +109,113 @@ def main():
 if __name__ == '__main__':
     main()
 
-</code></pre><p>文章内水平线：</p><hr /><p>插入一张jpg，图床：<a href=https://sm.ms/>sm.ms</a>：<br /> <img src=https://i.loli.net/2019/02/05/5c59826724b4f.jpg alt=如果你看见我，说明图片加载失败了。 /></p><p>试试 PNG ：</p><p><img src=https://i.loli.net/2019/02/03/5c56c8b6a87a1.png alt=如果你看见我，说明图片加载失败了。 /></p><p>无序列表：</p><ul><li>Steam</li><li>Origin<ul><li>大 d你<code>能x</code><em>斜体</em>看见<strong>粗体</strong>吗<a href=https://ww.baidu.com>dd</a>超链接</li><li>小</li></ul></li><li>中</li><li>Uplay<ul><li>育碧</li></ul></li><li>UBI</li><li>育碧商城</li></ul><p>有序列表：</p><ol><li>SS4<code>&lt;dddsss></code>314134</li><li>SSR3<strong>fda1</strong>413</li><li>SSRR431431<ol><li>www</li><li>wwww</li><li>wwwww13431你<code>能x</code><em>斜体</em>看见<strong>粗体</strong>吗<a href=https://ww.baidu.com>dd</a>超链接</li></ol></li><li>SSRRR43<code>ds代码a</code>1413413</li><li>SSRRRR23414<ol><li>国weqewq<ol><li>家dsadasdsad<ol><li>大sadsadas<ol><li>事dsadsa</li></ol></li></ol></li></ol></li></ol></li></ol><p>小代码框：<br /> 你想试试 <code>Ctrl + F</code> 吗？</p><blockquote><p>引用块：</p><ol><li>SS</li><li>SSR</li><li>SSRR</li></ol><p>我是<strong>粗体abc</strong>，我是<em>斜体xyz</em>，对吗？</p><pre><code>int main(){return 0;}
-</code></pre><ul><li>fdajkd</li><li>7fdfdajkd</li><li>ddf456d/8745adsajkd</li><li>fd87ajkd</li></ul></blockquote><blockquote><p>Garry's Mod（讲道理，我很讨厌这个大的撇号，不知道是不是字体还是渲染器的问题）<br /> I don’t want to go!<br /> 这里应该有换行才是正确的<br /> “中文”<br /> "English"<br /> 《》【】『』：；</p><blockquote><p>&lt; > [ ] { } : ;</p><h3><a href=https://github.com/17/hexo-theme-strict>Strict</a> 主题的介绍语：</h3></blockquote><p>A clean, minimal and responsive theme for hexo.</p><p>你知道<code>Ctrl + C</code>和<code>Ctrl + V</code>吗？</p></blockquote><h2>嵌入外部元素：</h2><p><a href=https://store.steampowered.com/app/207020>Steam购买 Bang Bang Racing</a>：</p><iframe src=https://store.steampowered.com/widget/207020/ frameborder=0 width=646 height=190></iframe><p><a href=https://twitter.com/Twitter/status/1090657246227369984>推特</a>：</p><blockquote class=twitter-tweet><p lang=ja dir=ltr>Here's<br /> ⊂_ヽ<br /> 　 ＼＼<br /> 　　 ＼( ͡° ͜ʖ ͡°)<br /> 　　　 >　⌒ヽ<br /> 　　　/ 　 へ＼<br /> 　　 /　　/　＼＼the<br /> 　　 ﾚ　ノ　　 ヽ_つ<br /> 　　/　/<br /> 　 /　/|<br /> 　(　(ヽ<br /> 　|　|、＼Tweet<br /> 　| 丿 ＼ ⌒)<br /> 　| |　　) /<br /> ノ )　　Lﾉ<br /> (_／</p>— Twitter (@Twitter) <a href="https://twitter.com/Twitter/status/1090657246227369984?ref_src=twsrc%5Etfw">January 30, 2019</a></blockquote><script async src=https://platform.twitter.com/widgets.js charset=utf-8></script><p><a href=https://www.bilibili.com/video/av18190165>B站视频</a>：</p><iframe src="//player.bilibili.com/player.html?aid=18190165&cid=30188411&page=1" scrolling=no border=0 frameborder=no framespacing=0 allowfullscreen width=853px height=480px></iframe><br /><br /><br /><br /><br /><br /><iframe src="https://t.bilibili.com/320496953620275161?tab=2" width=800px></iframe></div></article><aside id=rightBar><nav id=rightHeaders><b>本文目录：</b></nav><nav id=otherURLs><b>友情链接：</b> <a href=https://blog.853lab.com/>Sonic853</a><br /> <a href=https://www.0xaa55.com/>技术宅的结界</a><br /> <a href=https://blog.acesheep.com/>AceSheep</a><br /> <b>本博客文章均采用<a href=https://creativecommons.org/licenses/by-nc/4.0/deed.zh>知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。</b></nav></aside></main><code id=insidejson style=display:none>{"Articles":[{"Name":"\u6700\u65B0\u6587\u7AE0","Articles":[{"Title":"\u767B\u767B\u8BB0\u8D26","FileName":"ddjz","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"VB.NET\u5B9E\u73B0\u7684Steam\u5404\u7C7B\u7528\u6237ID\u8F6C\u6362","FileName":"steamidconvert","Tags":["STEAM"]},{"Title":"\u7528\u9F20\u6807\u548C\u7167\u7247\u6765\u6570\u73E0\u5B50\u7684\u5DE5\u5177","FileName":"pct","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u5F00\u6E90\u7684\u4FDD\u9669\u7BB1\uFF08\u642D\u914D Github Gist\uFF09","FileName":"gistsecury","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u4EB2\u5BC6\u5173\u7CFB\u66B4\u529B\u5371\u9669\u81EA\u6D4B\u8868","FileName":"family","Tags":["\u6742"]},{"Title":"\u5982\u679C\u4F60\u770B\u89C1\u534A\u6761\u7FE0\uFF0C\u8BF7\u4E0D\u8981\u5E2E\u52A9\u4ED6","FileName":"helpless1","Tags":["\u6742"]},{"Title":"\u7B80\u5355\u4ECB\u7ECD\u76EE\u524D\u53EF\u7528\u7684\u514D\u8D39\u9759\u6001\u7AD9\u90E8\u7F72\u5E73\u53F0\uFF08Pages \u670D\u52A1\uFF09","FileName":"pages","Tags":["\u6742"]},{"Title":"\u670D\u6BD2\u81EA\u6740\u7684\u6211","FileName":"fdzsdw","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u4ECE\u5FAE\u8F6F\u5B98\u65B9\u76F4\u63A5\u4E0B\u8F7Dwin10\u955C\u50CF\u7684\u529E\u6CD5\uFF08\u4E0D\u4F9D\u8D56\u5A92\u4F53\u521B\u5EFA\u5DE5\u5177\uFF09","FileName":"win10iso","Tags":["\u6742"]},{"Title":"\u6211\u66FE\u7ECF\u4E24\u6B21\u6539\u53D8B\u7AD9\u7684UI\u4E0E\u8BBE\u8BA1","FileName":"change","Tags":["\u6742","BILIBILI"]}]},{"Name":"\u6211\u7684\u8F6F\u4EF6","Articles":[{"Title":"\u767B\u767B\u8BB0\u8D26","FileName":"ddjz","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u7528\u9F20\u6807\u548C\u7167\u7247\u6765\u6570\u73E0\u5B50\u7684\u5DE5\u5177","FileName":"pct","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u5F00\u6E90\u7684\u4FDD\u9669\u7BB1\uFF08\u642D\u914D Github Gist\uFF09","FileName":"gistsecury","Tags":["\u6211\u7684\u8F6F\u4EF6"]},{"Title":"\u670D\u6BD2\u81EA\u6740\u7684\u6211","FileName":"fdzsdw","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u65E9\u671F\u8F6F\u4EF6\u96C6\u5408","FileName":"oldsoftwares","Tags":["\u6211\u7684\u8F6F\u4EF6"]}]},{"Name":".NET","Articles":[{"Title":"\u767B\u767B\u8BB0\u8D26","FileName":"ddjz","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u670D\u6BD2\u81EA\u6740\u7684\u6211","FileName":"fdzsdw","Tags":["\u6211\u7684\u8F6F\u4EF6",".NET"]},{"Title":"\u7B80\u5355\u4ECB\u7ECD\u5FAE\u8F6F\u5B98\u65B9\u8C37\u6B4C\u5185\u6838.NET\u6D4F\u89C8\u5668\u63A7\u4EF6WebView2","FileName":"webview2","Tags":[".NET"]},{"Title":"VB.NET\u4E0EC#\u7684\u8BED\u6CD5\u6BD4\u8F83","FileName":"vbcs","Tags":[".NET"]},{"Title":"\u5728 .NET 5.0 \u4E2D\u5DF2\u8BA1\u5212\u7684 VB \u652F\u6301\u60C5\u51B5\u6982\u8FF0","FileName":"vbindotnet5","Tags":[".NET"]},{"Title":".NET HttpListener \u76D1\u542C\u5C40\u57DF\u7F51\u5176\u4ED6\u8BBE\u5907HTTP\u8BF7\u6C42\u7684\u8BF4\u660E","FileName":"httplistneroverlan","Tags":[".NET"]},{"Title":"\u5728 VB.NET \u91CC\u8FDB\u884C\u6587\u4EF6\u62D6\u5165\u548C\u62D6\u51FA\u7684\u65B9\u6CD5","FileName":"how-to-drag-in-vb","Tags":[".NET"]}]},{"Name":"STEAM","Articles":[{"Title":"VB.NET\u5B9E\u73B0\u7684Steam\u5404\u7C7B\u7528\u6237ID\u8F6C\u6362","FileName":"steamidconvert","Tags":["STEAM"]},{"Title":"\u4F7F\u7528\u7B2C\u4E09\u4EE3ID \u7684 STEAM \u4E2A\u4EBA\u4E3B\u9875\u94FE\u63A5","FileName":"steamid3","Tags":["STEAM"]},{"Title":"Steam\u6B63\u7248GTA4\u5B58\u6863\u5BFC\u5165\u7684\u6B63\u786E\u59FF\u52BF","FileName":"gtaivsavedgames","Tags":["STEAM"]},{"Title":"Steam \u5404\u56FD\u5BB6\u533A\u57DF\u7684\u4EF7\u683C\u3001\u9501\u533A\u60C5\u51B5\u6897\u6982","FileName":"steam-countries","Tags":["STEAM"]},{"Title":"Steam \u793E\u533A\u7684\u795E\u5947\u4FDD\u62A4\u673A\u5236","FileName":"steamcommunitys","Tags":["STEAM"]}]},{"Name":"\u6742","Articles":[{"Title":"\u4EB2\u5BC6\u5173\u7CFB\u66B4\u529B\u5371\u9669\u81EA\u6D4B\u8868","FileName":"family","Tags":["\u6742"]},{"Title":"\u5982\u679C\u4F60\u770B\u89C1\u534A\u6761\u7FE0\uFF0C\u8BF7\u4E0D\u8981\u5E2E\u52A9\u4ED6","FileName":"helpless1","Tags":["\u6742"]},{"Title":"\u7B80\u5355\u4ECB\u7ECD\u76EE\u524D\u53EF\u7528\u7684\u514D\u8D39\u9759\u6001\u7AD9\u90E8\u7F72\u5E73\u53F0\uFF08Pages \u670D\u52A1\uFF09","FileName":"pages","Tags":["\u6742"]},{"Title":"\u4ECE\u5FAE\u8F6F\u5B98\u65B9\u76F4\u63A5\u4E0B\u8F7Dwin10\u955C\u50CF\u7684\u529E\u6CD5\uFF08\u4E0D\u4F9D\u8D56\u5A92\u4F53\u521B\u5EFA\u5DE5\u5177\uFF09","FileName":"win10iso","Tags":["\u6742"]},{"Title":"\u6211\u66FE\u7ECF\u4E24\u6B21\u6539\u53D8B\u7AD9\u7684UI\u4E0E\u8BBE\u8BA1","FileName":"change","Tags":["\u6742","BILIBILI"]},{"Title":"\u628A\u65E5\u5386\u6587\u4EF6\u5BFC\u5165\u82F9\u679C\u65E5\u5386\u7684\u529E\u6CD5","FileName":"icloudcalendarimport","Tags":["\u6742"]},{"Title":"\u4E2D\u56FD\u90AE\u653F \u56FD\u5185\u3001\u6E2F\u6FB3\u53F0\u3001\u56FD\u9645\u5E73\u90AE\u90AE\u8D39 \u7559\u6863","FileName":"chinapostprices","Tags":["\u6742"]},{"Title":"\u5728 Windows \u4E0A\u7ED9 Git SSH \u8BBE\u7F6E\u4EE3\u7406","FileName":"sshwindowsproxy","Tags":["\u6742"]},{"Title":"\u6211\u7684\u8D77\u6E90\u5F00\u53D1\u7B14\u8BB0","FileName":"sourcedevnotes","Tags":["\u6742"]},{"Title":"Telegram \u8D34\u7EB8\u5305\u6279\u91CF\u4E0B\u8F7D\u89E3\u51B3\u65B9\u6848","FileName":"tgsticks","Tags":["\u6742"]}]},{"Name":"BILIBILI","Articles":[{"Title":"\u6211\u66FE\u7ECF\u4E24\u6B21\u6539\u53D8B\u7AD9\u7684UI\u4E0E\u8BBE\u8BA1","FileName":"change","Tags":["\u6742","BILIBILI"]}]},{"Name":"\u6211\u81EA\u5DF1","Articles":[{"Title":"\u8BA2\u9605 RSS","FileName":"rsss","Tags":["\u6211\u81EA\u5DF1"]},{"Title":"\u641C\u7D22\u672C\u535A\u5BA2","FileName":"search","Tags":["\u6211\u81EA\u5DF1"]},{"Title":"\u6C99\u76D2\u6D4B\u8BD5\u9875","FileName":"sandbox","Tags":["\u6211\u81EA\u5DF1"]},{"Title":"\u5173\u4E8E\u6208\u767B\u8D70\u904E\u53BB","FileName":"about","Tags":["\u6211\u81EA\u5DF1"]}]}]}</code><script src=/main.js></script><script src=/highlight.min.js></script><script>(function(){let n=document.body.querySelectorAll("pre code");for(let t=0;t<n.length;t++){let i=n[t];hljs.highlightBlock(i)}})()</script></body></html>
+</code></pre>
+<p>文章内水平线：</p>
+<hr />
+<p>插入一张jpg，图床：<a href="https://sm.ms/">sm.ms</a>：  <br />
+<img src="https://i.loli.net/2019/02/05/5c59826724b4f.jpg" alt="如果你看见我，说明图片加载失败了。" /></p>
+<p>试试 PNG ：</p>
+<p><img src="https://i.loli.net/2019/02/03/5c56c8b6a87a1.png" alt="如果你看见我，说明图片加载失败了。" /></p>
+<p>无序列表：</p>
+<ul>
+<li>Steam</li>
+<li>Origin
+<ul>
+<li>大 d你<code>能x</code><em>斜体</em>看见<strong>粗体</strong>吗<a href="https://ww.baidu.com">dd</a>超链接</li>
+<li>小</li>
+</ul>
+</li>
+<li>中</li>
+<li>Uplay
+<ul>
+<li>育碧</li>
+</ul>
+</li>
+<li>UBI</li>
+<li>育碧商城</li>
+</ul>
+<p>有序列表：</p>
+<ol>
+<li>SS4<code>&lt;dddsss&gt;</code>314134</li>
+<li>SSR3<strong>fda1</strong>413</li>
+<li>SSRR431431
+<ol>
+<li>www</li>
+<li>wwww</li>
+<li>wwwww13431你<code>能x</code><em>斜体</em>看见<strong>粗体</strong>吗<a href="https://ww.baidu.com">dd</a>超链接</li>
+</ol>
+</li>
+<li>SSRRR43<code>ds代码a</code>1413413</li>
+<li>SSRRRR23414
+<ol>
+<li>国weqewq
+<ol>
+<li>家dsadasdsad
+<ol>
+<li>大sadsadas
+<ol>
+<li>事dsadsa</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>小代码框：   <br />
+你想试试 <code>Ctrl + F</code> 吗？</p>
+<blockquote>
+<p>引用块：</p>
+<ol>
+<li>SS</li>
+<li>SSR</li>
+<li>SSRR</li>
+</ol>
+<p>我是<strong>粗体abc</strong>，我是<em>斜体xyz</em>，对吗？</p>
+<pre><code>int main(){return 0;}
+</code></pre>
+<ul>
+<li>fdajkd</li>
+<li>7fdfdajkd</li>
+<li>ddf456d/8745adsajkd</li>
+<li>fd87ajkd</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Garry's Mod（讲道理，我很讨厌这个大的撇号，不知道是不是字体还是渲染器的问题）   <br />
+I don’t want to go!  <br />
+这里应该有换行才是正确的  <br />
+“中文”  <br />
+&quot;English&quot;  <br />
+《》【】『』：；</p>
+<blockquote>
+<p>&lt; &gt; [ ] { } : ;</p>
+<h2><a href="https://github.com/17/hexo-theme-strict">Strict</a> 主题的介绍语：</h2>
+</blockquote>
+<p>A clean, minimal and responsive theme for hexo.</p>
+<p>你知道<code>Ctrl + C</code>和<code>Ctrl + V</code>吗？</p>
+</blockquote>
+<h1>嵌入外部元素：</h1>
+<p><a href="https://store.steampowered.com/app/207020">Steam购买 Bang Bang Racing</a>：</p>
+<iframe src="https://store.steampowered.com/widget/207020/" frameborder="0" width="646" height="190"></iframe>
+  
+<p><a href="https://twitter.com/Twitter/status/1090657246227369984">推特</a>：</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Here&#39;s<br> ⊂_ヽ<br> 　 ＼＼ <br> 　　 ＼( ͡° ͜ʖ ͡°)<br> 　　　 &gt;　⌒ヽ<br> 　　　/ 　 へ＼<br> 　　 /　　/　＼＼the<br> 　　 ﾚ　ノ　　 ヽ_つ<br> 　　/　/<br> 　 /　/|<br> 　(　(ヽ<br> 　|　|、＼Tweet<br> 　| 丿 ＼ ⌒)<br> 　| |　　) /<br> ノ )　　Lﾉ<br> (_／</p>&mdash; Twitter (@Twitter) <a href="https://twitter.com/Twitter/status/1090657246227369984?ref_src=twsrc%5Etfw">January 30, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+ 
+<p><a href="https://www.bilibili.com/video/av18190165">B站视频</a>：</p>
+<iframe src="//player.bilibili.com/player.html?aid=18190165&cid=30188411&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="853px" height="480px"> </iframe>
+<br>
+<br><br><br><br><br>
+<iframe src="https://t.bilibili.com/320496953620275161?tab=2" width="800px" ></iframe>
+</div>
+    <hr class="articleEndLine">
+    <div class="articleTags"><a>我自己</a></div>
+</div>
+        <script src="/main.js"></script>
+    </main>
+</body>
+
+</html>

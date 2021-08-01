@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "gen.vb": {
-      "commandName": "Project",
-      "commandLineArgs": "s",
-      "jsWebView2Debugging": false
-    }
-  }
-}
