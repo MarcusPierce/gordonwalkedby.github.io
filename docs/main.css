@@ -23,6 +23,8 @@ a:hover {
 header {
     background-color: black;
     color: white;
+    background: #3494E6;
+    background: linear-gradient(to right, #EC6EAD, #3494E6);
 }
 
 #headerCenter {
@@ -163,6 +165,12 @@ header {
 .articleContent td,
 .articleContent table {
     border: 1px solid black;
+}
+
+.articleContent table {
+    display: block;
+    max-width: 98%;
+    overflow: auto;
 }
 
 .articleContent td {
