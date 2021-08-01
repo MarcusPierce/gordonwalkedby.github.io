@@ -36,7 +36,7 @@ Public Class AtomGenerator
         Return a
     End Function
 
-    Public Sub AddEntry(title As String, fullURL As String, updated As Date, Optional content As String = Nothing, Optional contentType As String = Nothing)
+    Public Sub AddEntry(title As String, fullURL As String, updated As Date)
         Dim e = doc.CreateElement("entry", namespaceURI)
         Dim id = doc.CreateElement("id", namespaceURI)
         id.InnerText = fullURL
@@ -48,14 +48,10 @@ Public Class AtomGenerator
         time.InnerText = GetRFCTimeFormat(updated)
         e.AppendChild(time)
         e.AppendChild(GetAuthorNode)
-        If Not String.IsNullOrWhiteSpace(content) Then
-            Dim ct = doc.CreateElement("content", namespaceURI)
-            If Not String.IsNullOrWhiteSpace(contentType) Then
-                ct.SetAttribute("type", contentType)
-            End If
-            ct.InnerText = content
-            e.AppendChild(ct)
-        End If
+        Dim link = doc.CreateElement("link", namespaceURI)
+        link.SetAttribute("href", fullURL)
+        link.SetAttribute("rel", "alternate")
+        e.AppendChild(link)
         root.AppendChild(e)
     End Sub
 

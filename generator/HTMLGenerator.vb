@@ -73,21 +73,28 @@
     End Sub
 
     Public Function BuildPostHTML(a As Post) As String
-        Dim div = HTMLFileContents.Item("post.html").Item1
-        div = div.Replace("%时间内部%", HttpUtility.HtmlAttributeEncode(a.ReleaseDateISOStr))
-        div = div.Replace("%时间显示%", HttpUtility.HtmlEncode(a.ReleaseDateDisplayStr))
-        div = div.Replace("%TAG标签区%", a.TagsHTML)
         Dim tt = HttpUtility.HtmlEncode(a.Title)
-        div = div.Replace("%标题%", tt)
-        div = div.Replace("%HTML内容%", a.HTMLContent)
         Dim sb As New StringBuilder
         sb.Append("<title>")
         sb.Append(tt)
         sb.Append(" - ")
         sb.Append(WebsiteTitle)
         sb.Append("</title>")
+        sb.Append("<meta name=""description"" content=""")
+        Dim preview = a.TextContent.Replace(vbCr, " ").Replace(vbLf, " ").Trim
+        If preview.Length > 100 Then
+            preview = preview.Substring(0, 90)
+        End If
+        sb.Append(preview)
+        sb.Append("..."" />")
         Dim html = HTMLFileContents.Item("index.html").Item1
         html = html.Replace(HTMLIndexHead, sb.ToString)
+        Dim div = HTMLFileContents.Item("post.html").Item1
+        div = div.Replace("%时间内部%", HttpUtility.HtmlAttributeEncode(a.ReleaseDateISOStr))
+        div = div.Replace("%时间显示%", HttpUtility.HtmlEncode(a.ReleaseDateDisplayStr))
+        div = div.Replace("%TAG标签区%", a.TagsHTML)
+        div = div.Replace("%标题%", tt)
+        div = div.Replace("%HTML内容%", a.HTMLContent)
         html = html.Replace(HTMLIndexCenter, div)
         Return html
     End Function
@@ -98,6 +105,7 @@
         sb.Append("<title>")
         sb.Append(WebsiteTitle)
         sb.Append("</title>")
+        sb.Append("<meta name=""description"" content=""只是我一个人发牢骚的博客（树洞）"" />")
         html = html.Replace(HTMLIndexHead, sb.ToString)
         sb.Clear()
         sb.Append("<code id=""indexpostsjson"">")
@@ -125,7 +133,7 @@
         For Each a In ls
             Dim u = $"{WebsiteURL}{a.FileName}"
             Dim u2 = WebUtility.HtmlEncode(u)
-            ag.AddEntry(a.Title, u, a.ReleaseDate, $"全文请看 <a href=""{u2}"">{u2}</a>", "html")
+            ag.AddEntry(a.Title, u, a.ReleaseDate)
         Next
         Return ag.ToString
     End Function

@@ -15,6 +15,7 @@ Public Class Post
         Me.Tags = tags
         Me.MDContent = mdcontent
         Me.HTMLContent = Markdown.ToHtml(mdcontent)
+        Me.TextContent = Markdown.ToPlainText(mdcontent)
         If tags.Length > 0 Then
             Dim sb As New StringBuilder
             For Each i In tags
@@ -32,6 +33,7 @@ Public Class Post
     Public ReadOnly Property Title As String
     Public ReadOnly Property ReleaseDateISOStr As String
     Public ReadOnly Property ReleaseDateDisplayStr As String
+
     <JsonIgnore>
     Public ReadOnly Property ReleaseDate As Date
     Public ReadOnly Property Tags As String()
@@ -41,6 +43,8 @@ Public Class Post
     Public ReadOnly Property MDContent As String
     <JsonIgnore>
     Public ReadOnly Property HTMLContent As String
+    <JsonIgnore>
+    Public ReadOnly Property TextContent As String
 
     Public Overrides Function ToString() As String
         Return $"[{FileName}]{Title} {ReleaseDate}"
