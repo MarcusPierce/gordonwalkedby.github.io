@@ -10,7 +10,7 @@
     <meta name="generator" content="戈登自己用 Visual Basic .Net Core 写的镜态站生成器" />
     <meta name="author" content="戈登走過去" />
 
-    <title>简单介绍微软官方谷歌内核.NET浏览器控件WebView2 - 戈登走過去的树洞</title><meta name="description" content="来源 从不知道多老开始，VB6那时候就有一个浏览器控件，WebBrower，反正用的IE内核贼垃圾。   Win10推出之后，微软的edge浏览器是用的edgeHTML这个内核，当..." />
+    <title>简单介绍微软官方谷歌内核.NET浏览器控件WebView2 - 戈登走過去的树洞</title><meta name="description" content="来源 从不知道多老开始，VB6那时候就有一个浏览器控件，WebBrower，反正用的IE内核贼垃圾。 Win10推出之后，微软的edge浏览器是用的edgeHTML这个内核，当时推..." />
 </head>
 
 <body>
@@ -37,48 +37,46 @@
     <h1 class="articleTitle">简单介绍微软官方谷歌内核.NET浏览器控件WebView2</h1>
     <time class="articleTime" datetime="2020-12-13T14:30:45.000+0800">2020 年 12 月 13 日 星期日</time>
     <div class="articleContent"><h1>来源</h1>
-<p>从不知道多老开始，VB6那时候就有一个浏览器控件，WebBrower，反正用的IE内核贼垃圾。  <br />
-Win10推出之后，微软的edge浏览器是用的edgeHTML这个内核，当时推出了一个浏览器控件叫 WebView 。    <br />
-这个控件体验也很差，早期还只支持 UWP 不支持 WIN32 。   <br />
-自从微软把edge浏览器变成了谷歌浏览器内核（Chromium），一切都开始明朗起来了。  <br />
+<p>从不知道多老开始，VB6那时候就有一个浏览器控件，WebBrower，反正用的IE内核贼垃圾。<br />
+Win10推出之后，微软的edge浏览器是用的edgeHTML这个内核，当时推出了一个浏览器控件叫 WebView 。<br />
+这个控件体验也很差，早期还只支持 UWP 不支持 WIN32 。<br />
+自从微软把edge浏览器变成了谷歌浏览器内核（Chromium），一切都开始明朗起来了。<br />
 推出了新的浏览器控件 WebView2 ，接下来我们就讲一讲怎么玩耍这个东西。</p>
 <h1>官方文档</h1>
-<p>如果你不想看我BB，直接去下面看官方文档。    <br />
-https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/</p>
+<p>如果你不想看我BB，直接去看<a href="https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/">官方文档</a>。</p>
 <h1>安装</h1>
-<p>首先，你必须在你的电脑上安装 WebView2 Runtime。可以说你不安装新版edge只要安装这个runtime就行了，这是为了防止做出的操作对系统环境使用的 edge 造成破坏或干扰。  <br />
-在软件的用户的电脑上也必须安装这个runtime才能正常工作。  <br />
-https://developer.microsoft.com/en-us/microsoft-edge/webview2/  <br />
-微软特地给你提供了离线安装版，在线安装版和固定不更新版本。  <br />
-在线安装版，就是 Evergreen Bootstrapper。    <br />
-离线安装版，就是 Evergreen Standalone Installer。    <br />
-Evergreen 指的是常青的，比如常青藤（意义不明）。  <br />
-这两个都只能安装到 C:\Program Files (x86)\Microsoft\EdgeWebView\Application 里面，而且好像会自动更新（具体不清楚，官方文档里写的很含糊）。  <br />
-还有一个解压即用版，就是 Fixed Version ，其实指的是固定版本，这个是不会自动更新的。  <br />
-如果你要使用这个 Fixed Version ，最好好好阅读一下这个 https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/concepts/distribution</p>
-<p>安装好runtime之后，到你的 .NET 项目里面安装这个 NUGET 包。   <br />
-<img src="https://z3.ax1x.com/2020/12/13/rew5K1.png" alt="" />   <br />
-注意只能在以下平台运行：   <br />
+<p>首先，你必须在你的电脑上安装 <a href="https://developer.microsoft.com/en-us/microsoft-edge/webview2/">WebView2 Runtime</a>。可以说你不安装新版edge只要安装这个runtime就行了，这是为了防止做出的操作对系统环境使用的 edge 造成破坏或干扰。<br />
+在软件的用户的电脑上也必须安装这个runtime才能正常工作。</p>
+<p>微软特地给你提供了离线安装版，在线安装版和固定不更新版本。<br />
+在线安装版，就是 Evergreen Bootstrapper。<br />
+离线安装版，就是 Evergreen Standalone Installer。<br />
+Evergreen 指的是常青的，比如常青藤（意义不明）。<br />
+这两个都只能安装到 C:\Program Files (x86)\Microsoft\EdgeWebView\Application 里面，而且好像会自动更新（具体不清楚，官方文档里写的很含糊）。<br />
+还有一个解压即用版，就是 Fixed Version ，其实指的是固定版本，这个是不会自动更新的。<br />
+如果你要使用这个 Fixed Version ，最好好好阅读一下<a href="https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/concepts/distribution">这个</a></p>
+<p>安装好runtime之后，到你的 .NET 项目里面安装这个 NUGET 包。<br />
+<img src="https://z3.ax1x.com/2020/12/13/rew5K1.png" alt="" /><br />
+注意只能在以下平台运行：<br />
 <img src="https://z3.ax1x.com/2020/12/13/rewIDx.md.png" alt="" /></p>
 <h1>入门，链接跳转</h1>
-<p>下面我全部的内容使用的都是 .NET Framework 4.8 ， Windows Forms， VB .NET 。  <br />
-不同的版本会有小的差异。    <br />
-你应该可以在这个控件工具箱列表里找到这个控件，放置出来就可以了。   <br />
-<img src="https://z3.ax1x.com/2020/12/13/rewHUO.png" alt="" />   <br />
-尽量不要操作右边的属性栏，把要初始化的代码都写在窗体的Load里面就好。  <br />
-下面我把这个控件实例命名为 edge 。  <br />
+<p>下面我全部的内容使用的都是 .NET Framework 4.8 ， Windows Forms， VB .NET 。<br />
+不同的版本会有小的差异。<br />
+你应该可以在这个控件工具箱列表里找到这个控件，放置出来就可以了。<br />
+<img src="https://z3.ax1x.com/2020/12/13/rewHUO.png" alt="" /><br />
+尽量不要操作右边的属性栏，把要初始化的代码都写在窗体的Load里面就好。<br />
+下面我把这个控件实例命名为 edge 。<br />
 在窗体的 Load 事件里面写上：</p>
 <pre><code class="language-vb">edge.Source = New Uri(&quot;https://www.baidu.com&quot;)
 </code></pre>
-<p>Source 属性可以让控件跳到指定的链接。可以是<code>http://localhost</code>，也可以是 <code>file:///C:/xxx.html</code> 格式的本地文件链接，还可以是 <code>edge://version</code> ，不过好像没有那个小恐龙游戏了。     <br />
-运行程序，看见窗口内的浏览器控件自动跳到了百度，说明咱们成功了。  <br />
-<img src="https://z3.ax1x.com/2020/12/13/re00iD.png" alt="" />  <br />
-还有，别让用户手贱把这些进程给关了。  <br />
+<p>Source 属性可以让控件跳到指定的链接。可以是<code>http://localhost</code>，也可以是 <code>file:///C:/xxx.html</code> 格式的本地文件链接，还可以是 <code>edge://version</code> ，不过好像没有那个小恐龙游戏了。<br />
+运行程序，看见窗口内的浏览器控件自动跳到了百度，说明咱们成功了。<br />
+<img src="https://z3.ax1x.com/2020/12/13/re00iD.png" alt="" /><br />
+还有，别让用户手贱把这些进程给关了。<br />
 <img src="https://z3.ax1x.com/2020/12/13/reBNlj.png" alt="" /></p>
 <h1>设置运行环境，保存用户数据</h1>
-<p>在不设置运行环境的情况下，默认的用户数据是保存在webview2 runtime里面的，和用户平时的edge是隔离的，但是会在所有webview2程序里共享。   <br />
-如果你登陆了B站，并且选择了记住信息，那么下次打开程序还是会自动登陆B站。  <br />
-要避免共享，可以设置用户数据保存的文件夹，和其他人的独立开来。  <br />
+<p>在不设置运行环境的情况下，默认的用户数据是保存在webview2 runtime里面的，和用户平时的edge是隔离的，但是会在所有webview2程序里共享。<br />
+如果你登陆了B站，并且选择了记住信息，那么下次打开程序还是会自动登陆B站。<br />
+要避免共享，可以设置用户数据保存的文件夹，和其他人的独立开来。<br />
 首先需要引用（如果是wpf的自己改）：</p>
 <pre><code class="language-vb">Imports Microsoft.Web.WebView2.Core
 Imports Microsoft.Web.WebView2.WinForms
@@ -88,14 +86,14 @@ Imports Microsoft.Web.WebView2.WinForms
 edge.EnsureCoreWebView2Async(ev.Result)
 edge.Source = New Uri(&quot;https://baidu.com&quot;)
 </code></pre>
-<p>尽管这上面两个函数都是异步的，后面我会讲异步的关系。  <br />
-<code>CoreWebView2Environment.CreateAsync</code>这个函数有三个可选参数，留空都是默认，第一个是webview2 runtime的路径，就是有msedgewebview2.exe的那个文件夹。第二个是用户数据文件夹。第三个是一些可选设置，可以添加自定义进程启动设置。    <br />
+<p>尽管这上面两个函数都是异步的，后面我会讲异步的关系。<br />
+<code>CoreWebView2Environment.CreateAsync</code>这个函数有三个可选参数，留空都是默认，第一个是webview2 runtime的路径，就是有msedgewebview2.exe的那个文件夹。第二个是用户数据文件夹。第三个是一些可选设置，可以添加自定义进程启动设置。<br />
 用户数据文件夹的那个路径下，webview2会创建一个文件夹叫做<code>EBWebView</code>，然后一切用户数据都是在里面的。</p>
 <h1>正确设置 Core</h1>
-<p><code>CoreWebView2</code> 是核心，用控件的只读属性 <code>CoreWebView2</code> 来获得，上面说到的 <code>EnsureCoreWebView2Async</code> 函数就是修改这个核心的设置。  <br />
-但是问题来了，这个异常奇葩，属性 <code>CoreWebView2</code>  获得的核心默认是 nothing (null) 的，你必须先使用 <code>EnsureCoreWebView2Async</code> 函数。  <br />
-但是这个函数居然是个异步函数，就很刺激了。  <br />
-经过我的测试，如果你直接 <code>Task.Wait()</code> 这个玩意会永远卡死下去。  <br />
+<p><code>CoreWebView2</code> 是核心，用控件的只读属性 <code>CoreWebView2</code> 来获得，上面说到的 <code>EnsureCoreWebView2Async</code> 函数就是修改这个核心的设置。<br />
+但是问题来了，这个异常奇葩，属性 <code>CoreWebView2</code>  获得的核心默认是 nothing (null) 的，你必须先使用 <code>EnsureCoreWebView2Async</code> 函数。<br />
+但是这个函数居然是个异步函数，就很刺激了。<br />
+经过我的测试，如果你直接 <code>Task.Wait()</code> 这个玩意会永远卡死下去。<br />
 正确的办法是这样：</p>
 <pre><code class="language-vb">Private Async Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
     Dim ev = CoreWebView2Environment.CreateAsync(, AppContext.BaseDirectory)
@@ -106,10 +104,10 @@ edge.Source = New Uri(&quot;https://baidu.com&quot;)
     edge.Source = New Uri(&quot;https://baidu.com&quot;)
 End Sub
 </code></pre>
-<p>能不能不设置核心就用这个控件呢？  <br />
+<p>能不能不设置核心就用这个控件呢？<br />
 可以是可以，很多功能就少了，垃圾微软什么奇葩设计啊，core有的功能不继承到具体实现里面。</p>
 <h1>阻止新窗口弹出</h1>
-<p>在实际使用中，这玩意会动不动打开新窗口，然后新窗口就完全不受程序控制了。所以我们可以给 core 新增一个事件，让新窗口的链接转移到本窗口里来。   <br />
+<p>在实际使用中，这玩意会动不动打开新窗口，然后新窗口就完全不受程序控制了。所以我们可以给 core 新增一个事件，让新窗口的链接转移到本窗口里来。<br />
 把下面的代码放在上面的 <code>Await t</code> 之后，就是要保证已经 <code>EnsureCoreWebView2Async</code> 完成了。</p>
 <pre><code class="language-vb">Dim core = edge.CoreWebView2
 AddHandler core.NewWindowRequested, Sub(ss As Object, ee As CoreWebView2NewWindowRequestedEventArgs)
@@ -119,7 +117,7 @@ AddHandler core.NewWindowRequested, Sub(ss As Object, ee As CoreWebView2NewWindo
 </code></pre>
 <p>这样就可以了。</p>
 <h1>阻止用户使用浏览器自带功能</h1>
-<p>默认情况下，在网页右键是可以和普通浏览器一样打开菜单的，还居然可以打开一个F12窗口，真心NB。  <br />
+<p>默认情况下，在网页右键是可以和普通浏览器一样打开菜单的，还居然可以打开一个F12窗口，真心NB。<br />
 如果你不想让用户这么做的话，可以在 <code>core.Settings</code> 里面修改：</p>
 <pre><code class="language-vb">core.Settings.AreDefaultContextMenusEnabled = False
 core.Settings.AreDevToolsEnabled = False
@@ -127,7 +125,7 @@ core.Settings.IsZoomControlEnabled = False
 </code></pre>
 <p>第三个就是不允许用户通过 ctrl 加滚轮修改网页大小，还有一些设置自己探索一下，我就懒得说了。</p>
 <h1>在网页上运行 javascript</h1>
-<p>在窗口上新增一个按钮，然后添加下列代码：   <br />
+<p>在窗口上新增一个按钮，然后添加下列代码：<br />
 必须使用 Async 和 Await 异步操作，<code>Task.Wait()</code> 或 <code>Task.Result</code> 都会一直卡死，无法继续！</p>
 <pre><code class="language-vb">Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
     Dim t = edge.ExecuteScriptAsync(&quot;confirm('你是帅哥嘛?')&quot;)
@@ -135,10 +133,10 @@ core.Settings.IsZoomControlEnabled = False
     Debug.WriteLine(t.Result)
 End Sub
 </code></pre>
-<p><img src="https://z3.ax1x.com/2020/12/13/reyw2F.png" alt="" />  <br />
+<p><img src="https://z3.ax1x.com/2020/12/13/reyw2F.png" alt="" /><br />
 效果就是这样，然后debug那边应该会显示一个 true 或者 false ，返回的一定是字符串，如果啥都没有就是<code>&quot;null&quot;</code>了。</p>
 <h1>网页传递信息到程序</h1>
-<p>这里说的是信息指的是 WebMessage ，使用方法如下：   <br />
+<p>这里说的是信息指的是 WebMessage ，使用方法如下：<br />
 准备一个本地网页，随便写点什么，然后一定要在 <code>&lt;script&gt;</code> 里面写上下面这段javascript并引发与运行：</p>
 <pre><code class="language-javascript">var m = {}
 m.Age = 15
@@ -157,8 +155,8 @@ End Sub
 </code></pre>
 <p>这样，在加载这个html，运行到那段js的时候，就会引发这个WebMessageReceived事件，传过来的是对象的json字符串。</p>
 <h1>抓包</h1>
-<p>这个功能很有意思啊，可以拿来获取 httponly 的 cookie 和一些奇怪的 CSRF 之类的。   <br />
-首先要给core添加一条过滤规则，指定哪些链接和内容是我们要抓包的。  <br />
+<p>这个功能很有意思啊，可以拿来获取 httponly 的 cookie 和一些奇怪的 CSRF 之类的。<br />
+首先要给core添加一条过滤规则，指定哪些链接和内容是我们要抓包的。<br />
 如果想抓全部，就写这个：</p>
 <pre><code class="language-vb">core.AddWebResourceRequestedFilter(&quot;*&quot;, CoreWebView2WebResourceContext.All)
 </code></pre>
@@ -171,7 +169,7 @@ End Sub
                                             '否则 GetHeader 遇到不存在的头会扔出一个错误。
                                         End Sub
 </code></pre>
-<p>在API里，<code>CoreWebView2WebResourceRequestedEventArgs</code>是有一个属性叫<code>Response</code>，不过没有合适的办法来获取它的值，访问就是nothing(null)，如果在task里或者thread里去访问这个值，直接就throw了一个COM不支持的错误出来。  <br />
+<p>在API里，<code>CoreWebView2WebResourceRequestedEventArgs</code>是有一个属性叫<code>Response</code>，不过没有合适的办法来获取它的值，访问就是nothing(null)，如果在task里或者thread里去访问这个值，直接就throw了一个COM不支持的错误出来。<br />
 <a href="https://github.com/MicrosoftEdge/WebView2Feedback/issues/275#issuecomment-652911352">github有神仙</a>通过修改官方dll实现了获取这个<code>Response</code>，想看可以自己看看。</p>
 <h1>回复我</h1>
 <ul>

@@ -11,20 +11,20 @@ Win10推出之后，微软的edge浏览器是用的edgeHTML这个内核，当时
 推出了新的浏览器控件 WebView2 ，接下来我们就讲一讲怎么玩耍这个东西。  
 
 # 官方文档
-如果你不想看我BB，直接去下面看官方文档。    
-https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/   
+如果你不想看我BB，直接去看[官方文档](https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/)。    
+   
 
 # 安装
-首先，你必须在你的电脑上安装 WebView2 Runtime。可以说你不安装新版edge只要安装这个runtime就行了，这是为了防止做出的操作对系统环境使用的 edge 造成破坏或干扰。  
+首先，你必须在你的电脑上安装 [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)。可以说你不安装新版edge只要安装这个runtime就行了，这是为了防止做出的操作对系统环境使用的 edge 造成破坏或干扰。  
 在软件的用户的电脑上也必须安装这个runtime才能正常工作。  
-https://developer.microsoft.com/en-us/microsoft-edge/webview2/  
+ 
 微软特地给你提供了离线安装版，在线安装版和固定不更新版本。  
 在线安装版，就是 Evergreen Bootstrapper。    
 离线安装版，就是 Evergreen Standalone Installer。    
 Evergreen 指的是常青的，比如常青藤（意义不明）。  
 这两个都只能安装到 C:\Program Files (x86)\Microsoft\EdgeWebView\Application 里面，而且好像会自动更新（具体不清楚，官方文档里写的很含糊）。  
 还有一个解压即用版，就是 Fixed Version ，其实指的是固定版本，这个是不会自动更新的。  
-如果你要使用这个 Fixed Version ，最好好好阅读一下这个 https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/concepts/distribution   
+如果你要使用这个 Fixed Version ，最好好好阅读一下[这个](https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/concepts/distribution)   
 
 安装好runtime之后，到你的 .NET 项目里面安装这个 NUGET 包。   
 ![](https://z3.ax1x.com/2020/12/13/rew5K1.png)   

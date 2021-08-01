@@ -1,4 +1,4 @@
-Module Program
+﻿Module Program
 
     Public WorkFolder As New DirectoryInfo(AppContext.BaseDirectory)
     Public HtmlFolder As DirectoryInfo = Nothing
@@ -23,7 +23,28 @@ Module Program
                 If String.IsNullOrWhiteSpace(commandValue) Then
                     Throw New Exception("You must give me a article file name.")
                 End If
+                commandValue = commandValue.ToLower
+                If Posts.ContainsKey(commandValue) Then
+                    Throw New Exception($"This name has been used: {commandValue}")
+                End If
+                Dim time = Date.Now
+                Dim dic = Path.Combine(PostsFolder.FullName, time.ToString("yyyy/MM"))
+                If Directory.Exists(dic) = False Then
+                    Directory.CreateDirectory(dic)
+                End If
+                Dim f = Path.Combine(dic, $"{commandValue}.md")
+                File.WriteAllText(f, $"---
+title: 订阅 RSS
+date: {time:yyyy-MM-dd}
+tags: [标签1,标签2]
+---
+三天之内鲨了你")
+                Console.WriteLine("You can edit it: ")
+                Console.WriteLine(f)
             Case "s"
+                If Posts.Count < 1 Then
+                    Throw New Exception("I cannot found any post! You must add one first.")
+                End If
                 Dim port As Integer = 21081
                 If Not String.IsNullOrWhiteSpace(commandValue) Then
                     Dim v = 0
@@ -33,6 +54,9 @@ Module Program
                 End If
                 HTMLGenerator.StartHTTPListener(port)
             Case "g"
+                If Posts.Count < 1 Then
+                    Throw New Exception("I cannot found any post! You must add one first.")
+                End If
                 HTMLGenerator.GenerateAllFiles()
             Case Else
                 Throw New Exception($"Bad command: {command} {commandValue}")

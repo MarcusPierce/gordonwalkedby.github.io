@@ -60,20 +60,20 @@ http://localhost:8989/
 http://127.0.0.1:8989/
 后两个链接只有本机可以访问
 </code></pre>
-<p>接下来，如果你开着 Windows 防火墙，那么基本上只有你自己这台电脑可以靠访问这个链接。  <br />
+<p>接下来，如果你开着 Windows 防火墙，那么基本上只有你自己这台电脑可以靠访问这个链接。<br />
 使用 <a href="https://www.nuget.org/packages/Mono.Net.HttpListener/">Mono 提供的 HTTPListener</a> 就可以弹出普通的防火墙请求窗口。</p>
-<p>但是给 .NET Framework 自带的 HTTPListener 解开防火墙，就得按照下面办法来：  <br />
-要么每次都用管理员权限打开才程序。  <br />
+<p>但是给 .NET Framework 自带的 HTTPListener 解开防火墙，就得按照下面办法来：<br />
+要么每次都用管理员权限打开才程序。<br />
 要么就在软件安装时运行下面 CMD 指令：</p>
 <pre><code class="language-cmd">netsh http add urlacl url=http://localhost:8900/ user=Everyone
 netsh http add urlacl url=http://+:8900/ user=Everyone
 netsh http add urlacl url=http://*:8900/ user=Everyone
 </code></pre>
-<p>这里添加到系统保留URL之后，就可以免管理员权限监听了。不会返回：拒绝访问。  <br />
+<p>这里添加到系统保留URL之后，就可以免管理员权限监听了。不会返回：拒绝访问。<br />
 然后新增防火墙规则：</p>
 <pre><code class="language-cmd">netsh advfirewall firewall Add rule name=&quot;over 8900&quot; dir=in protocol=tcp localport=8900 action=allow
 </code></pre>
-<p>完成之后就可以在局域网内的其他设备里访问了：  <br />
+<p>完成之后就可以在局域网内的其他设备里访问了：<br />
 <img src="https://s1.ax1x.com/2018/11/10/iqCtxI.png" alt="" /></p>
 <p>清理的指令：</p>
 <pre><code class="language-cmd">netsh http delete urlacl url=http://localhost:8900/

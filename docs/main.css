@@ -172,6 +172,7 @@ header {
 .articleContent pre {
     background-color: #eaeef3;
     font-family: inherit;
+    overflow-x: auto;
 }
 
 .articleContent code {
