@@ -85,7 +85,7 @@
         If preview.Length > 100 Then
             preview = preview.Substring(0, 90)
         End If
-        sb.Append(preview)
+        sb.Append(HttpUtility.HtmlEncode(preview))
         sb.Append("..."" />")
         Dim html = HTMLFileContents.Item("index.html").Item1
         html = html.Replace(HTMLIndexHead, sb.ToString)
