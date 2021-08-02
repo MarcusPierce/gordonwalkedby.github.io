@@ -26,7 +26,7 @@
                 CreateNewSubProject(commandValue)
             Case "s"
                 If Posts.Count < 1 Then
-                    Throw New Exception("I cannot found any post! You must add one first.")
+                    Throw New Exception("I cannot find any post! You must add one first.")
                 End If
                 Dim port As Integer = 21081
                 If Not String.IsNullOrWhiteSpace(commandValue) Then
@@ -38,7 +38,7 @@
                 HTMLGenerator.StartHTTPListener(port)
             Case "g"
                 If Posts.Count < 1 Then
-                    Throw New Exception("I cannot found any post! You must add one first.")
+                    Throw New Exception("I cannot find any post! You must add one first.")
                 End If
                 HTMLGenerator.GenerateAllFiles()
             Case Else

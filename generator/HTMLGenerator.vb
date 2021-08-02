@@ -24,10 +24,22 @@
     ''' 如果 searchPattern 不包含?或者*，那么会使用父文件夹的名字存入 dict。
     ''' </summary>
     Public Function RefreshReadTextFiles(folder As DirectoryInfo, dict As Dictionary(Of String, (String, Date)), searchPattern As String, throwIOex As Boolean) As String()
+        Static bypassFolders As String() = {".vs", "node_modules"}
         Dim timeNow = Date.Now
         Dim out As New List(Of String)
         Dim readNames As New List(Of String)
         For Each f In folder.GetFiles(searchPattern, SearchOption.AllDirectories)
+            Dim fullDic = f.DirectoryName
+            Dim skip As Boolean = False
+            For Each fdname In bypassFolders
+                If fullDic.Contains(fdname, StringComparison.OrdinalIgnoreCase) Then
+                    skip = True
+                    Exit For
+                End If
+            Next
+            If skip Then
+                Continue For
+            End If
             Dim name = f.Name
             If searchPattern.Contains("*") = False AndAlso searchPattern.Contains("?") = False Then
                 name = f.Directory.Name.ToLower

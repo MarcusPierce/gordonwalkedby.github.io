@@ -1,7 +1,7 @@
 "use strict";
-class Question {
-    constructor(text) {
-        let me = this;
+var Question = (function () {
+    function Question(text) {
+        var me = this;
         this.Text = text;
         this.Li = document.createElement("li");
         this.Input = document.createElement("input");
@@ -15,7 +15,7 @@ class Question {
         this.Span.addEventListener("click", function () {
             me.Input.click();
         });
-        this.Input.addEventListener("input", function () {
+        this.Input.addEventListener("click", function () {
             if (this.checked) {
                 me.Span.style.color = "red";
                 me.Span.style.fontWeight = "bold";
@@ -24,26 +24,28 @@ class Question {
                 me.Span.style.color = "black";
                 me.Span.style.fontWeight = "";
             }
+            RefreshOutput();
         });
     }
-}
-const tests = document.getElementById("questions");
+    return Question;
+}());
+var tests = document.getElementById("questions");
 tests.innerText = "";
-const Olist = document.createElement("ol");
+var Olist = document.createElement("ol");
 tests.appendChild(Olist);
-const output = document.createElement("p");
+var output = document.createElement("p");
 tests.appendChild(output);
-const mainDiv = document.getElementsByTagName("main")[0];
+var mainDiv = document.getElementsByTagName("main")[0];
 mainDiv.style.display = "block";
-const AllQuestions = [];
+var AllQuestions = [];
 function RefreshOutput() {
-    let checks = 0;
+    var checks = 0;
     AllQuestions.forEach(function (v) {
         if (v.Input.checked) {
             checks += 1;
         }
     });
-    let str = "";
+    var str = "";
     if (checks > 0) {
         str = "你已经选择了：" + checks.toFixed() + " 项。";
         if (checks > 3) {
@@ -59,9 +61,8 @@ function RefreshOutput() {
     output.innerText = str;
 }
 function AddQuestion(t) {
-    let q = new Question(t);
+    var q = new Question(t);
     AllQuestions.push(q);
-    q.Input.addEventListener("input", RefreshOutput);
     Olist.appendChild(q.Li);
     return q;
 }

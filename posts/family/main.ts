@@ -12,10 +12,10 @@ class Question {
         this.Span.innerText = text
         this.Li.appendChild(this.Input)
         this.Li.appendChild(this.Span)
-        this.Span.addEventListener("click", function () {
+        this.Span.addEventListener("click", function (this) {
             me.Input.click()
         })
-        this.Input.addEventListener("input", function () {
+        this.Input.addEventListener("click", function (this) {
             if (this.checked) {
                 me.Span.style.color = "red"
                 me.Span.style.fontWeight = "bold"
@@ -23,6 +23,7 @@ class Question {
                 me.Span.style.color = "black"
                 me.Span.style.fontWeight = ""
             }
+            RefreshOutput()
         })
     }
     Text: string
@@ -69,7 +70,6 @@ function RefreshOutput() {
 function AddQuestion(t: string): Question {
     let q = new Question(t)
     AllQuestions.push(q)
-    q.Input.addEventListener("input", RefreshOutput)
     Olist.appendChild(q.Li)
     return q
 }

@@ -132,13 +132,16 @@ Public Class Post
                         isHTML = True
                         Continue Do
                     Else
+                        Console.WriteLine($"Error: {filename}")
                         Throw New Exception("Content is not started with --- or <!--")
                     End If
                 End If
                 If (isHTML = False AndAlso line.StartsWith(mdBlock)) OrElse (isHTML AndAlso line.StartsWith(htmlBlock2)) Then
                     If String.IsNullOrWhiteSpace(title) Then
+                        Console.WriteLine($"Error: {filename}")
                         Throw New Exception("Missing title.")
                     ElseIf releaseDate.Year <= 1900 Then
+                        Console.WriteLine($"Error: {filename}")
                         Throw New Exception("Missing date.")
                     End If
                     content = reader.ReadToEnd
@@ -160,23 +163,28 @@ Public Class Post
                 Select Case key
                     Case NameOf(title)
                         If title IsNot Nothing Then
+                            Console.WriteLine($"Error: {filename}")
                             Throw New Exception("More than one title exists.")
                         End If
                         title = value.Trim
                     Case "date"
                         If releaseDate.Year > 1900 Then
+                            Console.WriteLine($"Error: {filename}")
                             Throw New Exception("More than one date exists.")
                         End If
                         value = value.Trim
                         Dim ok = Date.TryParse(value, releaseDate)
                         If Not ok Then
+                            Console.WriteLine($"Error: {filename}")
                             Throw New Exception($"Cannot parse date: {value}")
                         End If
                         If releaseDate.Year <= 1900 Then
+                            Console.WriteLine($"Error: {filename}")
                             Throw New Exception("The date must be later than 1900-Jan.")
                         End If
                     Case NameOf(tags)
                         If tags.Count > 0 Then
+                            Console.WriteLine($"Error: {filename}")
                             Throw New Exception("Tags can only be in one line.")
                         End If
                         value = value.Trim(" "c, "["c, "]"c)
@@ -195,9 +203,11 @@ Public Class Post
             Loop
         End Using
         If Not headComplete Then
+            Console.WriteLine($"Error: {filename}")
             Throw New Exception("Head is not complete.")
         End If
         If String.IsNullOrWhiteSpace(content) Then
+            Console.WriteLine($"Error: {filename}")
             Throw New Exception("Missing content.")
         End If
         Dim out As New Post() With {

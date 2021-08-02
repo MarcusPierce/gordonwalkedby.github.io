@@ -1,0 +1,19 @@
+<!--
+title: 简易 crypto-js Demo
+date: 2021-08-02
+tags: [杂,在线工具]
+-->
+
+<textarea id="inputArea" style="display: block; width: 95%;height: 100px; resize: none;"></textarea>
+<div id="buttons">
+    <span>Hash 重复次数：</span> <input id="inputHashRepeatTimes" type="number" step="30" min="1" max="9999" value="1">
+    <br>
+    <span>Key：</span> <input id="inputKey" type="password" style="width: 50%;">
+    <br>
+</div>
+<textarea id="outputArea" style="display: block; width: 95%;height: 100px; resize: none;"></textarea>
+<br>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="/js/quickhash.js"></script>
+
+使用的 crypto-js build 来源：<a href="https://cdnjs.com/libraries/crypto-js/4.0.0">cdnjs</a>

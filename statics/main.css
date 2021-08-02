@@ -191,7 +191,9 @@ header {
     overflow-x: auto;
 }
 
-.articleContent code {
+.articleContent code,
+.articleContent input,
+.articleContent textarea {
     font-family: inherit;
 }
 
