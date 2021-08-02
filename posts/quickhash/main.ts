@@ -15,10 +15,10 @@ function GetHashRepeatTimes(): number {
     } else {
         num = Math.min(Math.max(Math.round(num), 1), 9999)
     }
-    console.log("fix", num.toFixed())
     inputHashRepeatTimes.value = num.toFixed()
     return num
 }
+
 function GetKey(): string {
     return inputKey.value
 }
@@ -98,13 +98,19 @@ AddLine()
 AddCalcButton("AES加密", function (input: string): string {
     let key = GetKey()
     if (key == null || key.length < 1) { return "没有key" }
-    return CryptoJS.AES.encrypt(input, key).toString()
+    for (let i = 0; i < GetHashRepeatTimes(); i++) {
+        input = CryptoJS.AES.encrypt(input, key).toString()
+    }
+    return input
 })
 
 AddCalcButton("AES解密", function (input: string): string {
     let key = GetKey()
     if (key == null || key.length < 1) { return "没有key" }
-    return CryptoJS.AES.decrypt(input, key).toString(CryptoJS.enc.Utf8)
+    for (let i = 0; i < GetHashRepeatTimes(); i++) {
+        input = CryptoJS.AES.decrypt(input, key).toString(CryptoJS.enc.Utf8)
+    }
+    return input
 })
 
 AddLine()
