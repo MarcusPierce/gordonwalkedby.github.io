@@ -15,11 +15,11 @@ Gordon Walkedby
 
 ![](/images/nz1.jpg)   
 
-捐助戈登的渠道已经关闭，请不要浪费钱了。[原来的捐款感谢列表在这里](https://shimo.im/sheets/C8kH6hHyvtvqPVJr/MODOC/)。  
+捐助戈登的渠道已经关闭，请不要浪费钱了。    
 
 # 联系戈登
 - EMAIL： 使用下面的 GPG 公钥对应的邮箱即可
-- [石墨文档匿名留言，无需注册登录](https://shimo.im/forms/WgWqrRWWjTYRDqCR/fill)  
+- [腾讯问卷匿名留言，无需注册登录](https://wj.qq.com/s2/8918834/6960/)  
 - [新浪微博： @戈登走過去](https://m.weibo.cn/u/5977985000)
 - [Twitter： @GDZGQ](https://twitter.com/GDZGQ)
 
