@@ -125,7 +125,7 @@
         sb.Append(WebsiteTitle)
         sb.Append("</title>")
         sb.Append("<meta name=""description"" content=""")
-        Dim preview = a.TextContent.Replace(vbCr, " ").Replace(vbLf, " ").Trim
+        Dim preview = a.TextContent
         If preview.Length > 100 Then
             preview = preview.Substring(0, 90)
         End If

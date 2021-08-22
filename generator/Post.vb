@@ -224,6 +224,10 @@ Public Class Post
             out.HTMLContent = Markdown.ToHtml(content)
             out.TextContent = Markdown.ToPlainText(content)
         End If
+        Static textFormatreg As New Regex("( |\r|\n|\t)+", RegexOptions.Compiled And RegexOptions.Singleline)
+        If Not String.IsNullOrEmpty(out.TextContent) Then
+            out.TextContent = textFormatreg.Replace(out.TextContent, " ").Trim()
+        End If
         Return out
     End Function
 
