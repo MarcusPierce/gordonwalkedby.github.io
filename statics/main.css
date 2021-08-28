@@ -173,16 +173,18 @@ header {
 .articleContent td,
 .articleContent table {
     border: 1px solid black;
+    border-spacing: 0px;
 }
 
 .articleContent table {
-    display: block;
+    display: table;
     max-width: 98%;
     overflow: auto;
 }
 
 .articleContent td {
     padding: 5px;
+    text-align: center;
 }
 
 .articleContent pre {
