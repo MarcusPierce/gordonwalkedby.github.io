@@ -13,7 +13,7 @@ Gordon Walkedby
 - 做视频，写程序，发文章都是业余爱好，最喜欢 VB .NET 以及 TypeScript
 - 家暴受害者，已和父母断开联系
 
-![](/images/nz1.jpg)   
+![](/images/tx.jpg)   
 
 捐助戈登的渠道已经关闭，请不要浪费钱了。    
 
