@@ -49,7 +49,7 @@ sudo systemctl enable libvirtd.service
 sudo systemctl restart libvirtd.service
 ```
 
-# 只能或者最好别从apt下载的软件
+# 不能或者最好别从apt下载的软件
 - [ThunderBird](https://www.thunderbird.net/en-US/)
 - [LibreOffice](https://www.libreoffice.org/download/download/)
 - [搜狗拼音](https://pinyin.sogou.com/linux/?r=pinyin)
