@@ -76,3 +76,6 @@ glmark2 -s 1920x1080
 # AppImage 文件是可以被解压的，将文件设置为可执行之后添加这个参数即可
 ./xx.AppImage --appimage-extract
 ```
+如果硬要安装官网版本的 amd gpu 驱动，需要参考两个网址： 
+- [RX 5500 XT 驱动下载](https://www.amd.com/zh-hans/support/graphics/amd-radeon-5500-series/amd-radeon-rx-5500-series/amd-radeon-rx-5500-xt) 
+- [Linux 21.30 驱动下载](https://www.amd.com/zh-hant/support/kb/release-notes/rn-amdgpu-unified-linux-21-30)     
