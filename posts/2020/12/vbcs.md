@@ -8,7 +8,10 @@ tags: [.NET]
 
 [VB的关键词列表](https://docs.microsoft.com/zh-cn/dotnet/visual-basic/language-reference/keywords/)  
 [C#的关键词列表](https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/keywords/)  
-<table>
+
+建议手机用户横屏查看本表。   
+
+<table style="text-align:left;font-size:small;">
     <tbody>
         <tr>
             <th>

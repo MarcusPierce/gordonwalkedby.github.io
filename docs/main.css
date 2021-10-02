@@ -180,11 +180,13 @@ header {
     display: table;
     max-width: 98%;
     overflow: auto;
+    text-align: center;
 }
 
 .articleContent td {
     padding: 5px;
-    text-align: center;
+    overflow: inherit;
+    text-align: inherit;
 }
 
 .articleContent pre {
