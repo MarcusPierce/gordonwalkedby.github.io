@@ -9,6 +9,7 @@
     <meta name="keywords" content="戈登走過去,戈登走过去,走過去,戈登,Gordon,Walkedby,gordonwalkedby,树洞" />
     <meta name="generator" content="戈登自己用 Visual Basic .Net Core 写的镜态站生成器" />
     <meta name="author" content="戈登走過去" />
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script>
     <title>VB与C#的性能粗略对比 - 戈登走過去的树洞</title><meta name="description" content="今天闲来无事，写了一些代码来测试 Visual Basic .NET 和 C# 之间的性能差异。 先说一下，我水平不高，不懂高级或者说深度的分析，只会简单写点测试用的代码，然后看看..." />
 </head>
@@ -38,41 +39,41 @@
     <h1 class="articleTitle">VB与C#的性能粗略对比</h1>
     <time class="articleTime" datetime="2021-08-28T00:00:00.000+0800">2021 年 08 月 28 日 星期六</time>
     <div class="articleContent"><p>今天闲来无事，写了一些代码来测试 Visual Basic .NET 和 C# 之间的性能差异。</p>
-<p>先说一下，我水平不高，不懂高级或者说深度的分析，只会简单写点测试用的代码，然后看看运行时间。<br />
+<p>先说一下，我水平不高，不懂高级或者说深度的分析，只会简单写点测试用的代码，然后看看运行时间。   <br />
 测试的源代码在 <a href="https://github.com/gordonwalkedby/VBCSperformanceCompare">github</a></p>
 <p>我以前一直认为他们两个应该实际上没有什么性能差异，直到我看了我自己亲手做出来的测试结果，我只能说微软真有你的（</p>
-<p>戈登一共设计了5个测试：<br />
-第一个测试：相同的API调用，计算20000以内的ULong质数，主要是<code>Mod</code>取余（C# 是<code>%</code>符号）运算。<br />
+<p>戈登一共设计了5个测试：   <br />
+第一个测试：相同的API调用，计算20000以内的ULong质数，主要是<code>Mod</code>取余（C# 是<code>%</code>符号）运算。   <br />
 运行5次，给出总用时。</p>
-<p>第二个测试：相同的API调用，读取同一个120MB左右的文件，Buffer 大小都是1024 Byte，不需要存储，直接读取到末尾。<br />
+<p>第二个测试：相同的API调用，读取同一个120MB左右的文件，Buffer 大小都是1024 Byte，不需要存储，直接读取到末尾。    <br />
 运行5次，给出总用时。</p>
-<p>第三个测试：相同的API调用，使用同样的种子初始化一个 Random。<br />
-生成一个 0-255 之间的 <code>Int32</code>，然后转换到 <code>Byte</code> ，再到 <code>Int64</code>，再到 <code>UInt32</code>，再到 <code>Single</code>，再到 <code>Int16</code>，再到 <code>Double</code>。<br />
-每一步转换都是原值的 <code>toString()</code> 被目标类型 <code>Parse()</code> 之后生成。<br />
+<p>第三个测试：相同的API调用，使用同样的种子初始化一个 Random。   <br />
+生成一个 0-255 之间的 <code>Int32</code>，然后转换到 <code>Byte</code> ，再到 <code>Int64</code>，再到 <code>UInt32</code>，再到 <code>Single</code>，再到 <code>Int16</code>，再到 <code>Double</code>。   <br />
+每一步转换都是原值的 <code>toString()</code> 被目标类型 <code>Parse()</code> 之后生成。   <br />
 重复以上运作654321次，并把每次的结果Append到同一个StringBuilder 后，输出总用时。</p>
-<p>第四个测试：和测试三相同的转换流程，只是每步转换的操作都是强制显示转换。<br />
+<p>第四个测试：和测试三相同的转换流程，只是每步转换的操作都是强制显示转换。   <br />
 比如，在C#里是 <code>(int)p1</code>，在VB里是 <code>CInt(p1)</code>。</p>
-<p>第五个测试：按从早到晚的顺序把1900年1月1日到2900年1月1日这之间的每一天的Date值格式化到字符串，目标格式为：<code>yyyy年MM月dd日</code>，并且在这个字符串的后面加对应的 DayOfWeek 个空格。<br />
-准备一个空字符串，把每次新生成的字符串添加到这个准备好的字符串的后面。<br />
-每当组合起来的字符串的长度大于1000的时候，就只保留字符串末尾的500个字符，删去前面的内容。<br />
-结束后，输出总用时。<br />
+<p>第五个测试：按从早到晚的顺序把1900年1月1日到2900年1月1日这之间的每一天的Date值格式化到字符串，目标格式为：<code>yyyy年MM月dd日</code>，并且在这个字符串的后面加对应的 DayOfWeek 个空格。   <br />
+准备一个空字符串，把每次新生成的字符串添加到这个准备好的字符串的后面。   <br />
+每当组合起来的字符串的长度大于1000的时候，就只保留字符串末尾的500个字符，删去前面的内容。    <br />
+结束后，输出总用时。    <br />
 而在这个测试中，C# 直接使用 String 数值类型，VB 要尽可能使用 <a href="https://docs.microsoft.com/zh-cn/dotnet/visual-basic/language-reference/runtime-library-members">Microsoft.VisualBasic</a> 命名空间里的函数。</p>
-<p>下面是两次测试结果，一次是我自己的电脑，一次是 <a href="https://github.com/gordonwalkedby/VBCSperformanceCompare/actions">github Actions</a> 帮我测试的：<br />
-单位是毫秒，相比值是VB的用时除以C#的用时的百分比。<br />
-<img src="https://z3.ax1x.com/2021/08/28/h3YEND.png" alt="" /><br />
+<p>下面是两次测试结果，一次是我自己的电脑，一次是 <a href="https://github.com/gordonwalkedby/VBCSperformanceCompare/actions">github Actions</a> 帮我测试的：   <br />
+单位是毫秒，相比值是VB的用时除以C#的用时的百分比。   <br />
+<img src="https://z3.ax1x.com/2021/08/28/h3YEND.png" alt="" />   <br />
 我跑了多次测试，得到的结果基本上就是图中这样。</p>
-<p>测试1的VB花了几乎三倍于C#的时间才完成。<br />
-我看了一下 ILSPY 反编译出来的代码，发现 vb 的<code>If v Mod p = 0 Then</code>被翻译成了：<br />
-<code>if (decimal.Compare(new decimal(v % p), 0m) == 0)</code><br />
-哇草，这么转换数字类型，能不慢吗？？？<br />
+<p>测试1的VB花了几乎三倍于C#的时间才完成。   <br />
+我看了一下 ILSPY 反编译出来的代码，发现 vb 的<code>If v Mod p = 0 Then</code>被翻译成了：   <br />
+<code>if (decimal.Compare(new decimal(v % p), 0m) == 0)</code>    <br />
+哇草，这么转换数字类型，能不慢吗？？？     <br />
 而且测试1速度差距的比例在 .NET 5 和 .NET Framework 4.8 上差不多，说明在语言的内部设计上，微软一直保留了VB的这种弱势或者说缺点。</p>
-<p>测试2、测试3和测试4，VB 和 C# 的用时基本一致。<br />
+<p>测试2、测试3和测试4，VB 和 C# 的用时基本一致。   <br />
 IO、数据类型转换应该问题不大（</p>
-<p>测试5主要是看看那些从 VB6 继承来的函数到二十多年后的今天跑的怎么样。<br />
-虽然 <a href="https://docs.microsoft.com/zh-cn/dotnet/visual-basic/language-reference/runtime-library-members">Microsoft.VisualBasic</a> 应该只是二次封装，但是没有想到在 .NET Framework 上性能居然还可以反超 C# 用 <code>System</code> 的代码。<br />
-在 .NET Core 早期版本里，VB 的命名空间下几乎没有几个函数，现在丰富起来之后性能反而下落了。（那你tm就不能干脆别恢复这个命名空间吗<br />
+<p>测试5主要是看看那些从 VB6 继承来的函数到二十多年后的今天跑的怎么样。   <br />
+虽然 <a href="https://docs.microsoft.com/zh-cn/dotnet/visual-basic/language-reference/runtime-library-members">Microsoft.VisualBasic</a> 应该只是二次封装，但是没有想到在 .NET Framework 上性能居然还可以反超 C# 用 <code>System</code> 的代码。  <br />
+在 .NET Core 早期版本里，VB 的命名空间下几乎没有几个函数，现在丰富起来之后性能反而下落了。（那你tm就不能干脆别恢复这个命名空间吗   <br />
 <img src="https://z3.ax1x.com/2021/08/28/h31Ui9.png" alt="" /></p>
-<p>从整体上来看，VB的性能和C#比只是略有损失。<br />
+<p>从整体上来看，VB的性能和C#比只是略有损失。   <br />
 但是从代码能跑的地方来看，VB只能跑个桌面端，微软把web端和移动端的新技术好东西全部给 C# 了，VB成了一个勉强兼容的产物（</p>
 <p>替VB哭哭。</p>
 </div>

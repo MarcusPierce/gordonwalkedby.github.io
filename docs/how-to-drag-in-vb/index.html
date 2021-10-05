@@ -9,6 +9,7 @@
     <meta name="keywords" content="戈登走過去,戈登走过去,走過去,戈登,Gordon,Walkedby,gordonwalkedby,树洞" />
     <meta name="generator" content="戈登自己用 Visual Basic .Net Core 写的镜态站生成器" />
     <meta name="author" content="戈登走過去" />
+    <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script>
     <title>在 VB.NET 里进行文件拖入和拖出的方法 - 戈登走過去的树洞</title><meta name="description" content="写此文的实际目的：我自己会忘记，给我自己用的。（误） 不得不说， Drag 真的是世界上最舒服的操作了，没什么比文件拽来拽去更省事的了。 之前看了一些讲解这个方面的文章，然后觉得都..." />
 </head>
@@ -37,16 +38,16 @@
         <div class="articleFull">
     <h1 class="articleTitle">在 VB.NET 里进行文件拖入和拖出的方法</h1>
     <time class="articleTime" datetime="2018-01-06T00:00:00.000+0800">2018 年 01 月 06 日 星期六</time>
-    <div class="articleContent"><p>写此文的实际目的：我自己会忘记，给我自己用的。（误）<br />
-不得不说， Drag 真的是世界上最舒服的操作了，没什么比文件拽来拽去更省事的了。<br />
-之前看了一些讲解这个方面的文章，然后觉得都神了，简单的东西都给他们说的这么复杂。（害我当初也学了老久）<br />
+    <div class="articleContent"><p>写此文的实际目的：我自己会忘记，给我自己用的。（误）  <br />
+不得不说， Drag 真的是世界上最舒服的操作了，没什么比文件拽来拽去更省事的了。  <br />
+之前看了一些讲解这个方面的文章，然后觉得都神了，简单的东西都给他们说的这么复杂。（害我当初也学了老久）  <br />
 注意：我用的是 .NET Framework Winform。</p>
 <hr />
-<p>下面用例子先说明怎么拖入文件：<br />
-假设我需要把一排的文件拖入到一个列表里。<br />
-新增一个 ListBox 来放文件，我给起名叫 LB，然后把 AllowDrop 属性开成 True，这样才能让东西被拖进来。<br />
+<p>下面用例子先说明怎么拖入文件：  <br />
+假设我需要把一排的文件拖入到一个列表里。  <br />
+新增一个 ListBox 来放文件，我给起名叫 LB，然后把 AllowDrop 属性开成 True，这样才能让东西被拖进来。  <br />
 <img src="https://s1.ax1x.com/2018/01/06/pELw5t.png" alt="" /></p>
-<p>然后在代码里新增需要两个事件，分别对应拖放操作的鼠标移动进来和鼠标松开（东西丢下）。<br />
+<p>然后在代码里新增需要两个事件，分别对应拖放操作的鼠标移动进来和鼠标松开（东西丢下）。  <br />
 鼠标移动进来就是 DragEnter 事件，这里需要设置的是他的拖放效果。</p>
 <pre><code class="language-VB">    Private Sub LB_DragEnter(sender As Object, e As DragEventArgs) Handles LB.DragEnter
         e.Effect = DragDropEffects.Link '使用 link 就能获得拖入的东西的位置（目录）
@@ -59,20 +60,20 @@
         Next
     End Sub
 </code></pre>
-<p>如果你想过滤一些文件，只要对文件链接这个字符串进行过滤就行了，<br />
-如果想一拖入就读取文件的信息的话，也和 DragDrop 写在一起就是了。<br />
-实际效果：<br />
+<p>如果你想过滤一些文件，只要对文件链接这个字符串进行过滤就行了，  <br />
+如果想一拖入就读取文件的信息的话，也和 DragDrop 写在一起就是了。  <br />
+实际效果：  <br />
 <img src="https://s1.ax1x.com/2018/01/06/pEXW90.gif" alt="" /></p>
 <hr />
-<p>下面再来一个例子说明怎么拖出文件：<br />
-假设我需要把一个文本框里的信息直接拖出来变成 a.txt 。<br />
-首先来一个文本框，依然需要 AllowDrop = True 。<br />
-这里我用一个 RichTextBox ，起名叫 RR 好了。<br />
-<img src="https://s1.ax1x.com/2018/01/06/pEjCEd.png" alt="" /><br />
-什么？没有 AllowDrop ，我也很好奇为什么 RichTextBox 没有这个属性，这个直接在代码里写成 True 就是了。<br />
-<img src="https://s1.ax1x.com/2018/01/06/pEji4I.png" alt="" /><br />
-拖出和拖入不一样，拖入的本质是提取文件的位置为字符串，而拖出的本质是复制存在的文件到目的地，并不是让程序直接在目的地直接创造文件。<br />
-我们怎么拖出呢？我们直接从文本框里拖吧！省事！<br />
+<p>下面再来一个例子说明怎么拖出文件：  <br />
+假设我需要把一个文本框里的信息直接拖出来变成 a.txt 。  <br />
+首先来一个文本框，依然需要 AllowDrop = True 。  <br />
+这里我用一个 RichTextBox ，起名叫 RR 好了。  <br />
+<img src="https://s1.ax1x.com/2018/01/06/pEjCEd.png" alt="" />  <br />
+什么？没有 AllowDrop ，我也很好奇为什么 RichTextBox 没有这个属性，这个直接在代码里写成 True 就是了。  <br />
+<img src="https://s1.ax1x.com/2018/01/06/pEji4I.png" alt="" />  <br />
+拖出和拖入不一样，拖入的本质是提取文件的位置为字符串，而拖出的本质是复制存在的文件到目的地，并不是让程序直接在目的地直接创造文件。  <br />
+我们怎么拖出呢？我们直接从文本框里拖吧！省事！  <br />
 给文本框加一个 MouseDown 事件，让鼠标按住的时候可以拖放。</p>
 <pre><code class="language-VB">    Private Sub RR_MouseDown(sender As Object, e As MouseEventArgs) Handles RR.MouseDown
         '必须定义一个数组存储要复制的文件列表，这里就一个文件，所以为0
@@ -86,10 +87,10 @@
         File.Delete(s(0))
     End Sub
 </code></pre>
-<p>实际效果：<br />
-<img src="https://s1.ax1x.com/2018/01/06/pExOCn.gif" alt="" /><br />
+<p>实际效果：  <br />
+<img src="https://s1.ax1x.com/2018/01/06/pExOCn.gif" alt="" />  <br />
 当然，实际上是不鼓励你直接用一个文本框来拖拉的，因为那样的话你文本的选择也是个难题了。</p>
-<p>建议不要把拖入和拖出做在一起，要么加个去重的功能，否则你就等着看鼠标点一下自己拖一份复制给自己吧。<br />
+<p>建议不要把拖入和拖出做在一起，要么加个去重的功能，否则你就等着看鼠标点一下自己拖一份复制给自己吧。   <br />
 <img src="https://s1.ax1x.com/2018/01/06/pV94iQ.gif" alt="" /></p>
 </div>
     <hr class="articleEndLine">
