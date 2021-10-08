@@ -14,6 +14,7 @@ Gordon Walkedby
 - 家暴受害者，已和父母断开联系
 
 ![](/images/tx.jpg)   
+头像来源：[@teffish](https://twitter.com/teffish/status/1446378306736050180)   
 
 捐助戈登的渠道已经关闭，请不要浪费钱了。    
 
