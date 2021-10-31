@@ -23,8 +23,8 @@ a:hover {
 header {
     background-color: black;
     color: white;
-    background: #3494E6;
-    background: linear-gradient(to right, #EC6EAD, #3494E6);
+    background: #141E30;  
+    background: linear-gradient(to right, #243B55, #141E30); 
 }
 
 #headerCenter {
