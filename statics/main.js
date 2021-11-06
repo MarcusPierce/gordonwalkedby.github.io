@@ -39,8 +39,8 @@ const mainBody = document.getElementsByTagName("main")[0];
     divSort.appendChild(butViewAll);
     mainBody.appendChild(divSort);
     const SortTags = function (t) {
+        t = t.toLowerCase().replaceAll("#", "");
         const viewAll = t.length < 1;
-        t = t.toLowerCase();
         location.hash = t;
         posts.forEach(function (a) {
             const div = a.div;
@@ -71,16 +71,15 @@ const mainBody = document.getElementsByTagName("main")[0];
         time.innerText = a.ReleaseDateDisplayStr;
         time.dateTime = a.ReleaseDateISOStr;
         box.appendChild(time);
-        box.appendChild(document.createElement("hr"));
         if (a.Tags.length > 0) {
             const divtags = document.createElement("div");
             divtags.className = "articleBox-tags";
             a.Tags.forEach(function (v) {
                 const tag = document.createElement("a");
-                tag.innerText = v;
+                tag.innerText = "#" + v;
                 tag.href = voidHref;
                 tag.addEventListener("click", function () {
-                    SortTags(this.innerText);
+                    SortTags(v);
                 });
                 divtags.appendChild(tag);
             });

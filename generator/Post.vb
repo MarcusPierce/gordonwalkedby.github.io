@@ -52,7 +52,7 @@ Public Class Post
                 Dim sb As New StringBuilder
                 For Each i In Tags
                     sb.Append("<a>")
-                    sb.Append(WebUtility.HtmlEncode(i))
+                    sb.Append(WebUtility.HtmlEncode("#" + i))
                     sb.Append("</a>")
                 Next
                 _tagshtml = sb.ToString
