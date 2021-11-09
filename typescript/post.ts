@@ -18,6 +18,30 @@
         js.addEventListener("load", function () {
             eval("hljs.highlightAll();")
         })
+        const None = "none"
+        const Block = "block"
+        const ShowCode = "显示代码"
+        const HideCode = "隐藏代码"
+        codelist.forEach(function (v) {
+            const pre = v.parentElement as HTMLPreElement
+            const txt = pre.innerText
+            if (txt.length > 500 || txt.split("\n").length > 9) {
+                const but = document.createElement("button")
+                but.innerText = ShowCode
+                but.addEventListener("click", function () {
+                    if (pre.style.display == None) {
+                        pre.style.display = Block
+                        but.innerText = HideCode
+                    } else {
+                        pre.style.display = None
+                        but.innerText = ShowCode
+                    }
+                })
+                but.style.display = Block
+                pre.style.display = None
+                divcontent.insertBefore(but, pre)
+            }
+        })
     }
     const divtags = document.getElementsByClassName("articleTags")[0]
     if (divtags != null) {

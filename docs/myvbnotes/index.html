@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/main.css" rel="stylesheet">
+    <link href="/atom.xml" rel="alternate" type="application/atom+xml" title="戈登走過去的树洞" />
+    <meta name="keywords" content="戈登走過去,戈登走过去,走過去,戈登,Gordon,Walkedby,gordonwalkedby,树洞" />
+    <meta name="generator" content="戈登自己用 Visual Basic .Net Core 写的镜态站生成器" />
+    <meta name="author" content="戈登走過去" />
+    <link rel="icon" type="image/jpeg" href="/images/tx.jpg" />
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script>
+    <title>我的 VB 函数备份 - 戈登走過去的树洞</title><meta name="description" content="把数据进行二维表分割 以tab为分隔符，以CR或者LF为换行符，第一行为表头，通常是处理excel复制出来的文本用的 此处不支持单元格内的回车或tab符 Public Functi..." />
+</head>
+
+<body>
+    <header>
+        <div id="headerCenter">
+            <h1><a href="/">戈登走過去的树洞</a></h1>
+            <nav>
+                <a href="/rsss">RSS</a>
+                <a href="/search">搜索</a>
+                <a href="/about">关于</a>
+                <a href="https://wj.qq.com/s2/8918834/6960/">匿名留言</a>
+                <a href="https://m.weibo.cn/u/5977985000">微博</a>
+                <a href="https://space.bilibili.com/4523834">B站</a>
+                <a href="https://twitter.com/GDZGQ">Twitter</a>              
+                <br>
+                <a href="https://www.0xaa55.com/">技术宅的结界</a>
+                <a href="https://blog.853lab.com/">Sonic853</a>
+                <a href="https://blog.acesheep.com/">AceSheep</a>
+            </nav>
+        </div>
+    </header>
+    <div id="removeWhenSuccess">如果你可以看见我，说明本网页的 JavaScript 加载不顺利。</div>
+    <main>
+        <div class="articleFull">
+    <h1 class="articleTitle">我的 VB 函数备份</h1>
+    <time class="articleTime" datetime="2021-11-09T00:00:00.000+0800">2021 年 11 月 09 日 星期二</time>
+    <div class="articleContent"><h1>把数据进行二维表分割</h1>
+<p>以tab为分隔符，以CR或者LF为换行符，第一行为表头，通常是处理excel复制出来的文本用的    <br />
+此处不支持单元格内的回车或tab符</p>
+<pre><code class="language-vb">Public Function ParseDataAsLines(txt As String) As String()
+    If String.IsNullOrWhiteSpace(txt) Then Return Nothing
+    Dim lines = txt.Replace(vbCrLf, vbLf).Split({vbLf, vbCr}, StringSplitOptions.RemoveEmptyEntries)
+    If lines.Length &gt; 0 Then Return lines
+    Return Nothing
+End Function
+Public Function ParseDataAsTable(txt As String) As List(Of Dictionary(Of String, String))
+    Dim lines = ParseDataAsLines(txt)
+    If lines Is Nothing Then Return Nothing
+    Dim firstLine As Boolean = True
+    Dim headers As New List(Of String)
+    Dim out As New List(Of Dictionary(Of String, String))
+    For Each i In lines
+        If String.IsNullOrWhiteSpace(i) Then
+            Continue For
+        End If
+        Dim values = i.Split({vbTab}, StringSplitOptions.None)
+        Dim repeatId As Integer = 1
+        Dim dc As New Dictionary(Of String, String)
+        For index = 0 To values.Length - 1
+            Dim v = values(index)
+            If firstLine Then
+                v = v.Trim
+                If String.IsNullOrWhiteSpace(v) Then
+                    v = &quot;_&quot;
+                End If
+                If headers.Contains(v) Then
+                    v &amp;= repeatId
+                    repeatId += 1
+                End If
+                headers.Add(v)
+            Else
+                If index &gt;= headers.Count Then
+                    Exit For
+                End If
+                dc.Add(headers.Item(index), v)
+            End If
+        Next
+        If dc.Count &gt; 0 Then
+            out.Add(dc)
+        End If
+        firstLine = False
+    Next
+    If out.Count &gt; 0 Then
+        Return out
+    End If
+    Return Nothing
+End Function
+</code></pre>
+<h1>一些常用的 Windows Forms native 操作</h1>
+<pre><code class="language-vb">&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;FindWindow&quot;)&gt;
+Private Function WIN32FindWindow(lpClassName As String, lpWindowName As String) As IntPtr
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;FindWindow&quot;)&gt;
+Private Function WIN32FindWindowByClass(lpClassName As String, zero As IntPtr) As IntPtr
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;FindWindow&quot;)&gt;
+Private Function WIN32FindWindowByCaption(zero As IntPtr, lpWindowName As String) As IntPtr
+End Function
+
+Public Function FindWindowHwnd(ClassName As String, WindowTitle As String) As IntPtr
+    Dim zero = IntPtr.Zero
+    If ClassName Is Nothing Then
+        If WindowTitle Is Nothing Then
+            Return zero
+        Else
+            Return WIN32FindWindowByCaption(zero, WindowTitle)
+        End If
+    End If
+    If WindowTitle Is Nothing Then
+        If ClassName Is Nothing Then
+            Return zero
+        Else
+            Return WIN32FindWindowByClass(ClassName, zero)
+        End If
+    End If
+    Return WIN32FindWindow(ClassName, WindowTitle)
+End Function
+
+Public Delegate Sub EnumWindowsProc(targetHandle As IntPtr, ByRef lParam As Integer)
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;EnumChildWindows&quot;, CharSet:=CharSet.Auto)&gt;
+Public Function WIN32EnumChildWindows(parentHandle As IntPtr, lpEnumFunc As EnumWindowsProc, ByRef lParam As Integer) As Boolean
+End Function
+
+Public Function GetAllChildWindowsHwnd(parentHandle As IntPtr) As List(Of IntPtr)
+    Dim out As New List(Of IntPtr)
+    Dim proc As New EnumWindowsProc(Sub(targetHandle As IntPtr, ByRef lParam As Integer)
+                                        out.Add(targetHandle)
+                                    End Sub)
+    WIN32EnumChildWindows(parentHandle, proc, 0)
+    If out.Count &gt; 0 Then
+        Return out
+    End If
+    Return Nothing
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;SetWindowText&quot;)&gt;
+Public Function SetWindowText(targetHandle As IntPtr, lpString As String) As Boolean
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;SendMessage&quot;)&gt;
+Private Function WIN32SendMessage(targetHandle As IntPtr, MsgID As Integer, wParam As Integer, lParam As Integer) As Integer
+End Function
+
+Public Function PerformControlClick(targetHandle As IntPtr) As Boolean
+    Const WM_LBUTTONDOWN = &amp;H201
+    Const WM_LBUTTONUP = &amp;H202
+    Dim a = WIN32SendMessage(targetHandle, WM_LBUTTONDOWN, 0, 0)
+    Dim b = WIN32SendMessage(targetHandle, WM_LBUTTONUP, 0, 0)
+    Return b &lt;&gt; 0
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;GetWindowText&quot;)&gt;
+Private Function WIN32GetWindowText(targetHandle As IntPtr, lpString As StringBuilder, nMaxCount As Integer) As Integer
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;GetWindowTextLength&quot;)&gt;
+Private Function WIN32GetWindowTextLength(targetHandle As IntPtr) As Integer
+End Function
+
+Public Function GetWindowTitle(targetHandle As IntPtr) As String
+    Dim len = WIN32GetWindowTextLength(targetHandle)
+    If len &gt; 0 Then
+        Dim sb As New StringBuilder(String.Empty, len)
+        WIN32GetWindowText(targetHandle, sb, len + 1)
+        Return sb.ToString.Trim
+    End If
+    Return String.Empty
+End Function
+
+&lt;DllImport(&quot;user32&quot;, EntryPoint:=&quot;SendMessage&quot;)&gt;
+Private Function WIN32SendMessage(targetHandle As IntPtr, MsgID As Integer, wParam As Integer, lParam As StringBuilder) As Integer
+End Function
+
+Public Function GetControlText(targetHandle As IntPtr) As String
+    Const WM_GETTEXTLENGTH = &amp;HE
+    Dim len = WIN32SendMessage(targetHandle, WM_GETTEXTLENGTH， 0， 0)
+    If len &lt; 1 Then Return String.Empty
+    Const WM_GETTEXT = &amp;HD
+    Dim sb As New StringBuilder(String.Empty, len)
+    WIN32SendMessage(targetHandle, WM_GETTEXT, len + 1, sb)
+    Return sb.ToString.Trim
+End Function
+</code></pre>
+</div>
+    <hr class="articleEndLine">
+    <div class="articleTags"><a>#.net</a></div>
+</div>
+        <script src="/main.js"></script>
+    </main>
+</body>
+
+</html>

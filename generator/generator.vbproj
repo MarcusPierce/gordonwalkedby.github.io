@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RootNamespace>generator</RootNamespace>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Description>戈登走過去自己用的博客镜头站生成器。</Description>
     <OptionStrict>On</OptionStrict>
   </PropertyGroup>
