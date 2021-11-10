@@ -6,6 +6,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Description>戈登走過去自己用的博客镜头站生成器。</Description>
     <OptionStrict>On</OptionStrict>
+      <LangVersion>latest</LangVersion>
+      <StartupObject>Sub Main</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

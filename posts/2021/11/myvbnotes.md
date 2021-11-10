@@ -59,35 +59,35 @@ End Function
 
 # 一些常用的 Windows Forms native 操作
 ```vb
-<DllImport("user32", EntryPoint:="FindWindow")>
-Private Function WIN32FindWindow(lpClassName As String, lpWindowName As String) As IntPtr
+<DllImport("user32", EntryPoint:="FindWindowEx")>
+Private Function WIN32FindWindow(parentWindow As IntPtr, searchAfter As IntPtr, lpClassName As String, lpWindowName As String) As IntPtr
 End Function
 
-<DllImport("user32", EntryPoint:="FindWindow")>
-Private Function WIN32FindWindowByClass(lpClassName As String, zero As IntPtr) As IntPtr
+<DllImport("user32", EntryPoint:="FindWindowEx")>
+Private Function WIN32FindWindowByClass(parentWindow As IntPtr, searchAfter As IntPtr, lpClassName As String, zero As IntPtr) As IntPtr
 End Function
 
-<DllImport("user32", EntryPoint:="FindWindow")>
-Private Function WIN32FindWindowByCaption(zero As IntPtr, lpWindowName As String) As IntPtr
+<DllImport("user32", EntryPoint:="FindWindowEx")>
+Private Function WIN32FindWindowByCaption(parentWindow As IntPtr, searchAfter As IntPtr, zero As IntPtr, lpWindowName As String) As IntPtr
 End Function
 
-Public Function FindWindowHwnd(ClassName As String, WindowTitle As String) As IntPtr
+Public Function FindWindowHwnd(ClassName As String, WindowTitle As String, Optional parentWindow As IntPtr = Nothing, Optional searchAfter As IntPtr = Nothing) As IntPtr
     Dim zero = IntPtr.Zero
     If ClassName Is Nothing Then
         If WindowTitle Is Nothing Then
             Return zero
         Else
-            Return WIN32FindWindowByCaption(zero, WindowTitle)
+            Return WIN32FindWindowByCaption(parentWindow, searchAfter, zero, WindowTitle)
         End If
     End If
     If WindowTitle Is Nothing Then
         If ClassName Is Nothing Then
             Return zero
         Else
-            Return WIN32FindWindowByClass(ClassName, zero)
+            Return WIN32FindWindowByClass(parentWindow, searchAfter, ClassName, zero)
         End If
     End If
-    Return WIN32FindWindow(ClassName, WindowTitle)
+    Return WIN32FindWindow(parentWindow, searchAfter, ClassName, WindowTitle)
 End Function
 
 Public Delegate Sub EnumWindowsProc(targetHandle As IntPtr, ByRef lParam As Integer)
@@ -115,13 +115,14 @@ End Function
 Private Function WIN32SendMessage(targetHandle As IntPtr, MsgID As Integer, wParam As Integer, lParam As Integer) As Integer
 End Function
 
-Public Function PerformControlClick(targetHandle As IntPtr) As Boolean
+Public Sub PerformControlClick(targetHandle As IntPtr, X As Integer, Y As Integer)
     Const WM_LBUTTONDOWN = &H201
     Const WM_LBUTTONUP = &H202
-    Dim a = WIN32SendMessage(targetHandle, WM_LBUTTONDOWN, 0, 0)
-    Dim b = WIN32SendMessage(targetHandle, WM_LBUTTONUP, 0, 0)
-    Return b <> 0
-End Function
+    Dim v As Integer = Y << 16
+    v += X
+    WIN32SendMessage(targetHandle, WM_LBUTTONDOWN, 0, v)
+    WIN32SendMessage(targetHandle, WM_LBUTTONUP, 0, v)
+End Sub
 
 <DllImport("user32", EntryPoint:="GetWindowText")>
 Private Function WIN32GetWindowText(targetHandle As IntPtr, lpString As StringBuilder, nMaxCount As Integer) As Integer

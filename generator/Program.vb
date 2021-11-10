@@ -97,7 +97,7 @@
     Sub CreateNewPost(name As String)
         CheckNewPostName(name)
         Dim time = Date.Now
-        Dim dic = Path.Combine(PostsFolder.FullName, time.ToString("yyyy/MM"))
+        Dim dic = Path.Combine(PostsFolder.FullName, time.ToString("yyyy"), time.ToString("MM"))
         If Directory.Exists(dic) = False Then
             Directory.CreateDirectory(dic)
         End If

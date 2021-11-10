@@ -1,2 +1,2 @@
 Set-Location $PSScriptRoot
-dotnet "./generator/bin/Debug/netcoreapp3.1/generator.dll" $args
+dotnet "./generator/bin/Debug/net6.0/generator.dll" $args

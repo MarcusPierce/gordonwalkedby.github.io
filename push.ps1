@@ -3,7 +3,7 @@ $docs = "./docs/"
 if (Test-Path -Path $docs) {
     Remove-Item -Path $docs -Recurse -Force
 }
-dotnet "./generator/bin/Debug/netcoreapp3.1/generator.dll" g
+dotnet "./generator/bin/Debug/net6.0/generator.dll" g
 Set-Location $PSScriptRoot
 $xml = Get-Item -Path ($docs + "atom.xml")
 if ($xml.Exists -and $xml.Length -gt 2000 ) {
