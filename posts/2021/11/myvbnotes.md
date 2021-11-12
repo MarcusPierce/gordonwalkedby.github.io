@@ -107,21 +107,33 @@ Public Function GetAllChildWindowsHwnd(parentHandle As IntPtr) As List(Of IntPtr
     Return Nothing
 End Function
 
-<DllImport("user32", EntryPoint:="SetWindowText")>
-Public Function SetWindowText(targetHandle As IntPtr, lpString As String) As Boolean
+<DllImport("user32", EntryPoint:="GetClassName", CharSet:=CharSet.Auto)>
+Private Function WIN32GetClassName(hWnd As IntPtr, lpClassName As StringBuilder, nMaxCount As Integer) As Integer
+End Function
+
+Public Function GetWindowClassName(targetHandle As IntPtr, Optional buffer As Integer = 256) As String
+    Dim sb As New StringBuilder(String.Empty, buffer)
+    WIN32GetClassName(targetHandle, sb, buffer)
+    Dim a = sb.ToString.Trim
+    Return a
 End Function
 
 <DllImport("user32", EntryPoint:="SendMessage")>
 Private Function WIN32SendMessage(targetHandle As IntPtr, MsgID As Integer, wParam As Integer, lParam As Integer) As Integer
 End Function
 
-Public Sub PerformControlClick(targetHandle As IntPtr, X As Integer, Y As Integer)
-    Const WM_LBUTTONDOWN = &H201
-    Const WM_LBUTTONUP = &H202
-    Dim v As Integer = Y << 16
-    v += X
-    WIN32SendMessage(targetHandle, WM_LBUTTONDOWN, 0, v)
-    WIN32SendMessage(targetHandle, WM_LBUTTONUP, 0, v)
+<DllImport("user32", EntryPoint:="SendMessage", CharSet:=CharSet.Unicode)>
+Private Function WIN32SendMessage(targetHandle As IntPtr, MsgID As Integer, wParam As Integer, <MarshalAs(UnmanagedType.LPWStr)> lParam As String) As Integer
+End Function
+
+<DllImport("user32", EntryPoint:="SetWindowText")>
+Public Function SetWindowTitle(targetHandle As IntPtr, lpString As String) As Boolean
+End Function
+
+Public Sub SetWindowText(targetHandle As IntPtr, text As String)
+    Const WM_SETTEXT = &HC
+    WIN32SendMessage(targetHandle, WM_SETTEXT, 0, text)
+    SetWindowTitle(targetHandle, text)
 End Sub
 
 <DllImport("user32", EntryPoint:="GetWindowText")>
@@ -155,5 +167,71 @@ Public Function GetControlText(targetHandle As IntPtr) As String
     WIN32SendMessage(targetHandle, WM_GETTEXT, len + 1, sb)
     Return sb.ToString.Trim
 End Function
+
+<DllImport("user32", EntryPoint:="GetWindowRect")>
+Private Function WIN32GetWindowRect(targetHandle As IntPtr, ByRef lpRect As WIN32RECT) As Integer
+End Function
+
+<StructLayout(LayoutKind.Sequential)>
+Public Structure WIN32RECT
+    Public Left As Integer
+    Public Top As Integer
+    Public Right As Integer
+    Public Bottom As Integer
+End Structure
+
+Public Function GetWindowRect(targetHandle As IntPtr) As System.Drawing.Rectangle
+    Dim r As New WIN32RECT
+    Dim v = WIN32GetWindowRect(targetHandle, r)
+    If v = 0 Then
+        Return Rectangle.Empty
+    End If
+    Dim w = r.Right - r.Left
+    Dim h = r.Bottom - r.Top
+    Return New Rectangle(r.Left, r.Top, w, h)
+End Function
+
+<DllImport("user32", EntryPoint:="SetWindowPos")>
+Private Function WIN32SetWindowPos(targetHandle As IntPtr, hWndlnsertAfter As Integer, X As Integer, Y As Integer, width As Integer, height As Integer, uflags As Integer) As Integer
+End Function
+
+Public Function MakeWindowTopMost(targetHandle As IntPtr, X As Integer, Y As Integer, width As Integer, height As Integer) As Boolean
+    Return WIN32SetWindowPos(targetHandle, -1, X, Y, width, height, &H40) <> 0
+End Function
 ```
 
+# 模拟鼠标点击
+```vb
+<DllImport("user32", EntryPoint:="mouse_event")>
+Private Sub WIN32mouse_event(flag As Integer, x As Integer, y As Integer, data As Integer, info As Integer)
+End Sub
+
+Public Sub PerformMouseClick(x As Integer, y As Integer, Optional rightClick As Boolean = False, Optional holdTime As Integer = 100)
+    Static w As Integer = 0, h As Integer = 0
+    If w < 1 Then
+        Dim pc As New Microsoft.VisualBasic.Devices.Computer
+        Dim screenSize = pc.Screen.Bounds
+        w = screenSize.Width
+        h = screenSize.Height
+    End If
+    Const MOUSEEVENTF_MOVE = &H1
+    Const MOUSEEVENTF_LEFTDOWN = &H2
+    Const MOUSEEVENTF_LEFTUP = &H4
+    Const MOUSEEVENTF_RIGHTDOWN = &H8
+    Const MOUSEEVENTF_RIGHTUP = &H10
+    Const MOUSEEVENTF_ABSOLUTE = &H8000
+    Dim f1 = MOUSEEVENTF_LEFTDOWN
+    Dim f2 = MOUSEEVENTF_LEFTUP
+    If rightClick Then
+        f1 = MOUSEEVENTF_RIGHTDOWN
+        f2 = MOUSEEVENTF_RIGHTUP
+    End If
+    f1 = MOUSEEVENTF_MOVE Or MOUSEEVENTF_ABSOLUTE Or f1
+    f2 = MOUSEEVENTF_MOVE Or MOUSEEVENTF_ABSOLUTE Or f2
+    x = CInt(65535 * x / w)
+    y = CInt(65535 * y / h)
+    WIN32mouse_event(f1, x, y, 0, 0)
+    Thread.Sleep(holdTime)
+    WIN32mouse_event(f2, x, y, 0, 0)
+End Sub
+```
