@@ -201,3 +201,11 @@ header {
     text-align: center;
     display: block;
 }
+
+.beforeCodeBlock {
+    display: block;
+}
+
+.beforeCodeBlock button{
+    margin-right: 15px;
+}

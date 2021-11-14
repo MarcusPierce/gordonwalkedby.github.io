@@ -26,8 +26,7 @@ Gordon Walkedby
 
 # 戈登的 GPG 公钥
 
-<pre  id='gpgkey' style="display: none;">
-<code class="lang-plaintext">
+```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQGNBGBN3lsBDACtZkglP9oqyq3HgwENX1UHIQ2dOBvGZjsj7N6SkmaSp9mUOJhV
@@ -69,37 +68,4 @@ dBIcCFMfbpB2mdwApo58ZQs74XPHaLzxdpyhLWyiXNf8v7gyA+apG5R8AZV2+bzO
 i0zit5BaAAJSPPfy92wW574O5ob6rdK9gLTXPmICIXuqmrX5
 =r8MH
 -----END PGP PUBLIC KEY BLOCK-----
-</code>
-</pre>
-<button id="ButGPGkey">点我显示（隐藏）</button><br>
-<button id="ButCopyGPGkey">点我复制到剪贴板</button>
-<script>
-(function () {
-    const but = document.getElementById("ButGPGkey")
-    but.onclick = function () {
-        let pp = document.getElementById("gpgkey")
-        let n = "none"
-        if (pp.style.display == n) {
-            n = ""
-        }
-        pp.style.display = n
-    }
-    const but2 = document.getElementById("ButCopyGPGkey")
-    let lastTimeout = -1
-    but2.onclick = function () {
-        if (lastTimeout != -1) {
-            clearTimeout(lastTimeout)
-        }
-        let pp = document.getElementById("gpgkey")
-        let str = pp.innerText
-        if (str.length > 100) {
-            navigator.clipboard.writeText(str)
-        }
-        but2.innerText = "复制成功"
-        lastTimeout = setTimeout(function () {
-            but2.innerText = "点我复制到剪贴板"
-            lastTimeout = -1
-        }, 1000)
-    }
-})();
-</script>
+```

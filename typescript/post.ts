@@ -22,24 +22,49 @@
         const Block = "block"
         const ShowCode = "显示代码"
         const HideCode = "隐藏代码"
+        const CopyCode = "复制代码"
+        let cantCopy = navigator.clipboard == null
+        const AfterCopyCode = "复制成功！"
+        const CantCopyCode = "代码无法复制，浏览器不支持或没有开启HTTP"
         codelist.forEach(function (v) {
             const pre = v.parentElement as HTMLPreElement
             const txt = pre.innerText
             if (txt.length > 500 || txt.split("\n").length > 9) {
-                const but = document.createElement("button")
-                but.innerText = ShowCode
-                but.addEventListener("click", function () {
+                const divBefore = document.createElement("div")
+                divBefore.className = "beforeCodeBlock"
+                const butHide = document.createElement("button")
+                butHide.innerText = ShowCode
+                butHide.addEventListener("click", function () {
                     if (pre.style.display == None) {
                         pre.style.display = Block
-                        but.innerText = HideCode
+                        butHide.innerText = HideCode
                     } else {
                         pre.style.display = None
-                        but.innerText = ShowCode
+                        butHide.innerText = ShowCode
                     }
                 })
-                but.style.display = Block
+                const butCopy = document.createElement("button")
+                butCopy.innerText = CopyCode
+                let lastTimer = 0
+                butCopy.addEventListener("click", function () {        
+                    if (cantCopy) {
+                        butCopy.innerText = CantCopyCode
+                        return
+                    }
+                    navigator.clipboard.writeText(txt)
+                    butCopy.innerText = AfterCopyCode
+                    if (lastTimer != 0) {
+                        clearTimeout(lastTimer)
+                    }
+                    lastTimer = setTimeout(function () {
+                        butCopy.innerText = CopyCode
+                        lastTimer = 0
+                    }, 1300)
+                })
                 pre.style.display = None
-                divcontent.insertBefore(but, pre)
+                divBefore.appendChild(butHide)
+                divBefore.appendChild(butCopy)
+                divcontent.insertBefore(divBefore, pre)
             }
         })
     }
