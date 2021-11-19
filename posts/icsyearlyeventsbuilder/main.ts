@@ -137,7 +137,7 @@ butDownload.addEventListener("click", function () {
         })
     } else {
         evs.forEach(function (ev) {
-            let dt = new Date(thisYear, ev.Month, ev.Day)
+            let dt = new Date(thisYear, ev.Month - 1, ev.Day)
             out += "\n" + BuildVEVENT(dt, ev.Title, "RRULE:FREQ=YEARLY\n" + customProperties)
         })
     }
