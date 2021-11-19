@@ -1,7 +1,7 @@
 ---
 title: VB与C#的性能粗略对比
 date: 2021-08-28
-tags: [杂,.net]
+tags: [.net]
 ---
 今天闲来无事，写了一些代码来测试 Visual Basic .NET 和 C# 之间的性能差异。   
 

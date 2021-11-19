@@ -11,7 +11,7 @@
     <meta name="author" content="戈登走過去" />
     <link rel="icon" type="image/jpeg" href="/images/tx.jpg" />
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "caac368e0b344c98a3c1d683087fbb86"}'></script>
-    <title>简易 crypto-js Demo - 戈登走過去的树洞</title><meta name="description" content="重复次数： Key： 使用的 crypto-js build 来源：cdnjs..." />
+    <title>年度事件ics生成器 - 戈登走過去的树洞</title><meta name="description" content="标题后缀： 使用农历 在标题的后缀加上括号中文日期（几月初几） 农历事件持续的年份： 下面填写自定义的ics属性： &lt;textarea id=&quot;txtCustomProperty&quot;..." />
 </head>
 
 <body>
@@ -36,22 +36,30 @@
     <div id="removeWhenSuccess">如果你可以看见我，说明本网页的 JavaScript 加载不顺利。</div>
     <main>
         <div class="articleFull">
-    <h1 class="articleTitle">简易 crypto-js Demo</h1>
-    <time class="articleTime" datetime="2021-08-02T00:00:00.000+0800">2021 年 08 月 02 日 星期一</time>
-    <div class="articleContent">
-<textarea id="inputArea" style="display: block; width: 95%;height: 100px; resize: none;"></textarea>
-<div id="buttons">
-    <span>重复次数：</span> <input id="inputHashRepeatTimes" type="number" step="30" min="1" max="9999" value="1">
-    <br>
-    <span>Key：</span> <input id="inputKey" type="password" style="width: 50%;">
-    <br>
+    <h1 class="articleTitle">年度事件ics生成器</h1>
+    <time class="articleTime" datetime="2021-11-19T00:00:00.000+0800">2021 年 11 月 19 日 星期五</time>
+    <div class="articleContent"><div>标题后缀：<input id="txtTail" type="text" style="width: 70%;" maxlength="50"></div>
+<div><input id="checkUseLunar" type="checkbox">使用农历
+    <div id="LunarOptions" style="display: none;">
+        <input id="checkLunarTail" type="checkbox">在标题的后缀加上括号中文日期（几月初几）<br>
+        农历事件持续的年份：<input id="txtLunarYears" type="number" value="10" min="1" max="99"><br>
+    </div>
 </div>
-<textarea id="outputArea" style="display: block; width: 95%;height: 100px; resize: none;"></textarea>
-<br>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/quickhash.js"></script>
-
-使用的 crypto-js build 来源：<a href="https://cdnjs.com/libraries/crypto-js/4.0.0">cdnjs</a></div>
+<div>下面填写自定义的ics属性：</div>
+<textarea id="txtCustomProperty" style="resize: none;width: 90%;height: 100px; margin: 10px 1px; display: block;"
+    maxlength="2999">BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;VALUE=DURATION:-P1D
+DESCRIPTION:Default Mozilla Description
+END:VALARM</textarea>
+<div>下面填写你的年度日历事件表：</div>
+<textarea id="editor" style="resize: none;width: 90%;height: 260px; margin: 10px 1px; display: block;"
+    maxlength="29999">请按指定格式填写，一行一个：
+1-5 小白
+02-15 小李</textarea>
+<button id="butDownload">下载生成的.ics</button>
+<script src="/js/calendar.js"></script>
+<script src="/js/icsyearlyeventsbuilder.js"></script></div>
     <hr class="articleEndLine">
     <div class="articleTags"><a>#我的软件</a><a>#在线工具</a></div>
 </div>

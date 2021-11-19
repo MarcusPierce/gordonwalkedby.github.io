@@ -1,0 +1,27 @@
+<!--
+title: 年度事件ics生成器
+date: 2021-11-19
+tags: [我的软件,在线工具]
+-->
+<div>标题后缀：<input id="txtTail" type="text" style="width: 70%;" maxlength="50"></div>
+<div><input id="checkUseLunar" type="checkbox">使用农历
+    <div id="LunarOptions" style="display: none;">
+        <input id="checkLunarTail" type="checkbox">在标题的后缀加上括号中文日期（几月初几）<br>
+        农历事件持续的年份：<input id="txtLunarYears" type="number" value="10" min="1" max="99"><br>
+    </div>
+</div>
+<div>下面填写自定义的ics属性：</div>
+<textarea id="txtCustomProperty" style="resize: none;width: 90%;height: 100px; margin: 10px 1px; display: block;"
+    maxlength="2999">BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER;VALUE=DURATION:-P1D
+DESCRIPTION:Default Mozilla Description
+END:VALARM</textarea>
+<div>下面填写你的年度日历事件表：</div>
+<textarea id="editor" style="resize: none;width: 90%;height: 260px; margin: 10px 1px; display: block;"
+    maxlength="29999">请按指定格式填写，一行一个：
+1-5 小白
+02-15 小李</textarea>
+<button id="butDownload">下载生成的.ics</button>
+<script src="/js/calendar.js"></script>
+<script src="/js/icsyearlyeventsbuilder.js"></script>

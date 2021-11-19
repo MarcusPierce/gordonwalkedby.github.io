@@ -5,7 +5,6 @@ tags: [杂]
 ---
 # apt
 apt-get 和 apt 是等效的。   
-国内：[清华大学镜像](https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/)   
 包源列表文件在 /etc/apt/sources.list     
 ```bash
 #更新：包的列表
