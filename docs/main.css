@@ -129,6 +129,7 @@ header {
 .articleSort a {
     margin-left: 15px;
     color: #005da6;
+    display: inline-block;
 }
 
 @media (max-width: 800px) {
@@ -139,6 +140,13 @@ header {
     }
     #headerCenter h1 {
         font-size: 30px;
+    }
+    .articleSort {
+        margin: 10px 5%;
+    }
+    .articleSort a{
+        display: block;
+        margin: 0px;
     }
 }
 
