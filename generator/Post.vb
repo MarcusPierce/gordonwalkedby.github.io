@@ -23,7 +23,11 @@ Public Class Post
         Set(value As Date)
             _releaseDate = value
             _releaseDateISOStr = GetISOTimeFormat(value)
-            _releaseDateDisplayStr = GetChineseTimeFormat(value)
+            If value.Year > 2010 Then
+                _releaseDateDisplayStr = GetChineseTimeFormat(value)
+            Else
+                _releaseDateDisplayStr = String.Empty
+            End If
         End Set
     End Property
 

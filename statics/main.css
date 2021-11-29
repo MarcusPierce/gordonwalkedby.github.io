@@ -204,6 +204,14 @@ header {
     font-family: inherit;
 }
 
+.articleContent pre code{
+    background-color: inherit;
+}
+
+.articleContent code {
+    background-color: #e6e4e4;
+}
+
 #t404 {
     font-size: large;
     text-align: center;

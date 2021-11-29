@@ -25,7 +25,7 @@
     mainBody.appendChild(divSort)
 
     const SortTags = function (t: string) {
-        t = t.toLowerCase().replaceAll("#","")
+        t = t.toLowerCase().replaceAll("#", "")
         const viewAll = t.length < 1
         location.hash = t
         posts.forEach(function (a) {
