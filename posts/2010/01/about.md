@@ -3,9 +3,8 @@ title: 关于戈登走過去
 date: 2010-01-01
 tags: 我自己
 ---
-戈登走過去   
+戈登走過去 Gordon Walkedby    
 （也可以写 戈登走过去）  
-Gordon Walkedby   
 
 - 我有食品行业用的健康证，说明我很健康
 - 如果你运气好，你会看见我发了视频作品，然后过几天又把它删了
@@ -13,7 +12,7 @@ Gordon Walkedby
 - 做视频，写程序，发文章都是业余爱好，最喜欢 VB .NET 以及 TypeScript
 - 家暴受害者，已和父母断开联系
 
-![](/images/tx.jpg)   
+![](/images/ghfuohuoqwzcv.jpg)   
 
 捐助戈登的渠道已经关闭，请不要浪费钱了。    
 
